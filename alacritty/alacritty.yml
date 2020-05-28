@@ -18,16 +18,16 @@ window:
   # Specified in number of columns/lines, not pixels.
   # If both are `0`, this setting is ignored.
   dimensions:
-    columns: 120
-    lines: 40
+    columns: 140
+    lines: 50
 
   # Window position (changes require restart)
   #
   # Specified in number of pixels.
   # If the position is not set, the window manager will handle the placement.
   position:
-    x: 400
-    y: 100
+    x: 350
+    y: 50
 
   # Window padding (changes require restart)
   #

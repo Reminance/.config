@@ -1,6 +1,6 @@
 " ===================== Editor behavior =====================
 " set cursorline
-let mapleader=","
+let mapleader=" "
 exec "nohlsearch"
 syntax on
 set number
