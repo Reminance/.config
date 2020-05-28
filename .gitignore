@@ -12,4 +12,25 @@ tmp/
 .netrwhist
 _machine_specific.vim
 .vim-bookmarks
+*.conf
+*.dirs
+*.list
+*.locale
+dconf/
+configstore/
+fontconfig/
+JetBrains/
+netease-cloud-music/
+autostart/
+deepin/
+go/
+menus/
+chromium/
+dock/
+gtk-3.0/
+fcitx/
+jesseduffield/
+neofetch/
+pulse/
+procps/
 
