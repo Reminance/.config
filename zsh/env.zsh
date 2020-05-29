@@ -1,0 +1,11 @@
+export LANG=zh_CN.UTF-8
+export LC_ALL=zh_CN.UTF-8
+export MYVIMRC=~/.config/nvim/init.vim
+export GOROOT=/usr/lib/go
+export GOPATH=~/go
+export GOBIN=~/go/bin
+export PATH=$PATH:$GOROOT/bin:$GOBIN
+export GOPROXY=https://goproxy.cn/
+export RANGER_LOAD_DEFAULT_RC=FALSE
+export EDITOR=nvim
+export TERM=alacritty
