@@ -52,7 +52,7 @@ Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' }
 Plug 'mbbill/undotree/'
 
 " Other visual enhancement
-Plug 'nathanaelkane/vim-indent-guides'
+"Plug 'nathanaelkane/vim-indent-guides'
 Plug 'itchyny/vim-cursorword'
 
 " Git
@@ -253,9 +253,9 @@ map <LEADER>tm :TableModeToggle<CR>
 " ===
 " === FZF
 " ===
-set rtp+=/usr/local/opt/fzf
 noremap <C-p> :Files<CR>
-noremap <C-f> :Rg<CR>
+noremap <C-f> :Ag<CR>
+"noremap <C-f> :Rg<CR>
 noremap <C-h> :History<CR>
 "noremap <C-t> :BTags<CR>
 noremap <C-l> :Lines<CR>
@@ -275,12 +275,12 @@ let g:python_highlight_all = 1
 " ===
 " === vim-indent-guide
 " ===
-let g:indent_guides_guide_size = 1
-let g:indent_guides_start_level = 2
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_color_change_percent = 1
-silent! unmap <LEADER>ig
-autocmd WinEnter * silent! unmap <LEADER>ig
+"let g:indent_guides_guide_size = 1
+"let g:indent_guides_start_level = 2
+"let g:indent_guides_enable_on_vim_startup = 1
+"let g:indent_guides_color_change_percent = 1
+"silent! unmap <LEADER>ig
+"autocmd WinEnter * silent! unmap <LEADER>ig
 
 " ===
 " === vim-signiture
