@@ -27,6 +27,7 @@ source ~/.config/nvim/snippets/_md_snippets.vim
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
 Plug 'connorholyday/vim-snazzy'
 
 " code complete
@@ -39,7 +40,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 " fzf
 Plug 'junegunn/fzf.vim'
 
-" Taglist
+" Tagbar
 Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' }
 
 " Error checking
@@ -89,6 +90,7 @@ Plug 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }
 Plug 'kshenoy/vim-signature'
 
 " Other visual enhancement
+Plug 'mhinz/vim-startify'
 Plug 'ryanoasis/vim-devicons'
 Plug 'luochen1990/rainbow'
 Plug 'mg979/vim-xtabline'
@@ -124,6 +126,9 @@ call plug#end()
 "<Plug>MarkdownPreview
 "<Plug>MarkdownPreviewStop
 "<Plug>MarkdownPreviewToggle
+
+" airline
+"let g:airline_theme='base16_snazzy'
 
 " snazzy
 let g:SnazzyTransparent = 1
@@ -174,7 +179,7 @@ let g:NERDTreeIndicatorMapCustom = {
 
 
 " ===
-" === Taglist
+" === Tagbar might need sudo pacman -S ctags
 " ===
 map <silent> T :TagbarOpenAutoClose<CR>
 
@@ -313,19 +318,22 @@ let g:SignatureMap = {
         \ 'ListLocalMarkers'   :  "m?"
         \ }
 
-
 " ===
 " === Undotree
 " ===
 let g:undotree_DiffAutoOpen = 0
 map P :UndotreeToggle<CR>
 
-
 " ===
 " === rainbow
 " ===
 let g:rainbow_active = 1
 
+" ===
+" === Far.vim
+" ===
+"noremap <LEADER>fa :F  **/*<left><left><left><left><left>
+noremap <C-f> :F  %<left><left>
 
 " ===
 " === xtabline
@@ -337,6 +345,15 @@ let g:xtabline_settings.enable_persistance = 0
 let g:xtabline_settings.last_open_first = 1
 noremap to :XTabCycleMode<CR>
 noremap \p :XTabInfo<CR>
+
+" ===
+" === tcomment_vim
+" ===
+let g:tcomment_textobject_inlinecomment = ''
+nmap <LEADER>cn g>c
+vmap <LEADER>cn g>
+nmap <LEADER>cu g<c
+vmap <LEADER>cu g<
 
 " ===================== End of Plugin Settings =====================
 
