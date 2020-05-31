@@ -132,11 +132,11 @@ noremap srn <C-w>b<C-w>H
 
 " ===================== Window management
 " Use <LEADER> + new arrow keys for moving the cursor around windows
-noremap <C-w> <C-w>w
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
+noremap <LEADER>w <C-w>w
+noremap <LEADER>h <C-w>h
+noremap <LEADER>j <C-w>j
+noremap <LEADER>k <C-w>k
+noremap <LEADER>l <C-w>l
 
 " ===================== Tab management
 " Create a new tab with tk

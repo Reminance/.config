@@ -272,14 +272,14 @@ map <LEADER>tm :TableModeToggle<CR>
 " ===
 " === FZF
 " ===
-noremap <leader>p :Files<CR>
-noremap <leader>f :Ag<CR>
-"noremap <leader>f :Rg<CR>
-noremap <leader>h :History<CR>
-"noremap <leader>t :BTags<CR>
-noremap <leader>l :Lines<CR>
-noremap <leader>w :Buffers<CR>
-noremap <leader>; :History:<CR>
+noremap <C-p> :Files<CR>
+noremap <C-f> :Ag<CR>
+"noremap <C-f> :Rg<CR>
+noremap <C-h> :History<CR>
+"noremap <C-t> :BTags<CR>
+noremap <C-l> :Lines<CR>
+noremap <C-w> :Buffers<CR>
+noremap <C-;> :History:<CR>
 
 let g:fzf_preview_window = 'right:60%'
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
@@ -326,8 +326,8 @@ let g:rainbow_active = 1
 " ===
 " === Far.vim
 " ===
-"noremap <LEADER>fa :F  **/*<left><left><left><left><left>
-noremap <C-f> :F  %<left><left>
+"noremap <LEADER>f :F  **/*<left><left><left><left><left>
+noremap <LEADER>f :F  %<left><left>
 
 " ===
 " === xtabline
