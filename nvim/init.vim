@@ -32,6 +32,7 @@ set listchars=tab:▸\ ,trail:▫
 set scrolloff=5
 set indentexpr=
 set backspace=indent,eol,start
+" za，打开或关闭当前折叠；zM，关闭所有折叠；zR，打开所有折叠
 set foldmethod=indent
 set foldlevel=99
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
@@ -40,6 +41,16 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 set laststatus=2
 set autochdir
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+silent !mkdir -p ~/.config/nvim/tmp/backup
+silent !mkdir -p ~/.config/nvim/tmp/undo
+"silent !mkdir -p ~/.config/nvim/tmp/sessions
+set backupdir=~/.config/nvim/tmp/backup,.
+set directory=~/.config/nvim/tmp/backup,.
+" use for u(undo) and Ctrl-r(redo)
+if has('persistent_undo')
+	set undofile
+	set undodir=~/.config/nvim/tmp/undo,.
+endif
 
 noremap <down> :res +5<CR>
 noremap <up> :res -5<CR>
@@ -47,10 +58,11 @@ noremap <left> :vertical resize-5<CR>
 noremap <right> :vertical resize+5<CR>
 
 " ===================== Cursor Movement =====================
-noremap H 0
-noremap J 7j
-noremap K 7k
-noremap L $
+noremap <silent> H 0
+noremap <silent> J 7j
+noremap <silent> K 7k
+noremap <silent> L $
+
 
 " ===================== Command Mode Cursor Movement =====================
 cnoremap <C-a> <Home>

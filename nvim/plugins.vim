@@ -62,7 +62,8 @@ Plug 'itchyny/vim-cursorword'
 " Git
 Plug 'rhysd/conflict-marker.vim'
 Plug 'tpope/vim-fugitive'
-Plug 'mhinz/vim-signify'
+"Plug 'mhinz/vim-signify'
+Plug 'airblade/vim-gitgutter'
 Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
 
 " HTML, CSS, JavaScript, PHP, JSON, etc.
@@ -72,6 +73,9 @@ Plug 'spf13/PIV', { 'for' :['php', 'vim-plug'] }
 Plug 'gko/vim-coloresque', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
 Plug 'pangloss/vim-javascript', { 'for' :['javascript', 'vim-plug'] }
 Plug 'mattn/emmet-vim'
+
+" vim-snippets
+Plug 'honza/vim-snippets'
 
 " Python
 Plug 'vim-scripts/indentpython.vim'
@@ -90,7 +94,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }
 
 " Bookmarks
-Plug 'kshenoy/vim-signature'
+Plug 'MattesGroeger/vim-bookmarks'
 
 " Other visual enhancement
 Plug 'mhinz/vim-startify'
@@ -295,37 +299,21 @@ let g:python_highlight_all = 1
 "autocmd WinEnter * silent! unmap <LEADER>ig
 
 " ===
-" === vim-signiture
-" ===
-let g:SignatureMap = {
-        \ 'Leader'             :  "m",
-        \ 'PlaceNextMark'      :  "m,",
-        \ 'ToggleMarkAtLine'   :  "m.",
-        \ 'PurgeMarksAtLine'   :  "dm-",
-        \ 'DeleteMark'         :  "dm",
-        \ 'PurgeMarks'         :  "dm/",
-        \ 'PurgeMarkers'       :  "dm?",
-        \ 'GotoNextLineAlpha'  :  "m<LEADER>",
-        \ 'GotoPrevLineAlpha'  :  "",
-        \ 'GotoNextSpotAlpha'  :  "m<LEADER>",
-        \ 'GotoPrevSpotAlpha'  :  "",
-        \ 'GotoNextLineByPos'  :  "",
-        \ 'GotoPrevLineByPos'  :  "",
-        \ 'GotoNextSpotByPos'  :  "mn",
-        \ 'GotoPrevSpotByPos'  :  "mp",
-        \ 'GotoNextMarker'     :  "",
-        \ 'GotoPrevMarker'     :  "",
-        \ 'GotoNextMarkerAny'  :  "",
-        \ 'GotoPrevMarkerAny'  :  "",
-        \ 'ListLocalMarks'     :  "m/",
-        \ 'ListLocalMarkers'   :  "m?"
-        \ }
-
-" ===
 " === Undotree
 " ===
-let g:undotree_DiffAutoOpen = 0
 map P :UndotreeToggle<CR>
+let g:undotree_DiffAutoOpen = 1
+let g:undotree_SetFocusWhenToggle = 1
+let g:undotree_ShortIndicators = 1
+let g:undotree_WindowLayout = 2
+let g:undotree_DiffpanelHeight = 8
+let g:undotree_SplitWidth = 24
+function g:Undotree_CustomMap()
+	nmap <buffer> j <plug>UndotreeNextState
+	nmap <buffer> k <plug>UndotreePreviousState
+	nmap <buffer> J 5<plug>UndotreeNextState
+	nmap <buffer> K 5<plug>UndotreePreviousState
+endfunc
 
 " ===
 " === rainbow
@@ -357,6 +345,118 @@ nmap <LEADER>cn g>c
 vmap <LEADER>cn g>
 nmap <LEADER>cu g<c
 vmap <LEADER>cu g<
+
+" ===
+" === vim-easymotion
+" ===
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_do_shade = 0
+let g:EasyMotion_smartcase = 1
+map ' <Plug>(easymotion-bd-f2)
+nmap ' <Plug>(easymotion-bd-f2)
+
+" ===
+" === vim-bookmarks
+" ===
+let g:bookmark_no_default_key_mappings = 1
+nmap mt <Plug>BookmarkToggle
+nmap ma <Plug>BookmarkAnnotate
+nmap ml <Plug>BookmarkShowAll
+nmap mi <Plug>BookmarkNext
+nmap mn <Plug>BookmarkPrev
+nmap mC <Plug>BookmarkClear
+nmap mX <Plug>BookmarkClearAll
+nmap mu <Plug>BookmarkMoveUp
+nmap me <Plug>BookmarkMoveDown
+nmap <Leader>g <Plug>BookmarkMoveToLine
+let g:bookmark_save_per_working_dir = 1
+let g:bookmark_auto_save = 1
+let g:bookmark_highlight_lines = 1
+let g:bookmark_manage_per_buffer = 1
+let g:bookmark_save_per_working_dir = 1
+let g:bookmark_center = 1
+let g:bookmark_auto_close = 1
+let g:bookmark_location_list = 1
+
+
+" ==
+" == GitGutter
+" ==
+let g:gitgutter_signs = 0
+let g:gitgutter_map_keys = 0
+let g:gitgutter_override_sign_column_highlight = 0
+let g:gitgutter_preview_win_floating = 1
+autocmd BufWritePost * GitGutter
+nnoremap <LEADER>gf :GitGutterFold<CR>
+nnoremap H :GitGutterPreviewHunk<CR>
+nnoremap <LEADER>g- :GitGutterPrevHunk<CR>
+nnoremap <LEADER>g= :GitGutterNextHunk<CR>
+
+
+" ===
+" === vim-fugitive
+" ===
+nnoremap gb :Gblame<CR>
+
+
+" ===
+" === coc
+" ===
+" fix the most annoying bug that coc has
+"
+let g:coc_global_extensions = ['coc-python', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-gitignore', 'coc-vimlsp', 'coc-tailwindcss', 'coc-stylelint', 'coc-tslint', 'coc-lists', 'coc-git', 'coc-explorer', 'coc-pyright', 'coc-sourcekit', 'coc-translator', 'coc-flutter', 'coc-todolist', 'coc-yaml', 'coc-tasks', 'coc-actions', 'coc-diagnostic', "coc-prettier"]
+"set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+"nmap <silent> <TAB> <Plug>(coc-range-select)
+"xmap <silent> <TAB> <Plug>(coc-range-select)
+" use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]	=~ '\s'
+endfunction
+inoremap <silent><expr> <TAB>
+	\ pumvisible() ? "\<C-n>" :
+	\ <SID>check_back_space() ? "\<TAB>" :
+	\ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+function! s:check_back_space() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <c-o> coc#refresh()
+
+" Open up coc-commands
+nnoremap <c-c> :CocCommand<CR>
+" Text Objects
+xmap kf <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap kf <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
+" Useful commands
+nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <leader>rn <Plug>(coc-rename)
+nmap tt :CocCommand explorer<CR>
+" coc-translator
+nmap ts <Plug>(coc-translator-p)
+" Remap for do codeAction of selected region
+function! s:cocActionsOpenFromSelected(type) abort
+  execute 'CocCommand actions.open ' . a:type
+endfunction
+xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+" coctodolist
+nnoremap <leader>tn :CocCommand todolist.create<CR>
+nnoremap <leader>tl :CocList todolist<CR>
+nnoremap <leader>tu :CocCommand todolist.download<CR>:CocCommand todolist.upload<CR>
+" coc-tasks
+" todo. T is mapping by tagbar
+noremap <silent> T :CocList tasks<CR>
+
 
 " ===================== End of Plugin Settings =====================
 
