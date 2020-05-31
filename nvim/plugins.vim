@@ -243,6 +243,8 @@ func! CompileRunGcc()
 		:term python3 %
 	elseif &filetype == 'html'
 		silent! exec "!".g:mkdp_browser." % &"
+	elseif &filetype == 'vimwiki'
+		exec "MarkdownPreview"
 	elseif &filetype == 'markdown'
 		exec "MarkdownPreview"
 	elseif &filetype == 'tex'
@@ -389,7 +391,7 @@ let g:gitgutter_override_sign_column_highlight = 0
 let g:gitgutter_preview_win_floating = 1
 autocmd BufWritePost * GitGutter
 nnoremap <LEADER>gf :GitGutterFold<CR>
-nnoremap H :GitGutterPreviewHunk<CR>
+nnoremap <LEADER>gh :GitGutterPreviewHunk<CR>
 nnoremap <LEADER>g- :GitGutterPrevHunk<CR>
 nnoremap <LEADER>g= :GitGutterNextHunk<CR>
 
