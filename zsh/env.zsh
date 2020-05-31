@@ -9,3 +9,5 @@ export GOPROXY=https://goproxy.cn/
 export RANGER_LOAD_DEFAULT_RC=FALSE
 export EDITOR=nvim
 export TERM=alacritty
+export JDK_HOME=/usr/lib/jvm/java-8-openjdk
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk

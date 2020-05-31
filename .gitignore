@@ -16,6 +16,7 @@ _machine_specific.vim
 *.dirs
 *.list
 *.locale
+coc/
 dconf/
 configstore/
 fontconfig/
