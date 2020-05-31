@@ -125,6 +125,10 @@ call plug#end()
 "<Plug>MarkdownPreviewStop
 "<Plug>MarkdownPreviewToggle
 
+" snazzy
+let g:SnazzyTransparent = 1
+colorscheme snazzy
+
 " example
 nmap <C-s> <Plug>MarkdownPreview
 nmap <M-s> <Plug>MarkdownPreviewStop
@@ -253,13 +257,13 @@ map <LEADER>tm :TableModeToggle<CR>
 " ===
 " === FZF
 " ===
-noremap <C-p> :Files<CR>
-noremap <C-f> :Ag<CR>
-"noremap <C-f> :Rg<CR>
-noremap <C-h> :History<CR>
-"noremap <C-t> :BTags<CR>
-noremap <C-l> :Lines<CR>
-noremap <C-w> :Buffers<CR>
+noremap <leader>p :Files<CR>
+noremap <leader>f :Ag<CR>
+"noremap <leader>f :Rg<CR>
+noremap <leader>h :History<CR>
+"noremap <leader>t :BTags<CR>
+noremap <leader>l :Lines<CR>
+noremap <leader>w :Buffers<CR>
 noremap <leader>; :History:<CR>
 
 let g:fzf_preview_window = 'right:60%'

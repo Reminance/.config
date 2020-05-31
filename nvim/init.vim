@@ -18,17 +18,18 @@ filetype indent on
 filetype plugin on
 filetype plugin indent on
 set mouse=a
+set clipboard=unnamed
 set encoding=utf-8
 let &t_ut=''
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 set smarttab
 set shiftwidth=2
 set softtabstop=2
 set list
 set listchars=tab:▸\ ,trail:▫
-set scrolloff=8
+set scrolloff=5
 set indentexpr=
 set backspace=indent,eol,start
 set foldmethod=indent
@@ -46,10 +47,10 @@ noremap <left> :vertical resize-5<CR>
 noremap <right> :vertical resize+5<CR>
 
 " ===================== Cursor Movement =====================
-noremap H 5h
+noremap H 0
 noremap J 7j
 noremap K 7k
-noremap L 5l
+noremap L $
 
 " ===================== Command Mode Cursor Movement =====================
 cnoremap <C-a> <Home>
@@ -62,13 +63,9 @@ cnoremap <M-b> <S-Left>
 cnoremap <M-w> <S-Right>
 
 " ===================== Basic Mappings =====================
-noremap <C-h> 0
-noremap <C-l> $
 inoremap <C-h> <ESC>0i
 inoremap <C-l> <ESC>$a
 
-noremap = nzz
-noremap - Nzz
 noremap <LEADER><CR> :nohlsearch<CR>
 
 " Copy to system clipboard
@@ -78,7 +75,7 @@ vnoremap Y "+y
 noremap <LEADER>/ :term<CR>
 
 " jump to next <++> and replace it
-noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
+"noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 
 " make Y to copy till the end of the line
 nnoremap Y y$
@@ -122,11 +119,11 @@ noremap srn <C-w>b<C-w>H
 
 " ===================== Window management
 " Use <LEADER> + new arrow keys for moving the cursor around windows
-noremap <LEADER>w <C-w>w
-noremap <LEADER>h <C-w>h
-noremap <LEADER>j <C-w>j
-noremap <LEADER>k <C-w>k
-noremap <LEADER>l <C-w>l
+noremap <C-w> <C-w>w
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
 
 " ===================== Tab management
 " Create a new tab with tk
