@@ -18,7 +18,7 @@ filetype indent on
 filetype plugin on
 filetype plugin indent on
 set mouse=a
-set clipboard=unnamed
+"set clipboard=unnamed
 set encoding=utf-8
 let &t_ut=''
 set tabstop=2
@@ -69,6 +69,7 @@ inoremap <C-l> <ESC>$a
 noremap <LEADER><CR> :nohlsearch<CR>
 
 " Copy to system clipboard
+" might need to install a system clipboard tool such as : sudo pacman -S xclip
 vnoremap Y "+y
 
 " Opening a terminal window

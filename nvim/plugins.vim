@@ -31,7 +31,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'connorholyday/vim-snazzy'
 
 " code complete
-"Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+
+" vim-peekaboo
+Plug 'junegunn/vim-peekaboo'
 
 " File navigation
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
