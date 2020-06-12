@@ -148,5 +148,31 @@ noremap tl :+tabnext<CR>
 noremap tmh :-tabmove<CR>
 noremap tml :+tabmove<CR>
 
+
+" ===
+" === Create a _machine_specific.vim file to adjust machine specific stuff, like python interpreter location
+" ===
+let has_machine_specific_file = 1
+if empty(glob('~/.config/nvim/_machine_specific.vim'))
+	let has_machine_specific_file = 0
+	silent! exec "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
+endif
+source ~/.config/nvim/_machine_specific.vim
+
+" templates
+if has("autocmd")
+    augroup templates
+        autocmd BufNewFile *.sh 0r ~/.config/nvim/templates/sh.tpl
+        autocmd BufNewFile *.c 0r ~/.config/nvim/templates/c.tpl
+        autocmd BufNewFile *.java 0r ~/.config/nvim/templates/java.tpl
+        autocmd BufNewFile *.go 0r ~/.config/nvim/templates/go.tpl
+        autocmd BufNewFile *.py 0r ~/.config/nvim/templates/py.tpl
+        autocmd BufNewFile *.html 0r ~/.config/nvim/templates/html.tpl
+    augroup END
+endif
+
+" Snippets
+source ~/.config/nvim/snippets/_md_snippets.vim
+
 " plugins
 source ~/.config/nvim/plugins.vim
