@@ -77,6 +77,10 @@ cnoremap <M-w> <S-Right>
 " ===================== Basic Mappings =====================
 inoremap <C-h> <ESC>0i
 inoremap <C-l> <ESC>$a
+inoremap <M-h> <Left>
+inoremap <M-j> <Down>
+inoremap <M-k> <Up>
+inoremap <M-l> <Right>
 
 noremap <LEADER><CR> :nohlsearch<CR>
 
@@ -104,16 +108,21 @@ noremap <LEADER>rc :e ~/.config/nvim/init.vim<CR>
 
 " Disable the default s key
 noremap s <nop>
+noremap S <nop>
+noremap Q <nop>
 
 " Open up lazygit
 noremap \g :Git 
 noremap <c-g> :tabe<CR>:-tabmove<CR>:term lazygit<CR>
 
 " ===================== Save & quit =====================
-noremap S :w<CR>
-noremap Q :q<CR>
-noremap <C-q> :qa<CR>
-noremap R :source $MYVIMRC<CR>
+"noremap S :w<CR>
+noremap <M-w> :w<CR>
+"noremap Q :q<CR>
+noremap <M-q> :q<CR>
+noremap <C-q> :q!<CR>
+"noremap R :source $MYVIMRC<CR>
+noremap <M-r> :source $MYVIMRC<CR>
 
 " ===================== split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
 noremap sh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
