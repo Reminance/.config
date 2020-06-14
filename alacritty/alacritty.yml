@@ -18,16 +18,16 @@ window:
   # Specified in number of columns/lines, not pixels.
   # If both are `0`, this setting is ignored.
   dimensions:
-    columns: 200
-    lines: 60
+    columns: 230
+    lines: 55
 
   # Window position (changes require restart)
   #
   # Specified in number of pixels.
   # If the position is not set, the window manager will handle the placement.
-  position:
-    x: 650
-    y: 60
+  #position:
+    #x: 650
+    #y: 60
 
   # Window padding (changes require restart)
   #
@@ -60,8 +60,8 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  #startup_mode: Windowed
-  startup_mode: Fullscreen
+  startup_mode: Windowed
+  #startup_mode: Fullscreen
 
   # Window title
   title: Alacritty
