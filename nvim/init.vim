@@ -92,7 +92,7 @@ vnoremap Y "+y
 noremap <LEADER>/ :term<CR>
 
 " jump to next <++> and replace it
-"noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
+noremap <M-m> <Esc>/<++><CR>:nohlsearch<CR>c4l
 
 " make Y to copy till the end of the line
 nnoremap Y y$
