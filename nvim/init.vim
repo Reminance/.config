@@ -58,10 +58,10 @@ noremap <left> :vertical resize-5<CR>
 noremap <right> :vertical resize+5<CR>
 
 " ===================== Cursor Movement =====================
-noremap <silent> H 0
+noremap <silent> H 5h
 noremap <silent> J 7j
 noremap <silent> K 7k
-noremap <silent> L $
+noremap <silent> L 5l
 
 
 " ===================== Command Mode Cursor Movement =====================
@@ -117,12 +117,12 @@ noremap \g :Git
 noremap <c-g> :tabe<CR>:-tabmove<CR>:term lazygit<CR>
 
 " ===================== Save & quit =====================
-"noremap S :w<CR>
-noremap <M-w> :w<CR>
-"noremap Q :q<CR>
-noremap <M-q> :q<CR>
-noremap <C-q> :q!<CR>
-"noremap R :source $MYVIMRC<CR>
+nnoremap <M-w> :w<CR>
+inoremap <M-w> <ESC>:w<CR>
+nnoremap <M-q> :q<CR>
+inoremap <M-q> <ESC>:q<CR>
+nnoremap <C-q> :q!<CR>
+inoremap <C-q> <ESC>:q!<CR>
 noremap <M-r> :source $MYVIMRC<CR>
 
 " ===================== split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)

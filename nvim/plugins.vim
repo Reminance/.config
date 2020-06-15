@@ -207,7 +207,7 @@ let g:mkdp_page_title = '「${name}」'
 
 
 " Compile function
-noremap r :call CompileRunGcc()<CR>
+noremap R :call CompileRunGcc()<CR>
 func! CompileRunGcc()
 	exec "w"
 	if &filetype == 'c'
