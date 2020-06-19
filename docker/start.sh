@@ -1,7 +1,7 @@
 #!/bin/bash
 
 Jar_file=$1
-Jar=$(echo ${Jar_file}|awk -F. '{print $1}')
+#Jar=$(echo ${Jar_file}|awk -F. '{print $1}')
 [ ! "$1" ] &&  echo -e "\033[41m====== 请输入：项目名称 如start.sh eureka.jar ======\033[0m" && exit 1
 
 if [ -n "$2" ]
@@ -26,7 +26,6 @@ Pid=`ps -ef | grep -v grep | grep "${Jar_file}" | grep java | awk '{print $2}'| 
 sleep 1
 
 #启动服务
-cd $Jar
 [ ! -f "$Jar_file" ] && echo -e "\033[41m++++++ ${Jar_file}不存在 ++++++\033[0m"&& exit 2
 echo -e "\033[42m++++++ 启动： ${Jar_file} ++++++\033[0m"
 #/usr/bin/nohup
