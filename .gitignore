@@ -7,6 +7,7 @@ nohup.out
 .DS_Store
 view/
 plugged/
+jgit/
 sessions/
 #autoload/
 tmp/
