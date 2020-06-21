@@ -1,4 +1,5 @@
 st
+nohup.out
 *.o
 *.orig
 *.rej
