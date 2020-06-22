@@ -81,6 +81,7 @@ inoremap <C-k> <Up>
 inoremap <C-l> <Right>
 
 noremap <LEADER><CR> :nohlsearch<CR>
+inoremap <C-d> <Esc>ddk$
 
 " Copy to system clipboard
 " might need to install a system clipboard tool such as : sudo pacman -S xclip
@@ -107,6 +108,7 @@ noremap \g :Git
 noremap <c-g> :tabe<CR>:-tabmove<CR>:term lazygit<CR>
 
 " ===================== Save & quit =====================
+nnoremap s <nop>
 nnoremap S :w<CR>
 inoremap <C-s> <ESC>:w<CR>
 nnoremap Q :q<CR>
