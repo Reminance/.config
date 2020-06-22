@@ -77,10 +77,10 @@ cnoremap <M-w> <S-Right>
 " ===================== Basic Mappings =====================
 inoremap <C-h> <ESC>0i
 inoremap <C-l> <ESC>$a
-inoremap <M-h> <Left>
-inoremap <M-j> <Down>
-inoremap <M-k> <Up>
-inoremap <M-l> <Right>
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
 
 noremap <LEADER><CR> :nohlsearch<CR>
 
@@ -89,7 +89,7 @@ noremap <LEADER><CR> :nohlsearch<CR>
 vnoremap Y "+y
 
 " Opening a terminal window
-noremap <LEADER>/ :term<CR>
+"noremap <LEADER>/ :term<CR>
 
 " jump to next <++> and replace it
 nnoremap <M-m> <Esc>/<++><CR>:nohlsearch<CR>c4l
@@ -98,31 +98,20 @@ inoremap <M-m> <Esc>/<++><CR>:nohlsearch<CR>c4l
 " make Y to copy till the end of the line
 nnoremap Y y$
 
-" Press <SPACE> + q to close the window below the current window
-inoremap <LEADER>q <esc>
-
 " Open the vimrc file anytime
 noremap <LEADER>rc :e ~/.config/nvim/init.vim<CR>
 
 " Open Startify
 "noremap <LEADER>st :Startify<CR>
 
-" Disable the default s key
-noremap s <nop>
-noremap S <nop>
-noremap Q <nop>
-
 " Open up lazygit
 noremap \g :Git 
 noremap <c-g> :tabe<CR>:-tabmove<CR>:term lazygit<CR>
 
 " ===================== Save & quit =====================
-nnoremap <M-w> :w<CR>
-inoremap <M-w> <ESC>:w<CR>
-nnoremap <M-q> :q<CR>
-inoremap <M-q> <ESC>:q<CR>
-nnoremap <C-q> :q!<CR>
-inoremap <C-q> <ESC>:q!<CR>
+nnoremap S :w<CR>
+inoremap <C-s> <ESC>:w<CR>
+nnoremap Q :q<CR>
 noremap R :source $MYVIMRC<CR>
 
 " ===================== split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)

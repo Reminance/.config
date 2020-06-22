@@ -15,7 +15,8 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'vim-airline/vim-airline'
 "Plug 'vim-airline/vim-airline-themes'
-Plug 'connorholyday/vim-snazzy'
+"Plug 'connorholyday/vim-snazzy'
+Plug 'morhetz/gruvbox'
 
 " code complete
 "Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
@@ -117,17 +118,13 @@ call plug#end()
 "nnoremap R :Ranger<CR>
 "let g:ranger_map_keys = 0
 
-" normal/insert
-"<Plug>MarkdownPreview
-"<Plug>MarkdownPreviewStop
-"<Plug>MarkdownPreviewToggle
-
 " airline
 "let g:airline_theme='base16_snazzy'
 
 " snazzy
 let g:SnazzyTransparent = 1
-colorscheme snazzy
+"colorscheme snazzy
+colorscheme gruvbox
 
 " example
 nmap <C-s> <Plug>MarkdownPreview
@@ -207,7 +204,7 @@ let g:mkdp_page_title = '「${name}」'
 
 
 " Compile function
-noremap <M-r> :call CompileRunGcc()<CR>
+noremap <F10> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
 	exec "w"
 	if &filetype == 'c'
