@@ -48,6 +48,9 @@ Plug 'mbbill/undotree/'
 "Plug 'nathanaelkane/vim-indent-guides'
 Plug 'itchyny/vim-cursorword'
 
+" vim-be-good
+Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
+
 " Git
 Plug 'rhysd/conflict-marker.vim'
 Plug 'tpope/vim-fugitive'
@@ -341,6 +344,11 @@ let g:EasyMotion_do_shade = 0
 let g:EasyMotion_smartcase = 1
 map ' <Plug>(easymotion-bd-f2)
 nmap ' <Plug>(easymotion-bd-f2)
+
+" ===
+" === vim-be-good
+" ===
+let g:vim_be_good_floating = 0
 
 " ===
 " === vim-bookmarks

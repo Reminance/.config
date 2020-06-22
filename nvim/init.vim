@@ -12,6 +12,7 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+set background=dark
 set nocompatible
 filetype on
 filetype indent on
