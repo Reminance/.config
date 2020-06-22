@@ -67,16 +67,14 @@ noremap <silent> L 5l
 " ===================== Command Mode Cursor Movement =====================
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
-cnoremap <C-p> <Up>
-cnoremap <C-n> <Down>
-cnoremap <C-b> <Left>
-cnoremap <C-f> <Right>
+cnoremap <C-k> <Up>
+cnoremap <C-j> <Down>
+cnoremap <C-h> <Left>
+cnoremap <C-l> <Right>
 cnoremap <M-b> <S-Left>
 cnoremap <M-w> <S-Right>
 
 " ===================== Basic Mappings =====================
-inoremap <C-h> <ESC>0i
-inoremap <C-l> <ESC>$a
 inoremap <C-h> <Left>
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
