@@ -1,8 +1,12 @@
 #!/usr/bin/bash
 # 项目名
-cd ../$1
+cd $1
+if [ $? -ne 0 ]; then exit 0
+fi
 # git initialize
 git config --replace-all log.date iso
+if [ $? -ne 0 ]; then exit 0
+fi
 # 分支
 git checkout $2
 /usr/bin/expect << EOF
@@ -42,7 +46,7 @@ dailyReport() {
       sed -i "1i $1" ../autoreport/revision_$1
       sed -i "1i `date "+%Y-%m-%d %H:%M:%S"`" ../autoreport/revision_$1
       # curl 提交地址
-      totay_commit=curl "http://172.16.1.27:8080/daily/api/v1/daily/getMyDaily?current=1&size=15&userId=23"|
+      totay_commit=curl "http://172.16.1.27:8080/daily/api/v1/daily/getMyDaily?current=1&size=15&userId=23"
     fi
   fi
 }
