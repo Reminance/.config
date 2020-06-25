@@ -29,7 +29,7 @@ dailyReport() {
   final_commit=`git log -1 --author=$2 --since=1.weeks --no-merges`
   commit_date=`echo $final_commit|awk '{print $7" "$8}'`
   latest_revision=`echo $final_commit|awk '{print $2}'`
-  comment=`echo $final_commit|awk '{print $10$11$12%13$14$15$16$17$18$19}'`
+  comment=`echo $final_commit|awk '{print $10" "$11" "$12" "$13" "$14" "$15" "$16" "$17" "$18" "$19}'`
   if [ ! -s "$basepath/data/$2/$today/$project/revision" ];then
     # 初始化用户数据
     echo -e "\033[36m==== initial revision for $2 at $today project:$project ====\033[0m"
@@ -46,7 +46,7 @@ dailyReport() {
     else
       echo -e "\033[36m==== latest is $latest_revision ====\033[0m"
       # 更新本地revision
-      sed -i "1i `date "+%Y-%m-%d %H:%M:%S"`\n$2\n$3\n$commit_date\n$latest_revision\n$comment\n" $basepath/data/$2/$today/$1/revision
+      sed -i "1i `date "+%Y-%m-%d %H:%M:%S"`\n$2\n$3\n$commit_date\n$latest_revision\n$comment\n" $basepath/data/$2/$today/$project/revision
       saveCommitAndPost $project $2
     fi
   fi
@@ -70,6 +70,8 @@ do
   /usr/bin/expect << EOF
   set timeout 1
   spawn git pull
+  expect "Already up-to-date"
+  exit
   expect "Username*"
   send "$(echo $user | awk '{print $3}')\n"
   expect "Password*"
