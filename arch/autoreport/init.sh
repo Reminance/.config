@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 if [ ! -d "data/base" ];then
-  echo initial base data dir
+  echo -e "\033[36m==== initial base dir ====\033[0m"
   mkdir -p data/base
 fi
 curl "$1/projects/list" | ../../dev-tools/jq -r . > data/base/project.json
