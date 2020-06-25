@@ -113,9 +113,9 @@ call plug#end()
 
 " ===================== Start of Plugin Settings =====================
 
-""" ===
-"" === Ranger.vim
-"" ===
+" ===
+" === Ranger.vim
+" ===
 "nnoremap R :Ranger<CR>
 "let g:ranger_map_keys = 0
 
