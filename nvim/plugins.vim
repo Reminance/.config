@@ -16,7 +16,8 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'vim-airline/vim-airline'
 "Plug 'vim-airline/vim-airline-themes'
 "Plug 'connorholyday/vim-snazzy'
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
+Plug 'w0ng/vim-hybrid'
 
 " code complete
 "Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
@@ -131,7 +132,8 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " colorscheme
 let g:SnazzyTransparent = 1
 " colorscheme snazzy
-colorscheme gruvbox
+" colorscheme gruvbox
+colorscheme hybrid
 
 " ===
 " === NERDTree
