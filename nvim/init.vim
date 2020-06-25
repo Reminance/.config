@@ -106,7 +106,7 @@ noremap <LEADER>rc :e ~/.config/nvim/init.vim<CR>
 
 " Open up lazygit
 noremap \g :Git 
-noremap <C-g> :tabe<CR>:-tabmove<CR>:term lazygit<CR>
+noremap <C-g> :tabe<CR>:tabmove<CR>:term lazygit<CR>
 
 " Open a terminal in vim
 nnoremap <C-\><C-h> :set nosplitright<CR>:vsplit<CR>:term<CR>
