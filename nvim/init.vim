@@ -106,7 +106,18 @@ noremap <LEADER>rc :e ~/.config/nvim/init.vim<CR>
 
 " Open up lazygit
 noremap \g :Git 
-noremap <c-g> :tabe<CR>:-tabmove<CR>:term lazygit<CR>
+noremap <C-g> :tabe<CR>:-tabmove<CR>:term lazygit<CR>
+
+" Open a terminal in vim
+nnoremap <C-\><C-h> :set nosplitright<CR>:vsplit<CR>:term<CR>
+nnoremap <C-\>h :set nosplitright<CR>:vsplit<CR>:term<CR>
+nnoremap <C-\><C-j> :set splitbelow<CR>:split<CR>:term<CR>
+nnoremap <C-\>j :set splitbelow<CR>:split<CR>:term<CR>
+nnoremap <C-\><C-k> :set nosplitbelow<CR>:split<CR>:term<CR>
+nnoremap <C-\>k :set nosplitbelow<CR>:split<CR>:term<CR>
+nnoremap <C-\><C-l> :set splitright<CR>:vsplit<CR>:term<CR>
+nnoremap <C-\>l :set splitright<CR>:vsplit<CR>:term<CR>
+tnoremap <C-\> <C-\><C-n>
 
 " ===================== Save & quit =====================
 nnoremap s <nop>
@@ -116,10 +127,14 @@ nnoremap Q :q<CR>
 noremap R :source $MYVIMRC<CR>
 
 " ===================== split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
-noremap sh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
+noremap sh :set nosplitright<CR>:vsplit<CR>
 noremap sj :set splitbelow<CR>:split<CR>
-noremap sk :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
+noremap sk :set nosplitbelow<CR>:split<CR>
 noremap sl :set splitright<CR>:vsplit<CR>
+noremap seh :set nosplitright<CR>:vsplit 
+noremap sej :set splitbelow<CR>:split 
+noremap sek :set nosplitbelow<CR>:split 
+noremap sel :set splitright<CR>:vsplit 
 
 " ===================== Place the two screens side by side (vertical)
 noremap sm <C-w>t<C-w>H
@@ -131,8 +146,11 @@ noremap srm <C-w>b<C-w>K
 noremap srn <C-w>b<C-w>H
 
 " ===================== Window management
-" Use <LEADER> + new arrow keys for moving the cursor around windows
-noremap <LEADER>w <C-w>w
+" Use <ALT>OR<LEADER> + new arrow keys for moving the cursor around windows
+noremap <M-h> <C-w>h
+noremap <M-j> <C-w>j
+noremap <M-k> <C-w>k
+noremap <M-l> <C-w>l
 noremap <LEADER>h <C-w>h
 noremap <LEADER>j <C-w>j
 noremap <LEADER>k <C-w>k

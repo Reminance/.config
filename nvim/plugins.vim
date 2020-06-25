@@ -78,7 +78,7 @@ Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 " Markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
-Plug 'vimwiki/vimwiki'
+"Plug 'vimwiki/vimwiki'
 
 Plug 'easymotion/vim-easymotion'
 
