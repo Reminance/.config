@@ -53,7 +53,7 @@ dailyReport() {
 }
 
 # 遍历用户配置文件
-cat $basepath/user_cfg | while read user
+cat $basepath/user.conf | while read user
 do
   # 过滤标题行
   if [[ $(echo $user | awk '{print $1}') =~ ^title:* ]];then continue; fi

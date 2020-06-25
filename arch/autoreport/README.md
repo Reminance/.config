@@ -6,7 +6,7 @@
 ```
   (测试环境无法域名直连生产， 可使用http://172.16.1.27:8080/daily/api/v1作为转发)
 
-### 2.配置user_cfg
+### 2.配置user.conf
 ```
 title:项目路径 分支 git用户名称 git密码 代码提交名称 日报提交名字 日报用户id 项目id 行为id 状态id
 ../mall_bn_java dev-supplier xucheng 123456789 xucheng 许诚 23 20 4 1
