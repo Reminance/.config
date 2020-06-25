@@ -69,9 +69,7 @@ do
   # 模拟交互输入git仓库用户名/密码
   /usr/bin/expect << EOF
   set timeout 1
-  spawn git pull
-  expect "Already up-to-date"
-  exit
+  spawn git pull origin $(echo $user | awk '{print $2}')
   expect "Username*"
   send "$(echo $user | awk '{print $3}')\n"
   expect "Password*"
