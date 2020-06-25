@@ -74,7 +74,6 @@ do
   send "$(echo $user | awk '{print $3}')\n"
   expect "Password*"
   send "$(echo $user | awk '{print $4}')\n"
-  expect "*Already up-to-date."
   expect eof
 EOF
 
