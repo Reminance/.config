@@ -8,14 +8,13 @@
 
 ### 2.配置user_cfg
 ```
-title:git用户昵称 日报提交名字 日报用户id 项目id 行为id 状态id
-xucheng 许诚 23 20 4 1
+title:项目路径 分支 git用户名称 git密码 代码提交名称 日报提交名字 日报用户id 项目id 行为id 状态id
+../mall_bn_java dev-supplier xucheng 123456789 xucheng 许诚 23 20 4 1
+/home/xc/mall/mall_bn_java dev-supplier xucheng 123456789 xucheng 许诚 23 20 4 1
 ```
   添加一行用户配置， 参数释义见第一行
 
 ### 3.启动提交脚本 或者配置crontab
 ```
-./checkAndPost.sh ../mall_bn_java dev-supplier
+./start.sh
 ```
-  第一个参数为项目相对路径 第二个参数为分支
-  (用于git checkout 其实分支配上去没啥用 master也能拉代码）
