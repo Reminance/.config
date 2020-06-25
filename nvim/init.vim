@@ -22,12 +22,13 @@ set mouse=a
 "set clipboard=unnamed
 set encoding=utf-8
 let &t_ut=''
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set sw=4
+set shiftwidth=4
 set expandtab
 set smarttab
-set shiftwidth=2
-set softtabstop=2
+set shiftwidth=4
+set softtabstop=4
 set list
 set listchars=tab:▸\ ,trail:▫
 set scrolloff=5
@@ -36,6 +37,9 @@ set backspace=indent,eol,start
 " za，打开或关闭当前折叠；zM，关闭所有折叠；zR，打开所有折叠
 set foldmethod=indent
 set foldlevel=99
+set foldenable
+set ttyfast "should make scrolling faster
+set lazyredraw "same as above
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
@@ -142,8 +146,8 @@ noremap sm <C-w>t<C-w>H
 noremap sn <C-w>t<C-w>K
 
 " ===================== Rotate screens
-noremap srm <C-w>b<C-w>K
-noremap srn <C-w>b<C-w>H
+noremap srm <C-w>b<C-w>H
+noremap srn <C-w>b<C-w>K
 
 " ===================== Window management
 " Use <ALT>OR<LEADER> + new arrow keys for moving the cursor around windows

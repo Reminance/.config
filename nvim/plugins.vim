@@ -42,14 +42,14 @@ Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' }
 "Plug 'rbgrouleff/bclose.vim' " dependencies plug for ranger
 
 " Undo Tree
-Plug 'mbbill/undotree/'
+"Plug 'mbbill/undotree/'
 
 " Other visual enhancement
 "Plug 'nathanaelkane/vim-indent-guides'
 Plug 'itchyny/vim-cursorword'
 
 " vim-be-good
-Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
+"Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 
 " Git
 Plug 'rhysd/conflict-marker.vim'
@@ -73,7 +73,7 @@ Plug 'honza/vim-snippets'
 Plug 'vim-scripts/indentpython.vim'
 
 " Go
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+"Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 
 " Markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
@@ -92,17 +92,15 @@ Plug 'MattesGroeger/vim-bookmarks'
 Plug 'mhinz/vim-startify'
 Plug 'ryanoasis/vim-devicons'
 Plug 'luochen1990/rainbow'
-Plug 'mg979/vim-xtabline'
 Plug 'wincent/terminus'
 
 " Other useful utilities
-"Plug 'mhinz/vim-startify'
 Plug 'makerj/vim-pdf'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'` to change 'word' to `word`
 Plug 'godlygeek/tabular' " type ;Tabularize /= to align the =
 Plug 'gcmt/wildfire.vim' " in Visual mode, type i' to select all text in '', or type i) i] i} ip
-Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line
+Plug 'tpope/vim-commentary'
 
 " Dependencies
 Plug 'MarcWeber/vim-addon-mw-utils'
@@ -124,31 +122,31 @@ call plug#end()
 " airline
 "let g:airline_theme='base16_snazzy'
 
-" snazzy
+" ===
+" === Dress up my vim
+" ===
+set termguicolors " enable true colors support
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+" colorscheme
 let g:SnazzyTransparent = 1
 "colorscheme snazzy
 colorscheme gruvbox
-
-" example
-nmap <C-s> <Plug>MarkdownPreview
-nmap <M-s> <Plug>MarkdownPreviewStop
-nmap <C-p> <Plug>MarkdownPreviewToggle
 
 " ===
 " === NERDTree
 " ===
 map tt :NERDTreeToggle<CR>
-let NERDTreeMapOpenExpl = ""
-let NERDTreeMapUpdir = ""
-let NERDTreeMapUpdirKeepOpen = ""
-let NERDTreeMapOpenSplit = ""
-let NERDTreeOpenVSplit = ""
-let NERDTreeMapActivateNode = ""
-let NERDTreeMapOpenInTab = ""
-let NERDTreeMapPreview = ""
-let NERDTreeMapCloseDir = ""
-let NERDTreeMapChangeRoot = ""
-
+"let NERDTreeMapOpenExpl = ""
+"let NERDTreeMapUpdir = ""
+"let NERDTreeMapUpdirKeepOpen = ""
+"let NERDTreeMapOpenSplit = ""
+"let NERDTreeOpenVSplit = ""
+"let NERDTreeMapActivateNode = ""
+"let NERDTreeMapOpenInTab = ""
+"let NERDTreeMapPreview = ""
+"let NERDTreeMapCloseDir = ""
+"let NERDTreeMapChangeRoot = ""
 
 " ==
 " == NERDTree-git
@@ -165,19 +163,16 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 
-
 " ===
 " === ale
 " ===
 "let b:ale_linters = ['pylint']
 "let b:ale_fixers = ['autopep8', 'yapf']
 
-
 " ===
 " === Tagbar might need sudo pacman -S ctags
 " ===
 map <silent> T :TagbarOpenAutoClose<CR>
-
 
 " ===
 " === MarkdownPreview
@@ -204,7 +199,6 @@ let g:mkdp_markdown_css = ''
 let g:mkdp_highlight_css = ''
 let g:mkdp_port = ''
 let g:mkdp_page_title = '「${name}」'
-
 
 " Compile function
 noremap <F10> :call CompileRunGcc()<CR>
@@ -277,7 +271,6 @@ let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %
 let g:python_highlight_all = 1
 " let g:python_slow_sync = 0
 
-
 " ===
 " === vim-indent-guide
 " ===
@@ -291,19 +284,19 @@ let g:python_highlight_all = 1
 " ===
 " === Undotree
 " ===
-map P :UndotreeToggle<CR>
-let g:undotree_DiffAutoOpen = 1
-let g:undotree_SetFocusWhenToggle = 1
-let g:undotree_ShortIndicators = 1
-let g:undotree_WindowLayout = 2
-let g:undotree_DiffpanelHeight = 8
-let g:undotree_SplitWidth = 24
-function g:Undotree_CustomMap()
-	nmap <buffer> j <plug>UndotreeNextState
-	nmap <buffer> k <plug>UndotreePreviousState
-	nmap <buffer> J 5<plug>UndotreeNextState
-	nmap <buffer> K 5<plug>UndotreePreviousState
-endfunc
+"map P :UndotreeToggle<CR>
+"let g:undotree_DiffAutoOpen = 1
+"let g:undotree_SetFocusWhenToggle = 1
+"let g:undotree_ShortIndicators = 1
+"let g:undotree_WindowLayout = 2
+"let g:undotree_DiffpanelHeight = 8
+"let g:undotree_SplitWidth = 24
+"function g:Undotree_CustomMap()
+	"nmap <buffer> j <plug>UndotreeNextState
+	"nmap <buffer> k <plug>UndotreePreviousState
+	"nmap <buffer> J 5<plug>UndotreeNextState
+	"nmap <buffer> K 5<plug>UndotreePreviousState
+"endfunc
 
 " ===
 " === rainbow
@@ -317,38 +310,18 @@ let g:rainbow_active = 1
 noremap <LEADER>f :F  %<left><left>
 
 " ===
-" === xtabline
-" ===
-let g:xtabline_settings = {}
-let g:xtabline_settings.enable_mappings = 0
-let g:xtabline_settings.tabline_modes = ['tabs', 'buffers']
-let g:xtabline_settings.enable_persistance = 0
-let g:xtabline_settings.last_open_first = 1
-noremap to :XTabCycleMode<CR>
-noremap \p :XTabInfo<CR>
-
-" ===
-" === tcomment_vim
-" ===
-let g:tcomment_textobject_inlinecomment = ''
-nmap <LEADER>cn g>c
-vmap <LEADER>cn g>
-nmap <LEADER>cu g<c
-vmap <LEADER>cu g<
-
-" ===
 " === vim-easymotion
 " ===
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_do_shade = 0
 let g:EasyMotion_smartcase = 1
-map ' <Plug>(easymotion-bd-f2)
-nmap ' <Plug>(easymotion-bd-f2)
+map \\ <Plug>(easymotion-bd-f2)
+nmap \\ <Plug>(easymotion-bd-f2)
 
 " ===
 " === vim-be-good
 " ===
-let g:vim_be_good_floating = 0
+"let g:vim_be_good_floating = 0
 
 " ===
 " === vim-bookmarks
@@ -373,86 +346,23 @@ let g:bookmark_center = 1
 let g:bookmark_auto_close = 1
 let g:bookmark_location_list = 1
 
-
 " ==
 " == GitGutter
 " ==
-let g:gitgutter_signs = 0
+"let g:gitgutter_signs = 0
 let g:gitgutter_map_keys = 0
-let g:gitgutter_override_sign_column_highlight = 0
+let g:gitgutter_override_sign_column_highlight = 1
+"let g:gitgutter_highlight_linenrs = 1
 let g:gitgutter_preview_win_floating = 1
 autocmd BufWritePost * GitGutter
 nnoremap <LEADER>gf :GitGutterFold<CR>
 nnoremap <LEADER>gh :GitGutterPreviewHunk<CR>
-nnoremap <LEADER>g- :GitGutterPrevHunk<CR>
-nnoremap <LEADER>g= :GitGutterNextHunk<CR>
-
+nnoremap <LEADER>g[ :GitGutterPrevHunk<CR>
+nnoremap <LEADER>g] :GitGutterNextHunk<CR>
 
 " ===
 " === vim-fugitive
 " ===
 nnoremap gb :Gblame<CR>
 
-
-" ===
-" === coc
-" ===
-" fix the most annoying bug that coc has
-"
-"let g:coc_global_extensions = ['coc-python', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-gitignore', 'coc-vimlsp', 'coc-tailwindcss', 'coc-stylelint', 'coc-tslint', 'coc-lists', 'coc-git', 'coc-explorer', 'coc-pyright', 'coc-sourcekit', 'coc-translator', 'coc-flutter', 'coc-todolist', 'coc-yaml', 'coc-tasks', 'coc-actions', 'coc-diagnostic', "coc-prettier", "coc-java"]
-"set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-"nmap <silent> <TAB> <Plug>(coc-range-select)
-"xmap <silent> <TAB> <Plug>(coc-range-select)
-" use <tab> for trigger completion and navigate to the next complete item
-"function! s:check_back_space() abort
-	"let col = col('.') - 1
-	"return !col || getline('.')[col - 1]	=~ '\s'
-"endfunction
-"inoremap <silent><expr> <TAB>
-	"\ pumvisible() ? "\<C-n>" :
-	"\ <SID>check_back_space() ? "\<TAB>" :
-	"\ coc#refresh()
-"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-"inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-"function! s:check_back_space() abort
-	"let col = col('.') - 1
-	"return !col || getline('.')[col - 1]  =~# '\s'
-"endfunction
-"inoremap <silent><expr> <c-space> coc#refresh()
-"inoremap <silent><expr> <c-o> coc#refresh()
-
-"" Open up coc-commands
-"nnoremap <c-c> :CocCommand<CR>
-"" Text Objects
-"xmap kf <Plug>(coc-funcobj-i)
-"xmap af <Plug>(coc-funcobj-a)
-"omap kf <Plug>(coc-funcobj-i)
-"omap af <Plug>(coc-funcobj-a)
-"" Useful commands
-"nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
-"nmap <silent> gd <Plug>(coc-definition)
-"nmap <silent> gy <Plug>(coc-type-definition)
-"nmap <silent> gi <Plug>(coc-implementation)
-"nmap <silent> gr <Plug>(coc-references)
-"nmap <leader>rn <Plug>(coc-rename)
-"nmap tt :CocCommand explorer<CR>
-"" coc-translator
-"nmap ts <Plug>(coc-translator-p)
-"" Remap for do codeAction of selected region
-"function! s:cocActionsOpenFromSelected(type) abort
-  "execute 'CocCommand actions.open ' . a:type
-"endfunction
-"xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-"nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
-"" coctodolist
-"nnoremap <leader>tn :CocCommand todolist.create<CR>
-"nnoremap <leader>tl :CocList todolist<CR>
-"nnoremap <leader>tu :CocCommand todolist.download<CR>:CocCommand todolist.upload<CR>
-"" coc-tasks
-"" todo. T is mapping by tagbar
-"noremap <silent> T :CocList tasks<CR>
-
-
 " ===================== End of Plugin Settings =====================
-
-
