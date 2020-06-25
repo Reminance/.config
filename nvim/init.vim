@@ -106,7 +106,7 @@ nnoremap Y y$
 noremap <LEADER>rc :e ~/.config/nvim/init.vim<CR>
 
 " Open Startify
-"noremap <LEADER>st :Startify<CR>
+noremap <LEADER>\ :Startify<CR>
 
 " Open up lazygit
 noremap \g :Git 

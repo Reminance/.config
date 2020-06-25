@@ -130,7 +130,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 " colorscheme
 let g:SnazzyTransparent = 1
-"colorscheme snazzy
+" colorscheme snazzy
 colorscheme gruvbox
 
 " ===
