@@ -70,20 +70,20 @@ noremap <silent> L 3l
 
 
 " ===================== Command Mode Cursor Movement =====================
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
-cnoremap <C-k> <Up>
-cnoremap <C-j> <Down>
-cnoremap <C-h> <Left>
-cnoremap <C-l> <Right>
+cnoremap <M-a> <Home>
+cnoremap <M-e> <End>
 cnoremap <M-b> <S-Left>
 cnoremap <M-w> <S-Right>
+cnoremap <M-k> <Up>
+cnoremap <M-j> <Down>
+cnoremap <M-h> <Left>
+cnoremap <M-l> <Right>
 
 " ===================== Basic Mappings =====================
-inoremap <C-h> <Left>
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-l> <Right>
+inoremap <M-h> <Left>
+inoremap <M-j> <Down>
+inoremap <M-k> <Up>
+inoremap <M-l> <Right>
 
 noremap <LEADER><CR> :nohlsearch<CR>
 inoremap <C-d> <Esc>ddk$
@@ -103,7 +103,10 @@ inoremap <M-m> <Esc>/<++><CR>:nohlsearch<CR>c4l
 nnoremap Y y$
 
 " Open the vimrc file anytime
-noremap <LEADER>rc :e ~/.config/nvim/init.vim<CR>
+noremap <LEADER><LEADER>i :e ~/.config/nvim/init.vim<CR>
+
+" Open the vimrc plugins file anytime
+noremap <LEADER><LEADER>p :e ~/.config/nvim/plugins.vim<CR>
 
 " Open Startify
 noremap <LEADER>\ :Startify<CR>
@@ -182,7 +185,6 @@ endif
 source ~/.config/nvim/_machine_specific.vim
 
 " Compile function
-" noremap <F10> :call CompileRunGcc()<CR>
 noremap <M-r> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
 	exec "w"
