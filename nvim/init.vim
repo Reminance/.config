@@ -69,22 +69,33 @@ noremap <silent> K 3k
 noremap <silent> L 3l
 
 
-" ===================== Command Mode Cursor Movement =====================
+" ===================== Cursor Movement =====================
 cnoremap <M-a> <Home>
 cnoremap <M-e> <End>
 cnoremap <M-b> <S-Left>
 cnoremap <M-w> <S-Right>
-cnoremap <M-k> <Up>
-cnoremap <M-j> <Down>
-cnoremap <M-h> <Left>
-cnoremap <M-l> <Right>
 
-" ===================== Basic Mappings =====================
 inoremap <M-h> <Left>
 inoremap <M-j> <Down>
 inoremap <M-k> <Up>
 inoremap <M-l> <Right>
 
+cnoremap <M-h> <Left>
+cnoremap <M-j> <Down>
+cnoremap <M-k> <Up>
+cnoremap <M-l> <Right>
+
+xnoremap <M-h> <Left>
+xnoremap <M-j> <Down>
+xnoremap <M-k> <Up>
+xnoremap <M-l> <Right>
+
+tnoremap <M-h> <Left>
+tnoremap <M-j> <Down>
+tnoremap <M-k> <Up>
+tnoremap <M-l> <Right>
+
+" ===================== Basic Mappings =====================
 noremap <LEADER><CR> :nohlsearch<CR>
 inoremap <C-d> <Esc>ddk$
 
