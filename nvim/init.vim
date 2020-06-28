@@ -19,7 +19,7 @@ filetype indent on
 filetype plugin on
 filetype plugin indent on
 set mouse=a
-"set clipboard=unnamed
+set clipboard=unnamedplus
 set encoding=utf-8
 let &t_ut=''
 set tabstop=4
