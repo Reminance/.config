@@ -63,10 +63,10 @@ noremap <left> :vertical resize-5<CR>
 noremap <right> :vertical resize+5<CR>
 
 " ===================== Cursor Movement =====================
-noremap <silent> H 5h
-noremap <silent> J 7j
-noremap <silent> K 7k
-noremap <silent> L 5l
+noremap <silent> H 3h
+noremap <silent> J 3j
+noremap <silent> K 3k
+noremap <silent> L 3l
 
 
 " ===================== Command Mode Cursor Movement =====================
