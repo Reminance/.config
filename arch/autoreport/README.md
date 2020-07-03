@@ -1,18 +1,55 @@
 # 自动提交日报
 ## 如何使用
-### 1.初始化项目和字典
+### 1.project-common.conf配置需要采集的项目以及分支信息
 ```
-./init.sh https://m.quanhoo.com/daily/api/vi
+[
+    {
+        "project":"mall_bn_java",
+        "branchs":[
+            "dev-supplier",
+            "dev-optimize-0628"
+        ]
+
+    },
+    {
+        "project":"queen-crm",
+        "branchs":[
+                "dev",
+                "test"
+        ]
+    },
+    {
+        "project":"queen_pay",
+        "branchs":[
+            "dev_supplier"
+        ]
+    }
+]
 ```
-  (测试环境无法域名直连生产， 可使用http://172.16.1.27:8080/daily/api/v1作为转发)
+  start.sh里的"url"是提交地址(开发环境无法域名直连生产， 可使用http://172.16.1.27:8080/daily/api/v1作为转发)
 
 ### 2.配置user.conf
 ```
-title:项目路径 分支 git用户名称 git密码 代码提交名称 日报提交名字 日报用户id 项目id 行为id 状态id
-../mall_bn_java dev-supplier xucheng 123456789 xucheng 许诚 23 20 4 1
-/home/xc/mall/mall_bn_java dev-supplier xucheng 123456789 xucheng 许诚 23 20 4 1
+[
+    {
+        "user":"xucheng",
+        "daily_user_id":23,
+        "daily_user_name":"许诚",
+        "daily_project":"供应商版本",
+        "daily_action":"开发",
+        "daily_status":"进行中",
+        "projects":[
+            {
+                "project":"mall_bn_java",
+                "branchs":[
+                    "dev-supplier",
+                    "dev-optimize-0628"
+                ]
+            }
+        ]
+    }
+]
 ```
-  添加一行用户配置， 参数释义见第一行
 
 ### 3.启动提交脚本 或者配置crontab
 ```
