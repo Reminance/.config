@@ -35,7 +35,7 @@ do
     # echo 日报状态 $daily_status
     projects=$(echo $user | /home/xc/dev-tools/jq ".projects")
     projects_length=`echo $projects | /home/xc/dev-tools/jq "length"`
-    commit_path=$(echo $1/data/`echo $user_name|sed 's/"//g'`/$today)
+    commit_path=$(echo $1/data/user/`echo $user_name|sed 's/"//g'`/$today)
     # 复位这次的提交flag
     if [ ! -s "$commit_path/needpost" ];then
         mkdir -p $commit_path
@@ -57,7 +57,7 @@ do
             echo 正在采集分支 $branch
             current_branch_path=$(echo $1/data/project/$today/`echo $project|sed 's/"//g'`/`echo $branch|sed 's/"//g'`)
             latest_revision=$(cat $current_branch_path/commit.log|/home/xc/dev-tools/jq "map(select(.author_name == "$user_name"))|.[0].id")
-            revision_path=$(echo -e "$1/data/`echo $user_name|sed 's/"//g'`/$today/`echo $project|sed 's/"//g'`/`echo $branch|sed 's/"//g'`")
+            revision_path=$(echo -e "$commit_path/`echo $project|sed 's/"//g'`/`echo $branch|sed 's/"//g'`")
             if [ ! -s "$revision_path/revision" ];then
                 mkdir -p $revision_path
                 echo $latest_revision > $revision_path/revision
