@@ -15,9 +15,9 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'vim-airline/vim-airline'
 "Plug 'vim-airline/vim-airline-themes'
-"Plug 'connorholyday/vim-snazzy'
+Plug 'connorholyday/vim-snazzy'
 Plug 'morhetz/gruvbox'
-" Plug 'w0ng/vim-hybrid'
+Plug 'w0ng/vim-hybrid'
 
 " code complete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -54,8 +54,8 @@ Plug 'itchyny/vim-cursorword'
 " Git
 Plug 'rhysd/conflict-marker.vim'
 Plug 'tpope/vim-fugitive'
-"Plug 'mhinz/vim-signify'
-Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
+" Plug 'airblade/vim-gitgutter'
 " Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
 
 " HTML, CSS, JavaScript, PHP, JSON, etc.
@@ -173,6 +173,7 @@ let g:NERDTreeIndicatorMapCustom = {
 " ===
 " === Tagbar might need sudo pacman -S ctags
 " ===
+set tags=./.tags;,.tags
 map <silent> T :TagbarOpenAutoClose<CR>
 
 " ===
@@ -303,18 +304,42 @@ let g:bookmark_auto_close = 1
 let g:bookmark_location_list = 1
 
 " ==
+" == vim-signify
+" ==
+
+" 设置要检查的VCS
+let g:signify_vcs_list = ['git']
+" 插入模式下指定updatetime时间后无操作将缓存区交换文件写入磁盘
+let g:signify_cursorhold_insert     = 1
+" 正常模式下指定updatetime时间后无操作将缓存区交换文件写入磁盘
+let g:signify_cursorhold_normal     = 1
+" 缓冲区被修改时更新符号
+let g:signify_update_on_bufenter    = 0
+" vim获取焦点时更新符号
+let g:signify_update_on_focusgained = 1
+" 键盘映射
+nnoremap gsd :SignifyDiff<CR>
+nnoremap gst :SignifyToggle<CR>
+nnoremap gsh :SignifyToggleHighlight<CR>
+nnoremap gsr :SignifyRefresh<CR>
+nnoremap gsx :SignifyDebug<CR>
+" hunk jumping
+nmap gsj <plug>(signify-next-hunk)
+nmap gsk <plug>(signify-prev-hunk)
+
+" ==
 " == GitGutter
 " ==
-"let g:gitgutter_signs = 0
-let g:gitgutter_map_keys = 0
-let g:gitgutter_override_sign_column_highlight = 1
-"let g:gitgutter_highlight_linenrs = 1
-let g:gitgutter_preview_win_floating = 1
-autocmd BufWritePost * GitGutter
-nnoremap <LEADER>gf :GitGutterFold<CR>
-nnoremap <LEADER>gh :GitGutterPreviewHunk<CR>
-nnoremap <LEADER>g[ :GitGutterPrevHunk<CR>
-nnoremap <LEADER>g] :GitGutterNextHunk<CR>
+""let g:gitgutter_signs = 0
+"let g:gitgutter_map_keys = 0
+"let g:gitgutter_override_sign_column_highlight = 1
+""let g:gitgutter_highlight_linenrs = 1
+"let g:gitgutter_preview_win_floating = 1
+"autocmd BufWritePost * GitGutter
+"nnoremap <LEADER>gf :GitGutterFold<CR>
+"nnoremap <LEADER>gh :GitGutterPreviewHunk<CR>
+"nnoremap <LEADER>g[ :GitGutterPrevHunk<CR>
+"nnoremap <LEADER>g] :GitGutterNextHunk<CR>
 
 " ===
 " === vim-fugitive
