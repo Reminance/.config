@@ -83,12 +83,16 @@ do
     done
 
     if [ $(cat $commit_path/needpost) -eq 1 ] ;then
-        total_commit=$(cat $commit_path/commit)
-        total_content=$(cat $commit_path/commit|awk 'BEGIN{RS="\n";ORS="%3Cbr%2F%3E"}{print $0}')
-        # echo total_content--------------: $total_content
-        echo $user_name 当天提交为: $total_commit
-        source $1/post.sh $2 $daily_user_id $daily_project_id $daily_user_name $daily_action_id $daily_status 8 $total_content $daily_user_name
-        echo $user_name 提交完成
+        if [ ! -s "$commit_path/commit" ];then
+            echo $user_name提交内容为空
+        else
+            total_commit=$(cat $commit_path/commit)
+            total_content=$(cat $commit_path/commit|awk 'BEGIN{RS="\n";ORS="%3Cbr%2F%3E"}{print $0}')
+            # echo total_content--------------: $total_content
+            echo $user_name 当天提交为: $total_commit
+            source $1/post.sh $2 $daily_user_id $daily_project_id $daily_user_name $daily_action_id $daily_status 8 $total_content $daily_user_name
+            echo $user_name 提交完成
+        fi
     else
         echo $user_name已经是最新提交
     fi
