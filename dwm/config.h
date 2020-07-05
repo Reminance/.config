@@ -18,7 +18,7 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
 static const Bool viewontag         = True;     /* Switch view on tag switch */
 static const char *fonts[]          = { "SauceCodePro Nerd Font Mono:size=14" };
-static const char dmenufont[]       = "SauceCodePro Nerd Font Mono:size=14";
+static const char dmenufont[]       = "SauceCodePro Nerd Font Mono:size=12";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -129,8 +129,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,    XK_l,                    tagtoright,     {0} },
 	{ MODKEY|ShiftMask,    XK_i,                    incnmaster,     {.i = +1 } },
 	{ MODKEY|ShiftMask,    XK_d,                    incnmaster,     {.i = -1 } },
-	{ MODKEY,              XK_h,                    setmfact,       {.f = -0.05} },
-	{ MODKEY,              XK_l,                    setmfact,       {.f = +0.05} },
+	{ MODKEY|ControlMask,  XK_h,                    setmfact,       {.f = -0.05} },
+	{ MODKEY|ControlMask,  XK_l,                    setmfact,       {.f = +0.05} },
 	/* { MODKEY,              XK_k,                    hidewin,        {0} }, */
 	/* { MODKEY|ShiftMask,    XK_k,                    restorewin,     {0} }, */
 	/* { MODKEY,              XK_o,                    hideotherwins,  {0}}, */
