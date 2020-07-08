@@ -1,1 +1,0 @@
-https://api.meomiao.us/api/v1/client/subscribe?token=ab42687b82809dc6c873293db6c27279
