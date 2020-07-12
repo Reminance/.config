@@ -355,6 +355,7 @@ nnoremap gb :Gblame<CR>
   " \ 'coc-explorer',
 let g:coc_global_extensions = [
   \ 'coc-java',
+  \ 'coc-go',
   \ 'coc-pairs',
   \ 'coc-pyright',
   \ 'coc-python',
@@ -434,5 +435,8 @@ noremap <leader>ts :CocList tasks<CR>
 " coc-snippets
 " Use <C-l> for trigger snippet expand.
 " imap <C-l> <Plug>(coc-snippets-expand)
+
+" go coc settings
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " ===================== End of Plugin Settings =====================

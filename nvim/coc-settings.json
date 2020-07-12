@@ -60,7 +60,15 @@
 		"$HOME/.config/nvim/Ultisnips/",
 		"$HOME/.config/nvim/plugged/vim-snippets/UltiSnips/"
 	],
-	"coc.preferences.formatOnSaveFiletypes": ["typescript", "html", "css", "json", "python", "go"],
+	"coc.preferences.formatOnSaveFiletypes": [
+		"typescript",
+		"html",
+		"css",
+		"json",
+		"markdown",
+		"python",
+		"go"
+	],
 	"yaml.format.enable": true,
 	"signature.target": "float",
 	"yank.enableCompletion": false,
@@ -185,5 +193,17 @@
 	"java.import.gradle.enabled": true,
 	"java.import.maven.enabled": true,
 	"java.jdt.ls.vmargs": "-javaagent:/home/xc/work-space/java/lombok/lombok.jar -Xbootclasspath/a:/home/xc/work-space/java/lombok/lombok.jar",
-	"languageserver": {}
+	"languageserver": {
+		"go": {
+			"command": "gopls",
+			"rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+			"filetypes": ["go"],
+			"initializationOptions": {
+				"usePlaceholders": true
+			}
+		}
+	},
+	"go.disable": {
+		"workspaceFolders": false
+	}
 }
