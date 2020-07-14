@@ -210,7 +210,8 @@ map <LEADER>tm :TableModeToggle<CR>
 " ===
 " === FZF
 " ===
-noremap <C-p> :Files<CR>
+" noremap <C-p> :Files<CR>
+noremap <C-p> :GFiles<CR>
 noremap <C-f> :Ag<CR>
 "noremap <C-f> :Rg<CR>
 noremap <C-h> :History<CR>
@@ -344,7 +345,10 @@ nmap gsk <plug>(signify-prev-hunk)
 " ===
 " === vim-fugitive
 " ===
-nnoremap gb :Gblame<CR>
+nnoremap <LEADER>gb :Gblame<CR>
+nnoremap <LEADER><LEADER>h :diffget //2<CR>
+nnoremap <LEADER><LEADER>l :diffget //3<CR>
+nnoremap <LEADER><LEADER>g :G<CR>
 
 " ===
 " === coc
@@ -413,6 +417,7 @@ omap af <Plug>(coc-funcobj-a)
 " Useful commands
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
 
+nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
