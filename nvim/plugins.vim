@@ -46,7 +46,7 @@ Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' }
 
 " Other visual enhancement
 "Plug 'nathanaelkane/vim-indent-guides'
-Plug 'itchyny/vim-cursorword'
+" Plug 'itchyny/vim-cursorword'
 
 " vim-be-good
 "Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
@@ -96,7 +96,7 @@ Plug 'wincent/terminus'
 
 " Other useful utilities
 Plug 'makerj/vim-pdf'
-Plug 'terryma/vim-multiple-cursors'
+" Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'` to change 'word' to `word`
 Plug 'godlygeek/tabular' " type ;Tabularize /= to align the =
 Plug 'gcmt/wildfire.vim' " in Visual mode, type i' to select all text in '', or type i) i] i} ip
@@ -208,17 +208,25 @@ let g:mkdp_page_title = '「${name}」'
 map <LEADER>tm :TableModeToggle<CR>
 
 " ===
+" === Far.vim
+" ===
+"noremap <LEADER>f :F  **/*<left><left><left><left><left>
+noremap <LEADER>f :F  %<left><left>
+
+" ===
 " === FZF
 " ===
-" noremap <C-p> :Files<CR>
-noremap <C-p> :GFiles<CR>
-noremap <C-f> :Ag<CR>
-"noremap <C-f> :Rg<CR>
+noremap <M-f> :Lines<CR>
+" ripgrep
+noremap <M-S-f> :Rg<CR>
+noremap <M-n> :GFiles<CR>
+noremap <M-S-n> :Files<CR>
+noremap <M-w> :Buffers<CR>
 noremap <C-h> :History<CR>
-"noremap <C-t> :BTags<CR>
-noremap <C-l> :Lines<CR>
-noremap <C-w> :Buffers<CR>
-noremap <C-;> :History:<CR>
+" noremap <M-;> :History:<CR>
+" The Silver Searcher
+" noremap <M-S-f> :Ag<CR>
+" noremap <M-t> :BTags<CR>
 
 let g:fzf_preview_window = 'right:60%'
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
@@ -260,12 +268,6 @@ let g:python_highlight_all = 1
 " === rainbow
 " ===
 let g:rainbow_active = 1
-
-" ===
-" === Far.vim
-" ===
-"noremap <LEADER>f :F  **/*<left><left><left><left><left>
-noremap <LEADER>f :F  %<left><left>
 
 " ===
 " === vim-easymotion

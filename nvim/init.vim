@@ -70,10 +70,10 @@ noremap <silent> L 3l
 
 
 " ===================== Cursor Movement =====================
-cnoremap <M-a> <Home>
-cnoremap <M-e> <End>
-cnoremap <M-b> <S-Left>
-cnoremap <M-w> <S-Right>
+" cnoremap <M-a> <Home>
+" cnoremap <M-e> <End>
+" cnoremap <M-b> <S-Left>
+" cnoremap <M-w> <S-Right>
 
 inoremap <M-h> <Left>
 inoremap <M-j> <Down>
