@@ -16,3 +16,5 @@ export EDITOR=nvim
 export TERM=xterm-256color
 export JDK_HOME=/usr/lib/jvm/java-8-openjdk
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
+export http_proxy=192.168.1.101:7890
+export https_proxy=192.168.1.101:7890
