@@ -130,6 +130,10 @@ nnoremap <C-\><C-l> :set splitright<CR>:vsplit<CR>:term<CR>
 nnoremap <C-\>l :set splitright<CR>:vsplit<CR>:term<CR>
 tnoremap <C-\> <C-\><C-n>
 
+" insertmode operat
+inoremap <M-o> <ESC>o
+inoremap <M-S-o> <ESC>O
+
 " ===================== Save & quit =====================
 nnoremap s <nop>
 nnoremap S :w<CR>
