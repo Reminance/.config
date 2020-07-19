@@ -68,25 +68,25 @@ noremap <right> :vertical resize+5<CR>
 " cnoremap <M-b> <S-Left>
 " cnoremap <M-w> <S-Right>
 
-inoremap <M-h> <Left>
-inoremap <M-j> <Down>
-inoremap <M-k> <Up>
-inoremap <M-l> <Right>
+inoremap <C-b> <Left>
+inoremap <C-n> <Down>
+inoremap <C-p> <Up>
+inoremap <C-f> <Right>
 
-cnoremap <M-h> <Left>
-cnoremap <M-j> <Down>
-cnoremap <M-k> <Up>
-cnoremap <M-l> <Right>
+cnoremap <C-b> <Left>
+cnoremap <C-n> <Down>
+cnoremap <C-p> <Up>
+cnoremap <C-f> <Right>
 
-xnoremap <M-h> <Left>
-xnoremap <M-j> <Down>
-xnoremap <M-k> <Up>
-xnoremap <M-l> <Right>
+xnoremap <C-b> <Left>
+xnoremap <C-n> <Down>
+xnoremap <C-p> <Up>
+xnoremap <C-f> <Right>
 
-tnoremap <M-h> <Left>
-tnoremap <M-j> <Down>
-tnoremap <M-k> <Up>
-tnoremap <M-l> <Right>
+tnoremap <C-b> <Left>
+tnoremap <C-n> <Down>
+tnoremap <C-p> <Up>
+tnoremap <C-f> <Right>
 
 " ===================== Basic Mappings =====================
 noremap <LEADER><CR> :nohlsearch<CR>
