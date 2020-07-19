@@ -275,8 +275,7 @@ let g:rainbow_active = 1
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_do_shade = 0
 let g:EasyMotion_smartcase = 1
-map \\ <Plug>(easymotion-bd-f2)
-nmap \\ <Plug>(easymotion-bd-f2)
+nmap <LEADER>/ <Plug>(easymotion-bd-f2)
 
 " ===
 " === vim-be-good
@@ -296,7 +295,7 @@ nmap mC <Plug>BookmarkClear
 nmap mX <Plug>BookmarkClearAll
 nmap mu <Plug>BookmarkMoveUp
 nmap me <Plug>BookmarkMoveDown
-nmap <Leader>g <Plug>BookmarkMoveToLine
+nmap <LEADER>g <Plug>BookmarkMoveToLine
 let g:bookmark_save_per_working_dir = 1
 let g:bookmark_auto_save = 1
 let g:bookmark_highlight_lines = 1
