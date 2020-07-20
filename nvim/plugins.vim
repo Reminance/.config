@@ -13,7 +13,8 @@ endif
 " ===
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline'
+Plug 'itchyny/lightline.vim'
 "Plug 'vim-airline/vim-airline-themes'
 Plug 'connorholyday/vim-snazzy'
 Plug 'morhetz/gruvbox'
@@ -122,6 +123,11 @@ call plug#end()
 " airline
 "let g:airline_theme='base16_snazzy'
 
+" lightline
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
+
 " ===
 " === Dress up my vim
 " ===
@@ -216,13 +222,13 @@ noremap <LEADER>f :F  %<left><left>
 " ===
 " === FZF
 " ===
-noremap <M-f> :Lines<CR>
+noremap <M-S-l> :Lines<CR>
 " ripgrep
 noremap <M-S-f> :Rg<CR>
-noremap <M-n> :GFiles<CR>
+noremap <M-S-g> :GFiles<CR>
 noremap <M-S-n> :Files<CR>
-noremap <M-w> :Buffers<CR>
-noremap <C-h> :History<CR>
+noremap <M-S-e> :Buffers<CR>
+noremap <M-S-h> :History<CR>
 " noremap <M-;> :History:<CR>
 " The Silver Searcher
 " noremap <M-S-f> :Ag<CR>
