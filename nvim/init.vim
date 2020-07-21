@@ -58,10 +58,14 @@ if has('persistent_undo')
 	set undodir=~/.config/nvim/tmp/undo,.
 endif
 
-noremap <down> :res +5<CR>
-noremap <up> :res -5<CR>
-noremap <left> :vertical resize-5<CR>
-noremap <right> :vertical resize+5<CR>
+noremap <C-Down> :res +5<CR>
+noremap <C-Up> :res -5<CR>
+noremap <C-Left> :vertical resize-5<CR>
+noremap <C-Right> :vertical resize+5<CR>
+noremap <C-M-H> <C-w>H
+noremap <C-M-J> <C-w>J
+noremap <C-M-K> <C-w>K
+noremap <C-M-L> <C-w>L
 
 " ===================== Cursor Movement =====================
 " cnoremap <M-a> <Home>
@@ -130,10 +134,6 @@ nnoremap <C-\>k :set nosplitbelow<CR>:split<CR>:term<CR>
 nnoremap <C-\><C-l> :set splitright<CR>:vsplit<CR>:term<CR>
 nnoremap <C-\>l :set splitright<CR>:vsplit<CR>:term<CR>
 tnoremap <C-\> <C-\><C-n>
-
-" insertmode operat
-inoremap <M-o> <ESC>o
-inoremap <M-S-o> <ESC>O
 
 " ===================== Save & quit =====================
 nnoremap s <nop>
