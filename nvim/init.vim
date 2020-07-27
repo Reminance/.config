@@ -135,6 +135,12 @@ nnoremap <C-\><C-l> :set splitright<CR>:vsplit<CR>:term<CR>
 nnoremap <C-\>l :set splitright<CR>:vsplit<CR>:term<CR>
 tnoremap <C-\> <C-\><C-n>
 
+" ===================== Quick Navigation =====================
+nnoremap H 3h
+nnoremap J 3j
+nnoremap K 3k
+nnoremap L 3l
+
 " ===================== Save & quit =====================
 nnoremap s <nop>
 nnoremap S :w<CR>
