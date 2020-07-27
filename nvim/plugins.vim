@@ -214,10 +214,18 @@ let g:mkdp_page_title = '「${name}」'
 map <LEADER>tm :TableModeToggle<CR>
 
 " ===
+" === vim-easymotion
+" ===
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_do_shade = 0
+let g:EasyMotion_smartcase = 1
+nmap <LEADER>f <Plug>(easymotion-bd-f2)
+
+" ===
 " === Far.vim
 " ===
 "noremap <LEADER>f :F  **/*<left><left><left><left><left>
-noremap <LEADER>f :F  %<left><left>
+noremap <LEADER><LEADER>f :F  %<left><left>
 
 " ===
 " === FZF
@@ -274,14 +282,6 @@ let g:python_highlight_all = 1
 " === rainbow
 " ===
 let g:rainbow_active = 1
-
-" ===
-" === vim-easymotion
-" ===
-let g:EasyMotion_do_mapping = 0
-let g:EasyMotion_do_shade = 0
-let g:EasyMotion_smartcase = 1
-nmap <LEADER>/ <Plug>(easymotion-bd-f2)
 
 " ===
 " === vim-be-good
