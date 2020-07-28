@@ -78,21 +78,6 @@ inoremap <C-n> <Down>
 inoremap <C-p> <Up>
 inoremap <C-f> <Right>
 
-cnoremap <C-b> <Left>
-cnoremap <C-n> <Down>
-cnoremap <C-p> <Up>
-cnoremap <C-f> <Right>
-
-xnoremap <C-b> <Left>
-xnoremap <C-n> <Down>
-xnoremap <C-p> <Up>
-xnoremap <C-f> <Right>
-
-tnoremap <C-b> <Left>
-tnoremap <C-n> <Down>
-tnoremap <C-p> <Up>
-tnoremap <C-f> <Right>
-
 " ===================== Basic Mappings =====================
 noremap <LEADER><CR> :nohlsearch<CR>
 inoremap <C-d> <Esc>ddk$
@@ -112,10 +97,10 @@ inoremap <M-m> <Esc>/<++><CR>:nohlsearch<CR>c4l
 nnoremap Y y$
 
 " Open the vimrc file anytime
-noremap <LEADER><LEADER>i :e ~/.config/nvim/init.vim<CR>
+noremap <LEADER>i :e ~/.config/nvim/init.vim<CR>
 
 " Open the vimrc plugins file anytime
-noremap <LEADER><LEADER>p :e ~/.config/nvim/plugins.vim<CR>
+noremap <LEADER>p :e ~/.config/nvim/plugins.vim<CR>
 
 " Open Startify
 noremap <LEADER>\ :Startify<CR>
