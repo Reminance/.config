@@ -33,6 +33,9 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 " fzf
 Plug 'junegunn/fzf.vim'
 
+" ranger
+Plug 'francoiscabrol/ranger.vim'
+
 " Tagbar
 Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' }
 
@@ -243,6 +246,11 @@ noremap <M-S-h> :History<CR>
 
 let g:fzf_preview_window = 'right:60%'
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+
+" ===
+" === RANGER
+" ===
+nnoremap <LEADER>ra :Ranger<CR>
 
 " ===
 " === Python-syntax
