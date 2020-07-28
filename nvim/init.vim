@@ -62,10 +62,6 @@ noremap <C-Down> :res +5<CR>
 noremap <C-Up> :res -5<CR>
 noremap <C-Left> :vertical resize-5<CR>
 noremap <C-Right> :vertical resize+5<CR>
-noremap <C-M-H> <C-w>H
-noremap <C-M-J> <C-w>J
-noremap <C-M-K> <C-w>K
-noremap <C-M-L> <C-w>L
 
 " ===================== Cursor Movement =====================
 " cnoremap <M-a> <Home>
@@ -164,15 +160,25 @@ noremap <LEADER>k <C-w>k
 noremap <LEADER>l <C-w>l
 
 " ===================== Tab management
-" Create a new tab with tk
-noremap tk :tabe<CR>
-" Move around tabs with th and tl
-noremap th :-tabnext<CR>
-noremap tl :+tabnext<CR>
-" Move the tabs with tmh and tml
-noremap tmh :-tabmove<CR>
-noremap tml :+tabmove<CR>
-
+" Create a new tab
+" noremap <M-n> :tabe<CR>
+noremap <M-n> :tabnew 
+noremap <LEADER>n :tabe<CR>
+" witching tabs
+noremap <M-,> :-tabnext<CR>
+noremap <M-.> :+tabnext<CR>
+noremap <LEADER>, :-tabnext<CR>
+noremap <LEADER>. :+tabnext<CR>
+" Move the tabs
+noremap <M-<> :-tabmove<CR>
+noremap <M->> :+tabmove<CR>
+noremap <LEADER>< :-tabmove<CR>
+noremap <LEADER>> :+tabmove<CR>
+" Map alt-x keys to jump to a tab
+for i in range(1, 8)
+  execute "nnoremap <M-" . i . "> :tabnext " . i . "<CR>"
+endfor
+nmap <M-9> :tablast<CR>
 
 " ===
 " === Create a _machine_specific.vim file to adjust machine specific stuff, like python interpreter location
