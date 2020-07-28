@@ -224,8 +224,7 @@ nmap <LEADER>f <Plug>(easymotion-bd-f2)
 " ===
 " === Far.vim
 " ===
-"noremap <LEADER>f :F  **/*<left><left><left><left><left>
-noremap <LEADER><LEADER>f :F  %<left><left>
+noremap <LEADER>F :F  %<left><left>
 
 " ===
 " === FZF
