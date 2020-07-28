@@ -42,9 +42,6 @@ Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' }
 " Error checking
 "Plug 'w0rp/ale'
 
-"Plug 'francoiscabrol/ranger.vim'
-"Plug 'rbgrouleff/bclose.vim' " dependencies plug for ranger
-
 " Undo Tree
 "Plug 'mbbill/undotree/'
 
@@ -116,12 +113,6 @@ call plug#end()
 
 
 " ===================== Start of Plugin Settings =====================
-
-" ===
-" === Ranger.vim
-" ===
-"nnoremap R :Ranger<CR>
-"let g:ranger_map_keys = 0
 
 " airline
 "let g:airline_theme='base16_snazzy'
