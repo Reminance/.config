@@ -181,9 +181,15 @@ bar {
         status_command i3status
 }
 
-exec_always --no-startup-id ~/.config/i3/autostart-i3.sh
-exec_always --no-startup-id ~/.config/i3/wp-autochange.sh
+exec_always --no-startup-id ~/.config/i3/scripts/autostart-i3.sh
+exec_always --no-startup-id ~/.config/i3/scripts/wp-autochange.sh
 
 new_window 1pixel
 
 gaps inner 10
+
+bindsym $mod+bracketleft exec bash ~/.config/i3/scripts/vol-down.sh
+bindsym $mod+bracketright exec bash ~/.config/i3/scripts/vol-up.sh
+bindsym $mod+backslash exec bash ~/.config/i3/scripts/vol-toggle.sh
+
+bindsym $mod+c exec --no-startup-id chromium
