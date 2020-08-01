@@ -13,8 +13,10 @@ app_secret=d6967a374597fe7f6c9c50f7ed519f86
 data.download_path=/home/xc/etcchebao/data/download
 # 车宝黑名单压缩包数据 解压目录, 需配置绝对路径, 不支持[~]符号
 data.unpack_path=/home/xc/etcchebao/data/unpack
-# 车宝黑名单数据 保存期限, 默认为30/天
-data.history_max=30
+# 车宝黑名单 压缩包数据 保存期限, 默认为30/天
+data.download.history_max=30
+# 车宝黑名单 解压数据 保存期限, 默认为1/天(解压数据较大, 易造成存储压力)
+data.unpack.history_max=1
 # 车宝黑名单下载日志目录, 需配置绝对路径, 不支持[~]符号
 log.path=/home/xc/etcchebao/logs
 # 车宝黑名单下载日志 保存期限, 默认为30/天

@@ -16,7 +16,8 @@ app_id=$(sed '/^app_id=/!d;s/.*=//' $basepath/etc-sync.conf)
 app_secret=$(sed '/^app_secret=/!d;s/.*=//' $basepath/etc-sync.conf)
 data_download_path=$(sed '/^data.download_path=/!d;s/.*=//' $basepath/etc-sync.conf)
 data_unpack_path=$(sed '/^data.unpack_path=/!d;s/.*=//' $basepath/etc-sync.conf)
-data_history_max=$(sed '/^data.history_max=/!d;s/.*=//' $basepath/etc-sync.conf)
+data_download_history_max=$(sed '/^data.download.history_max=/!d;s/.*=//' $basepath/etc-sync.conf)
+data_unpack_history_max=$(sed '/^data.unpack.history_max=/!d;s/.*=//' $basepath/etc-sync.conf)
 log_path=$(sed '/^log.path=/!d;s/.*=//' $basepath/etc-sync.conf)
 log_history_max=$(sed '/^log.history_max=/!d;s/.*=//' $basepath/etc-sync.conf)
 echo "同步开始, 当前时间: `date "+%Y-%m-%d %H:%M:%S"`"
@@ -27,9 +28,9 @@ cleanDir() {
 }
 
 # 0. 删除过期数据与日志
-[ -d $data_download_path/$today ] && echo "开始清理$data_history_max天前的过期下载数据" && cleanDir $data_download_path $data_history_max || echo "清理过期下载数据结束"
-[ -d $data_unpack_path/$today ] && echo "开始清理$data_history_max天前的过期解压数据" && cleanDir $data_unpack_path $data_history_max || echo "清理过期解压数据结束"
-[ -d $log_path/$today ] && echo "开始清理$log_history_max天前的过期日志数据" && cleanDir $log_path $log_history_max || echo "清理过期日志数据结束"
+[ -d $data_download_path/$today ] && echo "开始清理$data_download_history_max天前的过期 下载数据" && cleanDir $data_download_path $data_download_history_max || echo "清理过期 下载数据 结束"
+[ -d $data_unpack_path/$today ] && echo "开始清理$data_unpack_history_max天前的过期 解压数据" && cleanDir $data_unpack_path $data_unpack_history_max || echo "清理过期 解压数据 结束"
+[ -d $log_path/$today ] && echo "开始清理$log_history_max天前的过期 日志数据" && cleanDir $log_path $log_history_max || echo "清理过期 日志数据 结束"
 
 # 1. 获取access_token
 access_token=$(curl $api/access_token?app_id=$app_id\&app_secret=$app_secret\&grant_type=client_credential -s -X GET | jq ".data.access_token" | sed 's/"//g' )
