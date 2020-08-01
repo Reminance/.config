@@ -213,7 +213,7 @@ map <LEADER>tm :TableModeToggle<CR>
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_do_shade = 0
 let g:EasyMotion_smartcase = 1
-nmap <LEADER>f <Plug>(easymotion-bd-f2)
+noremap <LEADER>f <Plug>(easymotion-bd-f2)
 
 " ===
 " === Far.vim
