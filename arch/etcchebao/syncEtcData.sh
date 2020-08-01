@@ -1,5 +1,6 @@
 #!/usr/bin/bash
-[ ! -s "etc-sync.conf" ] && echo "etc-sync.conf不存在" && exit 2
+basepath=$(cd `dirname $0`; pwd)
+[ ! -s "$basepath/etc-sync.conf" ] && echo "etc-sync.conf不存在" && exit 2
 
 # OS判断 与 预安装jq;
 if grep -Eqi "CentOS" /etc/issue || grep -Eq "CentOS" /etc/*-release; then
@@ -33,15 +34,14 @@ echo current distro is : $DISTRO
 [[ "$DISTRO" == "CentOS" ]] && (which jq || $PM install jq)
 
 today=`date +'%Y%m%d'`
-api=$(sed '/^api=/!d;s/.*=//' etc-sync.conf)
-app_id=$(sed '/^app_id=/!d;s/.*=//' etc-sync.conf)
-app_secret=$(sed '/^app_secret=/!d;s/.*=//' etc-sync.conf)
-data_download_path=$(sed '/^data.download_path=/!d;s/.*=//' etc-sync.conf)
-data_unpack_path=$(sed '/^data.unpack_path=/!d;s/.*=//' etc-sync.conf)
-data_history_max=$(sed '/^data.history_max=/!d;s/.*=//' etc-sync.conf)
-log_path=$(sed '/^log.path=/!d;s/.*=//' etc-sync.conf)
-log_history_max=$(sed '/^log.history_max=/!d;s/.*=//' etc-sync.conf)
-[ -d $log_path/$today ] || (echo "初始化日志路径$log_path/$today"; mkdir -p $log_path/$today)
+api=$(sed '/^api=/!d;s/.*=//' $basepath/etc-sync.conf)
+app_id=$(sed '/^app_id=/!d;s/.*=//' $basepath/etc-sync.conf)
+app_secret=$(sed '/^app_secret=/!d;s/.*=//' $basepath/etc-sync.conf)
+data_download_path=$(sed '/^data.download_path=/!d;s/.*=//' $basepath/etc-sync.conf)
+data_unpack_path=$(sed '/^data.unpack_path=/!d;s/.*=//' $basepath/etc-sync.conf)
+data_history_max=$(sed '/^data.history_max=/!d;s/.*=//' $basepath/etc-sync.conf)
+log_path=$(sed '/^log.path=/!d;s/.*=//' $basepath/etc-sync.conf)
+log_history_max=$(sed '/^log.history_max=/!d;s/.*=//' $basepath/etc-sync.conf)
 echo "同步开始, 当前时间: `date "+%Y-%m-%d %H:%M:%S"`"
 
 cleanDir() {
