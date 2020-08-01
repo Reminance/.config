@@ -3,7 +3,6 @@
 # OS判断 与 预安装jq;
 source distro-judge.sh
 [[ "$DISTRO" == "CentOS" ]] && which jq || $PM install jq
-exit 0
 
 echo "同步开始, 当前时间: `date "+%Y-%m-%d %H:%M:%S"`"
 today=`date +'%Y-%m-%d'`
