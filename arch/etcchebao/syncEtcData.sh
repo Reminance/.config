@@ -34,7 +34,7 @@ download() {
 
 list_time_stamp=$(date +%s)
 list_result=$(curl $api/parking/black-list-all -H 'Authorization:'$auth_header -d '{"AccessToken":"'$access_token'","TimeStamp":"'$list_time_stamp'","Sign":"'$access_token'"}' -s -X POST | jq ".data")
-[ ! -n "$list_result" ] && echo  "获取黑名单下载列表失败" && exit 2
+[ ! -n "$list_result" ] && echo "获取黑名单下载列表失败" && exit 2
 # 如果是广州的需要遍历data, 全国的不用
 download_filename=$(echo $list_result | jq ".filename" | sed 's/"//g')
 download_source=$(echo $list_result | jq ".source" | sed 's/"//g')
