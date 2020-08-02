@@ -118,8 +118,12 @@ call plug#end()
 " ===================== Start of Plugin Settings =====================
 
 " latex
+" compile to pdf
 nnoremap ,l :! pdflatex %<CR><CR>
-nnoremap ,p :! mupdf-X11 $(echo % \| sed 's/tex$/pdf/') & disown<CR><CR>
+" view the pdf
+nnoremap ,p :! mupdf $(echo % \| sed 's/tex$/pdf/') & disown<CR><CR>
+" delete the compling output
+nnoremap ,c :! ls \| grep -E '*.aux\|*.log\|*.nav\|*.out\|*.snm\|*.toc\|*.pdf' \| xargs rm -rf {}<CR><CR>
 
 " vim-latex-live-preview
 " let g:livepreview_previewer = 'zathura'
