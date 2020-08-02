@@ -2,15 +2,30 @@
 % \documentclass{article}
 \documentclass{beamer}
 
-\title{Slide Shows in {\LaTeX} with Beamer}
+\title[short title]{Slide Shows in {\LaTeX} with Beamer}
+\subtitle{Subtitle here}
 \author{xc}
+\institute{\large \textbf{Institute}: \\[6pt] word before is large and bold}
+% \date{}
 
-% \usepackage
+\usetheme[progressbar=frametitle]{metropolis}
 % \usetheme{Warsaw}
-\usetheme{Frankfurt}
+% \usetheme{Frankfurt}
 % \usetheme{Madrid}
+\setbeamertemplate{frame numbering}[fraction]
+\useoutertheme{metropolis}
+\useinnertheme{metropolis}
+\usefonttheme{metropolis}
+\usecolortheme{spruce}
+\setbeamercolor{background canvas}{bg=white}
+
+% \usecolortheme{crane}
+\definecolor{mygreen}{rgb}{.125,.5,.25}
+\usecolortheme[named=mygreen]{structure}
 
 \begin{document}
+% add block fill in color
+\metroset{block=fill}
 
 \maketitle
 
@@ -18,6 +33,8 @@
 
 \begin{frame}
     \frametitle{Test Title1}
+    % keep title page in the frame
+    \titlepage
     \begin{itemize}
         \item frame1-item1\pause
         \item frame1-item2\pause
@@ -27,33 +44,53 @@
 
 \section{Section2}
 
-\begin{frame}
-    \frametitle{Test Title2}
-    \begin{itemize}
+\begin{frame}[t]{Test Title2}\vspace{20pt}
+    test item\pause
+    \begin{enumerate}
         \item frame2-item1\pause
         \item frame2-item2\pause
-        \item frame2-item3
-    \end{itemize}
+        \item frame2-item3\pause
+    \end{enumerate}
+    \vspace{0.5em}
+    $\sqrt{x^2}=$\\[10pt]
+    \begin{enumerate}[(A)]
+        \item $frame2-item1$
+        \item $frame2-item2$
+        \item $frame2-item3$
+    \end{enumerate}
 \end{frame}
 
 \section{Section3}
 
-\begin{frame}
-    \frametitle{Test Title3 images in beamer}
-    \includegraphics[height=.85\textheight]{Yugor.jpg}
-\end{frame}
-
-\section{Section4}
-
-\begin{frame}
-    \frametitle{Test Title4 with Columns}
+\begin{frame}{Test Title3 with Columns}
     \begin{columns}
         \column{.5\textwidth}
         \includegraphics[width=.85\textwidth]{Yugor.jpg}
         \column{.5\textwidth}
         test text
     \end{columns}
+\end{frame}
 
+\section{Section4}
+
+\begin{frame}{Test Title4 with Columns}
+    \begin{block}{definition of a block}
+        % vspace means vertical space
+        \vspace{0.5em}
+        \includegraphics[width=.35\textwidth]{Yugor.jpg}
+        \\[2pt]\textbf{bold} $italic$ \\[10pt] %end the line, 10pt of space
+        draw an underline
+        % \line(1,0){50} % just the underline without need of placing text
+        \only<1>{\line(1,0){50}}
+        \only<2,3>{\textcolor{magenta}{answer is here}}
+        \,end underline.\\[10pt] %end the line, 10pt of space
+
+        draw an underline
+        \only<1,2>{\line(1,0){50}}
+        \only<3>{\textcolor{magenta}{answer is here}}
+        \,end underline.\\[10pt] %end the line, 10pt of space
+        \vspace{0.5em}
+    \end{block}
 \end{frame}
 
 \end{document}
