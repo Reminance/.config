@@ -219,8 +219,9 @@ func! CompileRunGcc()
 	elseif &filetype == 'markdown'
 		exec "MarkdownPreview"
 	elseif &filetype == 'tex'
-		silent! exec "VimtexStop"
-		silent! exec "VimtexCompile"
+		" silent! exec "VimtexStop"
+		" silent! exec "VimtexCompile"
+		silent! exec "LLPStartPreview"
 	elseif &filetype == 'dart'
 		CocCommand flutter.run -d iPhone\ 11\ Pro
 		CocCommand flutter.dev.openDevLog

@@ -1,0 +1,63 @@
+% zathura as the default pdf reader
+% \documentclass{article}
+\documentclass{beamer}
+
+\title{Slide Shows in {\LaTeX} with Beamer}
+\author{xc}
+
+% \usepackage
+% \usetheme{frankfurt}
+
+\begin{document}
+
+\maketitle
+
+\section{Section1}
+
+\begin{frame}
+    \frametitle{Test Title1}
+    \begin{itemize}
+        \item frame1-item1\pause
+        \item frame1-item2\pause
+        \item frame1-item3
+    \end{itemize}
+\end{frame}
+
+\section{Section2}
+
+\begin{frame}
+    \frametitle{Test Title2}
+    \begin{itemize}
+        \item frame2-item1\pause
+        \item frame2-item2\pause
+        \item frame2-item3
+    \end{itemize}
+\end{frame}
+
+\section{Section3}
+
+\begin{frame}
+    \frametitle{Test Title3 images in beamer}
+    \includegraphics[height=.85\textheight]{Yugor.jpg}
+\end{frame}
+
+\section{Section4}
+
+\begin{frame}
+    \frametitle{Test Title4 with Columns}
+
+    \begin{columns}
+
+        \column{.5\textwidth}
+
+        \includegraphics[height=.85\textheight]{Yugor.jpg}
+
+        \column{.5\textwidth}
+
+        test text
+
+    \end{columns}
+
+\end{frame}
+
+\end{document}

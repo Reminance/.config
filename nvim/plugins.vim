@@ -95,6 +95,9 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'luochen1990/rainbow'
 Plug 'wincent/terminus'
 
+" A Vim Plugin for Lively Previewing LaTeX PDF Output
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+
 " Other useful utilities
 Plug 'makerj/vim-pdf'
 " Plug 'terryma/vim-multiple-cursors'
@@ -113,6 +116,15 @@ call plug#end()
 
 
 " ===================== Start of Plugin Settings =====================
+
+" latex
+nnoremap ,l :! pdflatex %<CR><CR>
+nnoremap ,p :! mupdf-X11 $(echo % \| sed 's/tex$/pdf/') & disown<CR><CR>
+
+" vim-latex-live-preview
+" let g:livepreview_previewer = 'zathura'
+let g:livepreview_previewer = 'mupdf'
+let g:livepreview_engine = 'pdflatex'
 
 " airline
 "let g:airline_theme='base16_snazzy'
