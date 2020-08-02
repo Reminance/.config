@@ -119,6 +119,7 @@ call plug#end()
 
 " latex
 " compile to pdf
+" arch requirements sudo pacman -S texlive-most texlive-lanf mupdf zathura
 nnoremap ,l :! pdflatex %<CR><CR>
 " view the pdf
 nnoremap ,p :! mupdf $(echo % \| sed 's/tex$/pdf/') & disown<CR><CR>
