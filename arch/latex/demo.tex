@@ -52,7 +52,7 @@
         \item frame2-item3\pause
     \end{enumerate}
     \vspace{0.5em}
-    $\sqrt{x^2}=$\\[10pt]
+    $\sqrt{x^2}=$\\[10pt] % $$ means math mode
     \begin{enumerate}[(A)]
         \item $frame2-item1$
         \item $frame2-item2$
@@ -82,12 +82,12 @@
         draw an underline
         % \line(1,0){50} % just the underline without need of placing text
         \only<1>{\line(1,0){50}}
-        \only<2,3>{\textcolor{magenta}{answer is here}}
+        \only<2->{\textcolor{magenta}{answer is here}}
         \,end underline.\\[10pt] %end the line, 10pt of space
 
         draw an underline
-        \only<1,2>{\line(1,0){50}}
-        \only<3>{\textcolor{magenta}{answer is here}}
+        \only<1-2>{\line(1,0){50}}
+        \only<3->{\textcolor{magenta}{answer is here}}
         \,end underline.\\[10pt] %end the line, 10pt of space
         \vspace{0.5em}
     \end{block}
