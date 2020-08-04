@@ -6,9 +6,9 @@
 # 车宝api地址
 api=https://api-test.etcchebao.com
 # 车宝账户app_id
-app_id=72f6eb1c7d929122
+app_id=
 # 车宝账户app_secret
-app_secret=d6967a374597fe7f6c9c50f7ed519f86
+app_secret=
 # 车宝黑名单压缩包数据 下载目录, 需配置绝对路径, 不支持[~]符号
 data.download_path=/home/xc/etcchebao/data/download
 # 车宝黑名单压缩包数据 解压目录, 需配置绝对路径, 不支持[~]符号
