@@ -57,7 +57,7 @@ inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <silent><expr> <c-o> coc#refresh()
 
 " Open up coc-commands
-nnoremap <c-c> :CocCommand<CR>
+nnoremap <LEADER>CC :CocCommand<CR>
 " Text Objects
 xmap kf <Plug>(coc-funcobj-i)
 xmap af <Plug>(coc-funcobj-a)

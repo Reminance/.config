@@ -69,6 +69,8 @@ noremap <C-Right> :vertical resize+5<CR>
 " cnoremap <M-b> <S-Left>
 " cnoremap <M-w> <S-Right>
 
+inoremap <C-a> <Esc>I
+inoremap <C-e> <Esc>A
 inoremap <C-b> <Left>
 inoremap <C-n> <Down>
 inoremap <C-p> <Up>
@@ -76,7 +78,7 @@ inoremap <C-f> <Right>
 
 " ===================== Basic Mappings =====================
 noremap <LEADER><CR> :nohlsearch<CR>
-inoremap <C-d> <Esc>ddk$
+" inoremap <C-d> <Esc>ddk$
 
 " Copy to system clipboard
 " might need to install a system clipboard tool such as : sudo pacman -S xclip
