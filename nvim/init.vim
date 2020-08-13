@@ -78,7 +78,7 @@ inoremap <C-f> <Right>
 
 " ===================== Basic Mappings =====================
 noremap <LEADER><CR> :nohlsearch<CR>
-" inoremap <C-d> <Esc>ddk$
+inoremap <S-Del> <Esc>ddk$
 
 " Copy to system clipboard
 " might need to install a system clipboard tool such as : sudo pacman -S xclip
