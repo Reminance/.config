@@ -4,8 +4,11 @@ DebugPort=$2
 #Jar=$(echo ${Jar_file}|awk -F. '{print $1}')
 [ ! "$Jar" ] &&  echo -e "\033[41m====== 请输入：项目名称 如start.sh app.jar ======\033[0m" && exit 1
 cd /root/workspace/${Jar}
+[ $? -ne 0 ] && echo "没有这个${Jar}目录" && exit 1
 git pull
+[ $? -ne 0 ] && echo "git pull 无法更新" && exit 1
 mvn clean package -Dmaven.test.skip=true
+[ $? -ne 0 ] && echo "打包失败" && exit 1
 
 #cd $Jar && [ -f "${Jar_file}" ] || { echo -e "\033[41m====== 不存在jar/war包：${Jar_file} =====\033[0m" ; exit 1 ;  }
 
