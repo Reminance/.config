@@ -14,16 +14,13 @@ mvn clean package -Dmaven.test.skip=true
 
 #kill掉当前服务
 Pid=`ps -ef | grep -v grep | grep "${Jar_file}" | grep java | awk '{print $2}'| head -1`
-[ -n "$Pid" ] &&
-[ ! -z $Pid ] && /usr/bin/kill $Pid && echo -e "\033[41m------ 停止${Jar_file}，kill Pid: $Pid ------\033[0m"
+[ -n "$Pid" ] && [ ! -z $Pid ] && /usr/bin/kill $Pid && echo -e "\033[41m------ 停止${Jar_file}，kill Pid: $Pid ------\033[0m"
 sleep 1
 
 #[[ $Jar =~ miniapp|miniapp1 ]] && sleep 20
 
 Pid=`ps -ef | grep -v grep | grep "${Jar_file}" | grep java | awk '{print $2}'| head -1`
-[ -n "$Pid" ] &&
-#sleep 5 &&
-[ ! -z $Pid ] && /usr/bin/kill -9 $Pid && echo -e "\033[41m------ 停止${Jar_file}，kill -9 Pid: $Pid ------\033[0m"
+[ -n "$Pid" ] && [ ! -z $Pid ] && /usr/bin/kill -9 $Pid && echo -e "\033[41m------ 停止${Jar_file}，kill -9 Pid: $Pid ------\033[0m"
 sleep 1
 
 #启动服务
