@@ -104,7 +104,7 @@ Plug 'makerj/vim-pdf'
 Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'` to change 'word' to `word`
 Plug 'godlygeek/tabular' " type ;Tabularize /= to align the =
 Plug 'gcmt/wildfire.vim' " in Visual mode, type i' to select all text in '', or type i) i] i} ip
-Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-commentary' " gcc to comment the current line
 
 " Dependencies
 Plug 'MarcWeber/vim-addon-mw-utils'
