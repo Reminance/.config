@@ -254,5 +254,8 @@ endif
 " Snippets
 source ~/.config/nvim/snippets/_md_snippets.vim
 
+" test commit
+
+
 " plugins
 source ~/.config/nvim/plugins.vim
