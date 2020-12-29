@@ -9,6 +9,7 @@ export GOROOT=/usr/lib/go
 export GOPATH=~/go
 export GOBIN=~/go/bin
 export PATH=$PATH:$GOROOT/bin:$GOBIN
+export PATH=$PATH:~/.config/bin
 export GOPROXY=https://goproxy.cn/
 export RANGER_LOAD_DEFAULT_RC=FALSE
 export EDITOR=nvim
