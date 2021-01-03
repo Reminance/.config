@@ -76,8 +76,19 @@ Github仓库加速：http://toolwa.com/github/
 ├── spring-framework
 └── yudao-spring-framework
 
+```
+origin https://github.com/Reminance/mybatis.git (fetch)
+origin https://github.com/Reminance/netty.git (fetch)
+origin https://github.com/Reminance/spring-framework.git (fetch)
+origin https://github.com/YunaiV/spring-framework.git (fetch)
+```
+
 /home/xc/workspace/clang/
 └── nginx
+
+```
+origin	https://github.com/Reminance/nginx.git (fetch)
+```
 
 # update code from remote origin repo using upstream
 
