@@ -7,6 +7,10 @@
   " \ 'coc-stylelint',
   " \ 'coc-explorer',
 let g:coc_global_extensions = [
+  \ 'coc-sh',
+  \ 'coc-clangd',
+  \ 'coc-cmake',
+  \ 'coc-rls',
   \ 'coc-java',
   \ 'coc-go',
   \ 'coc-pairs',

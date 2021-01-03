@@ -4,7 +4,7 @@ let mapleader=" "
 exec "nohlsearch"
 syntax on
 set number
-set relativenumber
+" set relativenumber
 set wrap
 set showcmd
 set wildmenu
