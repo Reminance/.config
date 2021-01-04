@@ -1,0 +1,3 @@
+lazygit
+visual-studio-code-bin
+yay

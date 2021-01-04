@@ -74,7 +74,7 @@ Plug 'honza/vim-snippets'
 Plug 'vim-scripts/indentpython.vim'
 
 " Go
-"Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 
 " Markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
@@ -110,6 +110,9 @@ Plug 'tpope/vim-commentary' " gcc to comment the current line
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'kana/vim-textobj-user'
 Plug 'fadein/vim-FIGlet'
+
+" Debugger
+Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python --enable-go'}
 
 call plug#end()
 " ===================== Install Plugins with Vim-Plug end =====================
@@ -372,6 +375,29 @@ nnoremap <LEADER><LEADER>h :diffget //2<CR>
 nnoremap <LEADER><LEADER>l :diffget //3<CR>
 nnoremap <LEADER><LEADER>g :G<CR>
 
-" plugins
+" ===
+" === vimspector
+" ===
+let g:vimspector_enable_mappings = 'HUMAN'
+let g:vimspector_install_gadgets = [ 'vscode-cpptools', 'debugpy', 'vscode-go' ]
+" let g:vimspector_base_dir=expand( '$HOME/.config/nvim/vimspector-config' )
+
+" " 从模板文件读入到当前buffer
+function! s:read_template_into_buffer(template)
+	" has to be a function to avoid the extra space fzf#run insers otherwise
+	execute '0r ~/.config/nvim/vimspector-config/'.a:template
+endfunction
+command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
+			\   'source': 'ls -1 ~/.config/nvim/vimspector-config',
+			\   'down': 20,
+			\   'sink': function('<sid>read_template_into_buffer')
+			\ })
+
+" " noremap <leader>vs :tabe .vimspector.json<CR>:LoadVimSpectorJsonTemplate<CR>
+" sign define vimspectorBP text=☛ texthl=Normal
+" sign define vimspectorBPDisabled text=☞ texthl=Normal
+" sign define vimspectorPC text=🔶 texthl=SpellBad
+
+" coc settings
 source ~/.config/nvim/coc.vim
 " ===================== End of Plugin Settings =====================
