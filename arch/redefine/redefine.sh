@@ -7,7 +7,7 @@ ARTHAS_HOME=/home/xc/tools/arthas
 # 此次要更新的class文件目录位置(绝对路径)
 SOURCE_DIR=/home/xc/tools/source
 # JAVA进程名字 用于arthas的选取attach
-APP_NAME=cloud-demo-test-simple
+APP_NAME=test-app-name
 
 # 一些校验
 if [ ! -d $SOURCE_DIR ];then echo "没有$SOURCE_DIR目录"; exit 0; fi

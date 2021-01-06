@@ -86,7 +86,7 @@ ARTHAS_HOME=/home/xc/tools/arthas
 # 此次要更新的class文件目录位置(绝对路径)
 SOURCE_DIR=/home/xc/tools/source
 # JAVA进程名字 用于arthas的选取attach
-APP_NAME=cloud-demo-test-simple
+APP_NAME=test-app-name
 
 # 一些校验
 if [ ! -d $SOURCE_DIR ];then echo "没有$SOURCE_DIR目录"; exit 0; fi
@@ -116,15 +116,15 @@ fi
   - SOURCE_DIR // 此次要更新的 class 文件目录位置(绝对路径)
   - APP_NAME // JAVA 进程名字 用于 arthas 的选取 attach
 
-#### 开始执行
+#### 两种执行方式
 
-##### 1. 监听`source`目录自动更新
+##### 方式一 监听`source`目录自动更新
 
 ```bash
 ./watchdir.sh source
 ```
 
-#### 2. 复制 class 文件到`source`目录后，手动更新
+#### 方式二 复制 class 文件到`source`目录后，手动更新
 
 ```bash
 ./redefine.sh
