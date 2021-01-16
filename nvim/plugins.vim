@@ -100,7 +100,7 @@ Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 
 " Other useful utilities
 Plug 'makerj/vim-pdf'
-" Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'` to change 'word' to `word`
 Plug 'godlygeek/tabular' " type ;Tabularize /= to align the =
 Plug 'gcmt/wildfire.vim' " in Visual mode, type i' to select all text in '', or type i) i] i} ip
