@@ -98,3 +98,19 @@ git fetch upstream
 git merge upstream/master
 git push origin master
 ```
+
+# archfi
+
+```
+curl -L archfi.sf.net/archfi > archfi
+or
+curl -L matmoul.github.io/archfi > archfi
+```
+
+#archdi
+
+```
+curl -L archdi.sf.net/archdi > archdi
+or if sourceforge is down :
+curl -L matmoul.github.io/archdi > archdi
+```
