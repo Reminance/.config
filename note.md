@@ -107,7 +107,7 @@ or
 curl -L matmoul.github.io/archfi > archfi
 ```
 
-#archdi
+# archdi
 
 ```
 curl -L archdi.sf.net/archdi > archdi
