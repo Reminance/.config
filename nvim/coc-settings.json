@@ -6,7 +6,7 @@
 	"suggest.detailMaxLength": 60,
 	"suggest.noselect": true,
 	"suggest.enablePreselect": false,
-	"suggest.triggerAfterInsertEnter": false,
+	"suggest.triggerAfterInsertEnter": true,
 	"suggest.timeout": 5000,
 	"suggest.enablePreview": true,
 	"suggest.floatEnable": true,
@@ -54,9 +54,10 @@
 	"diagnostic.virtualText": true,
 	"codeLens.enable": true,
 	"list.previewHighlightGroup": "Statement",
-	"list.nextKeymap": "<C-e>",
-	"list.previousKeymap": "<C-u>",
+	"list.nextKeymap": "<C-n>",
+	"list.previousKeymap": "<C-p>",
 	"snippets.ultisnips.directories": [
+		"Ultisnips",
 		"$HOME/.config/nvim/Ultisnips/",
 		"$HOME/.config/nvim/plugged/vim-snippets/UltiSnips/"
 	],
@@ -190,6 +191,12 @@
 		"eelixir": "mix_format"
 	},
 	"languageserver": {
+		"bash": {
+			"command": "bash-language-server",
+			"args": ["start"],
+			"filetypes": ["sh"],
+			"ignoredRootPaths": ["~"]
+		},
 		"go": {
 			"command": "gopls",
 			"rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
@@ -197,12 +204,6 @@
 			"initializationOptions": {
 				"usePlaceholders": true
 			}
-		},
-		"bash": {
-			"command": "bash-language-server",
-			"args": ["start"],
-			"filetypes": ["sh"],
-			"ignoredRootPaths": ["~"]
 		},
 		"cmake": {
 			"command": "cmake-language-server",

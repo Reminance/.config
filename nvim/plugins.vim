@@ -170,6 +170,15 @@ map tt :NERDTreeToggle<CR>
 "let NERDTreeMapChangeRoot = ""
 
 " ==
+" == wildfire
+" ==
+" This selects the next closest text object.
+nmap <CR> <plug>(wildfire-fuel)
+" this selects the previous closest text object.
+" vmap <C-SPACE> <plug>(wildfire-water)
+let g:wildfire_objects = ["i'", 'i"', "i>", "i)", "i]", "i}", "ip", "it"]
+
+" ==
 " == NERDTree-git
 " ==
 let g:NERDTreeIndicatorMapCustom = {

@@ -72,9 +72,9 @@ noremap <C-Right> :vertical resize+5<CR>
 inoremap <C-a> <Esc>I
 inoremap <C-e> <Esc>A
 inoremap <C-b> <Left>
-inoremap <C-n> <Down>
-inoremap <C-p> <Up>
 inoremap <C-f> <Right>
+" inoremap <C-n> <Down>
+" inoremap <C-p> <Up>
 
 " ===================== Basic Mappings =====================
 noremap <LEADER><CR> :nohlsearch<CR>
@@ -97,8 +97,12 @@ nnoremap Y y$
 " Open the vimrc file anytime
 noremap <LEADER>i :e ~/.config/nvim/init.vim<CR>
 
-" Open the vimrc plugins file anytime
+" Open the plugins.vim file anytime
 noremap <LEADER>p :e ~/.config/nvim/plugins.vim<CR>
+
+" Open the coc.vim file anytime
+noremap <LEADER>cc :e ~/.config/nvim/coc.vim<CR>
+noremap <LEADER>cs :e ~/.config/nvim/coc-settings.json<CR>
 
 " Open Startify
 noremap <LEADER>\ :Startify<CR>
@@ -163,14 +167,12 @@ noremap <LEADER>l <C-w>l
 
 " ===================== Tab management
 " Create a new tab
-" noremap <M-n> :tabe<CR>
-noremap <M-n> :tabnew 
-noremap <LEADER>n :tabe<CR>
+noremap <M-n> :tabe<CR>
+" noremap <M-n> :tabnew 
+" noremap <LEADER>n :tabe<CR>
 " witching tabs
 noremap <M-,> :-tabnext<CR>
 noremap <M-.> :+tabnext<CR>
-noremap <LEADER>, :-tabnext<CR>
-noremap <LEADER>. :+tabnext<CR>
 " Move the tabs
 noremap <M-<> :-tabmove<CR>
 noremap <M->> :+tabmove<CR>
