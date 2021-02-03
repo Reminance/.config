@@ -1,5 +1,5 @@
 #!/usr/bin/bash
 
 
-sudo ln -s /home/xc/.config/.xinitrc ./.xinitrc
+echo 'sudo ln -s /home/xc/.config/.xinitrc /home/xc/.xinitrc'
 
