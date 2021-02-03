@@ -178,7 +178,13 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+        # status_command i3status
+        status_command exec ~/.config/i3/scripts/net-speed.sh
+        # colors {
+        #     background #011100
+        #     statusline #ffffff
+        #     separator #666666
+        # }
 }
 
 exec_always --no-startup-id ~/.config/i3/scripts/autostart-i3.sh
@@ -194,3 +200,4 @@ bindsym $mod+backslash exec bash ~/.config/i3/scripts/vol-toggle.sh
 bindsym $mod+Shift+p exec bash ~/.config/i3/scripts/wp-change.sh
 
 bindsym $mod+c exec --no-startup-id chromium
+bindsym $mod+Shift+a exec --no-startup-id flameshot gui

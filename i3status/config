@@ -8,6 +8,7 @@
 
 general {
         colors = true
+        output_format = i3bar
         interval = 5
 }
 
@@ -17,6 +18,7 @@ order += "ethernet _first_"
 order += "battery all"
 order += "disk /"
 order += "load"
+order += "cpu_usage"
 order += "memory"
 order += "tztime local"
 
@@ -39,11 +41,15 @@ disk "/" {
 }
 
 load {
-        format = "%1min"
+        format = "LOAD: %1min"
+}
+
+cpu_usage {
+    format = "CPU: %usage"
 }
 
 memory {
-        format = "%used | %available"
+        format = "MEM: %available (%total)"
         threshold_degraded = "1G"
         format_degraded = "MEMORY < %available"
 }
