@@ -200,4 +200,4 @@ bindsym $mod+backslash exec bash ~/.config/i3/scripts/vol-toggle.sh
 bindsym $mod+Shift+p exec bash ~/.config/i3/scripts/wp-change.sh
 
 bindsym $mod+c exec --no-startup-id chromium
-bindsym $mod+Shift+a exec --no-startup-id flameshot gui
+bindsym $mod+ctrl+a exec --no-startup-id flameshot gui
