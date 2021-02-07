@@ -1,6 +1,6 @@
 " ===================== Editor behavior =====================
-" set cursorline
-let mapleader=" "
+set cursorline
+" let mapleader=" "
 exec "nohlsearch"
 syntax on
 set number
@@ -20,7 +20,9 @@ filetype plugin on
 filetype plugin indent on
 set mouse=a
 set clipboard=unnamedplus
-set encoding=utf-8
+set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+set fileformats=unix,dos,mac
+set backspace=indent,eol,start " 退格键可以退到上一行
 let &t_ut=''
 set tabstop=4
 set sw=4
@@ -77,7 +79,7 @@ inoremap <C-f> <Right>
 " inoremap <C-p> <Up>
 
 " ===================== Basic Mappings =====================
-noremap <LEADER><CR> :nohlsearch<CR>
+noremap <LEADER><SPACE> :nohlsearch<CR>
 inoremap <S-Del> <Esc>ddk$
 
 " Copy to system clipboard
@@ -238,6 +240,8 @@ func! CompileRunGcc()
 		set splitbelow
 		:sp
 		:term go run .
+	elseif &filetype == 'nasm'
+		exec "!nasm -f bin % -o %<.bin"
 	endif
 endfunc
 
@@ -256,8 +260,23 @@ endif
 " Snippets
 source ~/.config/nvim/snippets/_md_snippets.vim
 
-" test commit
-
+" for assembly
+" changeToHex
+noremap <M-\> :%!xxd<CR>
+" reverseFromHex
+noremap <M-\|> :%!xxd -r<CR>
+" Vim 的操作大概涉及的场景有：读取，写入，缓冲区，选项，启动和退出，杂项。
+autocmd BufEnter *.asm,*.inc,*.nas :setlocal filetype=nasm
+command! -bang -nargs=* UnixEncodingUtf8 exec "set fileformat=unix | set fileencoding=utf-8"
+" <q-args>会自动对参数特殊字符进行转义 函数接收参数时，使用关键字<f-args>
+com! -bang -nargs=* FormatAndEncode call FormatAndEncodeFunc(<f-args>)
+" 可变参数（Varargs)：Vimscript 函数支持可变参数传递，参数格式为：...
+" func! FormatAndEncodeFunc(...)
+" usage: a:0 a:1 a:2
+func! FormatAndEncodeFunc(format, encoding)
+    execute 'set fileformat=' . a:format
+    execute 'set fileencoding=' . a:encoding
+endfunc
 
 " plugins
 source ~/.config/nvim/plugins.vim

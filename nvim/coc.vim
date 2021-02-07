@@ -77,7 +77,7 @@ xmap af <Plug>(coc-funcobj-a)
 omap kf <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
 " Useful commands
-nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
+nnoremap <silent> <LEADER>y :<C-u>CocList -A --normal yank<cr>
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gt <Plug>(coc-type-definition)
