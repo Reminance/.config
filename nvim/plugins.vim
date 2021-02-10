@@ -123,11 +123,11 @@ call plug#end()
 " latex
 " compile to pdf
 " arch requirements sudo pacman -S texlive-most texlive-lanf mupdf zathura
-nnoremap ,l :! pdflatex %<CR><CR>
+nnoremap \l :! pdflatex %<CR><CR>
 " view the pdf
-nnoremap ,p :! mupdf $(echo % \| sed 's/tex$/pdf/') & disown<CR><CR>
+nnoremap \p :! mupdf $(echo % \| sed 's/tex$/pdf/') & disown<CR><CR>
 " delete the compling output
-nnoremap ,c :! ls \| grep -E '*.aux\|*.log\|*.nav\|*.out\|*.snm\|*.toc\|*.pdf' \| xargs rm -rf {}<CR><CR>
+nnoremap \c :! ls \| grep -E '*.aux\|*.log\|*.nav\|*.out\|*.snm\|*.toc\|*.pdf' \| xargs rm -rf {}<CR><CR>
 
 " vim-latex-live-preview
 " let g:livepreview_previewer = 'zathura'
