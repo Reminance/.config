@@ -63,3 +63,4 @@ emacs/org-clock-save.el
 emacs/transient
 emacs/projectile-bookmarks.eld
 emacs/*~
+emacs/.uptimes.el
