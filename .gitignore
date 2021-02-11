@@ -64,3 +64,4 @@ emacs/transient
 emacs/projectile-bookmarks.eld
 emacs/*~
 emacs/.uptimes.el
+emacs/.mc-lists.el
