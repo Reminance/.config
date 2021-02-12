@@ -1,4 +1,5 @@
 " ===================== Editor behavior =====================
+" set hidden " 允许在有未保存的修改时切换缓冲区，此时的修改由 vim 负责保存
 set cursorline
 let mapleader=","
 exec "nohlsearch"
@@ -60,26 +61,40 @@ if has('persistent_undo')
 	set undodir=~/.config/nvim/tmp/undo,.
 endif
 
-noremap <C-Down> :res +5<CR>
-noremap <C-Up> :res -5<CR>
-noremap <C-Left> :vertical resize-5<CR>
-noremap <C-Right> :vertical resize+5<CR>
+" normal mode bindings
+nnoremap <C-Down> :res +5<CR>
+nnoremap <C-Up> :res -5<CR>
+nnoremap <C-Left> :vertical resize-5<CR>
+nnoremap <C-Right> :vertical resize+5<CR>
 
 " ===================== Cursor Movement =====================
-" cnoremap <M-a> <Home>
-" cnoremap <M-e> <End>
-" cnoremap <M-b> <S-Left>
-" cnoremap <M-w> <S-Right>
-
+" insert mode bindings(emacs like)
 inoremap <C-a> <Esc>I
 inoremap <C-e> <Esc>A
 inoremap <C-b> <Left>
 inoremap <C-f> <Right>
+inoremap <M-f> <S-Right>
+inoremap <M-b> <S-Left>
+inoremap <C-d> <Del>
+inoremap <C-k> <Esc>d$a
+inoremap <C-w> <SPACE><S-Left><Esc>lcaw
+inoremap <C-g> <Esc>
 " inoremap <C-n> <Down>
 " inoremap <C-p> <Up>
 
+" command line mode bindings
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-f> <Right>
+cnoremap <C-b> <Left>
+cnoremap <C-d> <Del>
+cnoremap <M-f> <S-Right>
+cnoremap <M-b> <S-Left>
+
 " ===================== Basic Mappings =====================
-noremap <LEADER><SPACE> :nohlsearch<CR>
+nnoremap <LEADER><SPACE> :nohlsearch<CR>
+" quit all the other window except for current
+nnoremap <LEADER>q <C-w>o
 inoremap <S-Del> <Esc>ddk$
 
 " Copy to system clipboard
@@ -89,29 +104,27 @@ vnoremap Y "+y
 " Opening a terminal window
 "noremap <LEADER>/ :term<CR>
 
+" insert a <++>
+inoremap <M-i> <++>
 " jump to next <++> and replace it
-nnoremap <M-m> <Esc>/<++><CR>:nohlsearch<CR>c4l
-inoremap <M-m> <Esc>/<++><CR>:nohlsearch<CR>c4l
+nnoremap <M-SPACE> <Esc>/<++><CR>:nohlsearch<CR>c4l
+inoremap <M-SPACE> <Esc>/<++><CR>:nohlsearch<CR>c4l
 
 " make Y to copy till the end of the line
 nnoremap Y y$
 
 " Open the vimrc file anytime
-noremap <LEADER>i :e ~/.config/nvim/init.vim<CR>
+nnoremap <LEADER>i :e ~/.config/nvim/init.vim<CR>
 
 " Open the plugins.vim file anytime
-noremap <LEADER>p :e ~/.config/nvim/plugins.vim<CR>
+nnoremap <LEADER>p :e ~/.config/nvim/plugins.vim<CR>
 
 " Open the coc.vim file anytime
-noremap <LEADER>cc :e ~/.config/nvim/coc.vim<CR>
-noremap <LEADER>cs :e ~/.config/nvim/coc-settings.json<CR>
-
-" Open Startify
-noremap <LEADER>\ :Startify<CR>
+nnoremap <LEADER>cc :e ~/.config/nvim/coc.vim<CR>
+nnoremap <LEADER>cs :e ~/.config/nvim/coc-settings.json<CR>
 
 " Open up lazygit
-noremap \g :Git 
-noremap <C-g> :tabe<CR>:tabmove<CR>:term lazygit<CR>
+nnoremap <C-\>g :tabe<CR>:tabmove<CR>:term lazygit<CR>
 
 " Open a terminal in vim
 nnoremap <C-\><C-h> :set nosplitright<CR>:vsplit<CR>:term<CR>
@@ -125,66 +138,73 @@ nnoremap <C-\>l :set splitright<CR>:vsplit<CR>:term<CR>
 tnoremap <C-\> <C-\><C-n>
 
 " ===================== Quick Navigation =====================
-noremap H 3h
-noremap J 3j
-noremap K 3k
-noremap L 3l
+" noremap H 3h
+" noremap J 3j
+" noremap K 3k
+" noremap L 3l
+nnoremap H <nop>
+nnoremap J <nop>
+nnoremap K <nop>
+nnoremap L <nop>
 
 " ===================== Save & quit =====================
 nnoremap s <nop>
 nnoremap S :w<CR>
 inoremap <C-s> <ESC>:w<CR>
 nnoremap Q :q<CR>
-noremap R :source $MYVIMRC<CR>
+nnoremap R :source $MYVIMRC<CR>
 
 " ===================== split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
-noremap sh :set nosplitright<CR>:vsplit<CR>
-noremap sj :set splitbelow<CR>:split<CR>
-noremap sk :set nosplitbelow<CR>:split<CR>
-noremap sl :set splitright<CR>:vsplit<CR>
-noremap seh :set nosplitright<CR>:vsplit 
-noremap sej :set splitbelow<CR>:split 
-noremap sek :set nosplitbelow<CR>:split 
-noremap sel :set splitright<CR>:vsplit 
+nnoremap sh :set nosplitright<CR>:vsplit<CR>
+nnoremap sj :set splitbelow<CR>:split<CR>
+nnoremap sk :set nosplitbelow<CR>:split<CR>
+nnoremap sl :set splitright<CR>:vsplit<CR>
+nnoremap seh :set nosplitright<CR>:vsplit 
+nnoremap sej :set splitbelow<CR>:split 
+nnoremap sek :set nosplitbelow<CR>:split 
+nnoremap sel :set splitright<CR>:vsplit 
 
 " ===================== Place the two screens side by side (vertical)
-noremap sm <C-w>t<C-w>H
+nnoremap sm <C-w>t<C-w>H
 " ===================== Place the two screens up and down (horizontal)
-noremap sn <C-w>t<C-w>K
+nnoremap sn <C-w>t<C-w>K
 
 " ===================== Rotate screens
-noremap srm <C-w>b<C-w>H
-noremap srn <C-w>b<C-w>K
+nnoremap srm <C-w>b<C-w>H
+nnoremap srn <C-w>b<C-w>K
 
 " ===================== Window management
-" Use <ALT>OR<LEADER> + new arrow keys for moving the cursor around windows
-noremap <M-h> <C-w>h
-noremap <M-j> <C-w>j
-noremap <M-k> <C-w>k
-noremap <M-l> <C-w>l
-noremap <LEADER>h <C-w>h
-noremap <LEADER>j <C-w>j
-noremap <LEADER>k <C-w>k
-noremap <LEADER>l <C-w>l
+" Use <ALT> + new arrow keys for moving the cursor around windows
+nnoremap <M-h> <C-w>h
+nnoremap <M-j> <C-w>j
+nnoremap <M-k> <C-w>k
+nnoremap <M-l> <C-w>l
+" Use <LEADER> + new arrow keys for moving the windows
+nnoremap <LEADER>h <C-w>H
+nnoremap <LEADER>j <C-w>J
+nnoremap <LEADER>k <C-w>K
+nnoremap <LEADER>l <C-w>L
 
 " ===================== Tab management
 " Create a new tab
-noremap <M-n> :tabe<CR>
+nnoremap <M-n> :tabe<CR>
+nnoremap <M-q> :tabclose<CR>
 " noremap <M-n> :tabnew 
 " noremap <LEADER>n :tabe<CR>
-" witching tabs
-noremap <M-,> :-tabnext<CR>
-noremap <M-.> :+tabnext<CR>
+" switching tabs
+nnoremap <M-,> :-tabnext<CR>
+nnoremap <M-.> :+tabnext<CR>
 " Move the tabs
-noremap <M-<> :-tabmove<CR>
-noremap <M->> :+tabmove<CR>
-noremap <LEADER>< :-tabmove<CR>
-noremap <LEADER>> :+tabmove<CR>
+nnoremap <M-<> :-tabmove<CR>
+nnoremap <M->> :+tabmove<CR>
 " Map alt-x keys to jump to a tab
 for i in range(1, 8)
   execute "nnoremap <M-" . i . "> :tabnext " . i . "<CR>"
 endfor
-nmap <M-9> :tablast<CR>
+nnoremap <M-9> :tablast<CR>
+
+" open the quickfix
+nnoremap <LEADER>co :copen<CR>
 
 " ===
 " === Create a _machine_specific.vim file to adjust machine specific stuff, like python interpreter location
@@ -197,7 +217,7 @@ endif
 source ~/.config/nvim/_machine_specific.vim
 
 " Compile function
-noremap <M-r> :call CompileRunGcc()<CR>
+nnoremap <M-r> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
 	exec "w"
 	if &filetype == 'c'
@@ -211,8 +231,17 @@ func! CompileRunGcc()
 		:res -15
 		:term ./%<
 	elseif &filetype == 'java'
-		exec "!javac %"
-		exec "!time java %<"
+        " ==== compile & run ===
+		" exec "!javac %"
+		" exec "!time java %<"
+        " === make & run ===
+		" exec 'set makeprg=javac\ -g\ %'
+		" exec "make"
+		" exec "!time java %<"
+        " === make ===
+		exec "make"
+        " for debug
+		" exec "!time java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=5005,suspend=y %<"
 	elseif &filetype == 'sh'
 		:!time bash %
 	elseif &filetype == 'python'
@@ -262,11 +291,12 @@ source ~/.config/nvim/snippets/_md_snippets.vim
 
 " for assembly
 " changeToHex
-noremap <M-\> :%!xxd<CR>
+" nnoremap <M-\> :%!xxd<CR>
 " reverseFromHex
-noremap <M-\|> :%!xxd -r<CR>
-" Vim 的操作大概涉及的场景有：读取，写入，缓冲区，选项，启动和退出，杂项。
+" nnoremap <M-\|> :%!xxd -r<CR>
+" 备注: Vim 的操作大概涉及的场景有：读取，写入，缓冲区，选项，启动和退出，杂项。
 autocmd BufEnter *.asm,*.inc,*.nas :setlocal filetype=nasm
+
 command! -bang -nargs=* UnixEncodingUtf8 exec "set fileformat=unix | set fileencoding=utf-8"
 " <q-args>会自动对参数特殊字符进行转义 函数接收参数时，使用关键字<f-args>
 com! -bang -nargs=* FormatAndEncode call FormatAndEncodeFunc(<f-args>)

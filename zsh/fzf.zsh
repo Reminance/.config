@@ -38,7 +38,7 @@ fzf-cd-widget() {
 	fi
 }
 zle -N fzf-cd-widget
-bindkey '^t' fzf-cd-widget
+bindkey '^n' fzf-cd-widget
 
 fzf-history-widget() {
 	local num=$(fhistory $LBUFFER)

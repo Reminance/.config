@@ -13,9 +13,9 @@ endif
 " ===
 call plug#begin('~/.config/nvim/plugged')
 
-" Plug 'vim-airline/vim-airline'
-Plug 'itchyny/lightline.vim'
-"Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+" Plug 'itchyny/lightline.vim'
 Plug 'connorholyday/vim-snazzy'
 Plug 'morhetz/gruvbox'
 Plug 'w0ng/vim-hybrid'
@@ -48,9 +48,6 @@ Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' }
 " Other visual enhancement
 "Plug 'nathanaelkane/vim-indent-guides'
 " Plug 'itchyny/vim-cursorword'
-
-" vim-be-good
-"Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 
 " Git
 Plug 'rhysd/conflict-marker.vim'
@@ -100,7 +97,7 @@ Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 
 " Other useful utilities
 Plug 'makerj/vim-pdf'
-Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+" Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'` to change 'word' to `word`
 Plug 'godlygeek/tabular' " type ;Tabularize /= to align the =
 Plug 'gcmt/wildfire.vim' " in Visual mode, type i' to select all text in '', or type i) i] i} ip
@@ -113,6 +110,9 @@ Plug 'fadein/vim-FIGlet'
 
 " Debugger
 Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python --enable-go'}
+
+" which-key
+Plug 'liuchengxu/vim-which-key'
 
 call plug#end()
 " ===================== Install Plugins with Vim-Plug end =====================
@@ -135,7 +135,7 @@ let g:livepreview_previewer = 'mupdf'
 let g:livepreview_engine = 'pdflatex'
 
 " airline
-"let g:airline_theme='base16_snazzy'
+let g:airline_theme='onedark'
 
 " lightline
 let g:lightline = {
@@ -155,9 +155,15 @@ colorscheme snazzy
 " colorscheme hybrid
 
 " ===
+" === vim-peekaboo
+" ===
+" suppress the default key bindings if you need imap <C-r> keybinding
+" let g:peekaboo_ins_prefix = '<S>'
+
+" ===
 " === NERDTree
 " ===
-map tt :NERDTreeToggle<CR>
+nnoremap tt :NERDTreeToggle<CR>
 "let NERDTreeMapOpenExpl = ""
 "let NERDTreeMapUpdir = ""
 "let NERDTreeMapUpdirKeepOpen = ""
@@ -173,7 +179,7 @@ map tt :NERDTreeToggle<CR>
 " == wildfire
 " ==
 " This selects the next closest text object.
-nmap <CR> <plug>(wildfire-fuel)
+nnoremap <CR> <plug>(wildfire-fuel)
 " this selects the previous closest text object.
 " vmap <C-SPACE> <plug>(wildfire-water)
 let g:wildfire_objects = ["i'", 'i"', "i>", "i)", "i]", "i}", "ip", "it"]
@@ -203,7 +209,7 @@ let g:NERDTreeIndicatorMapCustom = {
 " === Tagbar might need sudo pacman -S ctags
 " ===
 set tags=./.tags;,.tags
-map <silent> T :TagbarOpenAutoClose<CR>
+nnoremap <silent> T :TagbarOpenAutoClose<CR>
 
 " ===
 " === MarkdownPreview
@@ -234,7 +240,7 @@ let g:mkdp_page_title = '「${name}」'
 " ===
 " === vim-table-mode
 " ===
-map <LEADER>tm :TableModeToggle<CR>
+nnoremap <LEADER>tm :TableModeToggle<CR>
 
 " ===
 " === vim-easymotion
@@ -242,23 +248,23 @@ map <LEADER>tm :TableModeToggle<CR>
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_do_shade = 0
 let g:EasyMotion_smartcase = 1
-noremap <LEADER>f <Plug>(easymotion-bd-f2)
+nnoremap <LEADER>f <Plug>(easymotion-bd-f2)
 
 " ===
 " === Far.vim
 " ===
-noremap <LEADER>F :F  %<left><left>
+nnoremap <LEADER>F :F  %<left><left>
 
 " ===
 " === FZF
 " ===
-noremap <M-S-l> :Lines<CR>
+nnoremap <M-S-l> :Lines<CR>
 " ripgrep
-noremap <M-S-f> :Rg<CR>
-noremap <M-S-g> :GFiles<CR>
-noremap <M-S-n> :Files<CR>
-noremap <M-S-e> :Buffers<CR>
-noremap <M-S-h> :History<CR>
+nnoremap <M-S-f> :Rg<CR>
+nnoremap <M-S-g> :GFiles<CR>
+nnoremap <M-S-n> :Files<CR>
+nnoremap <M-S-e> :Buffers<CR>
+nnoremap <M-S-h> :History<CR>
 " noremap <M-;> :History:<CR>
 " The Silver Searcher
 " noremap <M-S-f> :Ag<CR>
@@ -270,6 +276,8 @@ let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %
 " ===
 " === RANGER
 " ===
+" suppress the default key bindings
+let g:ranger_map_keys = ''
 nnoremap <LEADER>ra :Ranger<CR>
 
 " ===
@@ -311,24 +319,19 @@ let g:python_highlight_all = 1
 let g:rainbow_active = 1
 
 " ===
-" === vim-be-good
-" ===
-"let g:vim_be_good_floating = 0
-
-" ===
 " === vim-bookmarks
 " ===
 let g:bookmark_no_default_key_mappings = 1
-nmap mt <Plug>BookmarkToggle
-nmap ma <Plug>BookmarkAnnotate
-nmap ml <Plug>BookmarkShowAll
-nmap mi <Plug>BookmarkNext
-nmap mn <Plug>BookmarkPrev
-nmap mC <Plug>BookmarkClear
-nmap mX <Plug>BookmarkClearAll
-nmap mu <Plug>BookmarkMoveUp
-nmap me <Plug>BookmarkMoveDown
-nmap <LEADER>g <Plug>BookmarkMoveToLine
+nnoremap <LEADER>mt <Plug>BookmarkToggle
+nnoremap <LEADER>ma <Plug>BookmarkAnnotate
+nnoremap <LEADER>ml <Plug>BookmarkShowAll
+nnoremap <LEADER>mi <Plug>BookmarkNext
+nnoremap <LEADER>mn <Plug>BookmarkPrev
+nnoremap <LEADER>mc <Plug>BookmarkClear
+nnoremap <LEADER>mx <Plug>BookmarkClearAll
+nnoremap <LEADER>mu <Plug>BookmarkMoveUp
+nnoremap <LEADER>me <Plug>BookmarkMoveDown
+nnoremap <LEADER>mg <Plug>BookmarkMoveToLine
 let g:bookmark_save_per_working_dir = 1
 let g:bookmark_auto_save = 1
 let g:bookmark_highlight_lines = 1
@@ -339,9 +342,20 @@ let g:bookmark_auto_close = 1
 let g:bookmark_location_list = 1
 
 " ==
+" == vim-startify
+" ==
+" Open Startify
+nnoremap <LEADER>\ :Startify<CR>
+
+" ==
+" == vim-surround
+" ==
+" suppress the default key bindings
+let g:surround_no_insert_mappings = 1
+
+" ==
 " == vim-signify
 " ==
-
 " 设置要检查的VCS
 let g:signify_vcs_list = ['git']
 " 插入模式下指定updatetime时间后无操作将缓存区交换文件写入磁盘
@@ -353,14 +367,14 @@ let g:signify_update_on_bufenter    = 0
 " vim获取焦点时更新符号
 let g:signify_update_on_focusgained = 1
 " 键盘映射
-nnoremap gsd :SignifyDiff<CR>
-nnoremap gst :SignifyToggle<CR>
-nnoremap gsh :SignifyToggleHighlight<CR>
-nnoremap gsr :SignifyRefresh<CR>
-nnoremap gsx :SignifyDebug<CR>
+nnoremap <LEADER>gsd :SignifyDiff<CR>
+nnoremap <LEADER>gst :SignifyToggle<CR>
+nnoremap <LEADER>gsh :SignifyToggleHighlight<CR>
+nnoremap <LEADER>gsr :SignifyRefresh<CR>
+nnoremap <LEADER>gsx :SignifyDebug<CR>
 " hunk jumping
-nmap gsj <plug>(signify-next-hunk)
-nmap gsk <plug>(signify-prev-hunk)
+nnoremap <LEADER>gsj <plug>(signify-next-hunk)
+nnoremap <LEADER>gsk <plug>(signify-prev-hunk)
 
 " ==
 " == GitGutter
@@ -380,9 +394,9 @@ nmap gsk <plug>(signify-prev-hunk)
 " === vim-fugitive
 " ===
 nnoremap <LEADER>gb :Gblame<CR>
-nnoremap <LEADER><LEADER>h :diffget //2<CR>
-nnoremap <LEADER><LEADER>l :diffget //3<CR>
-nnoremap <LEADER><LEADER>g :G<CR>
+nnoremap <LEADER>dh :diffget //2<CR>
+nnoremap <LEADER>dl :diffget //3<CR>
+nnoremap <LEADER>gg :G<CR>
 
 " ===
 " === vimspector
@@ -406,6 +420,14 @@ command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
 " sign define vimspectorBP text=☛ texthl=Normal
 " sign define vimspectorBPDisabled text=☞ texthl=Normal
 " sign define vimspectorPC text=🔶 texthl=SpellBad
+
+" which-key
+" let g:mapleader = "\<Space>"
+" nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+let g:mapleader = ','
+let g:maplocalleader = ','
+nnoremap <silent> <leader>      :<c-u>WhichKey ','<CR>
+nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
 
 " coc settings
 source ~/.config/nvim/coc.vim
