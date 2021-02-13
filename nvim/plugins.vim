@@ -46,7 +46,7 @@ Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' }
 "Plug 'mbbill/undotree/'
 
 " Other visual enhancement
-"Plug 'nathanaelkane/vim-indent-guides'
+Plug 'nathanaelkane/vim-indent-guides'
 " Plug 'itchyny/vim-cursorword'
 
 " Git
@@ -78,7 +78,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 "Plug 'vimwiki/vimwiki'
 
-Plug 'easymotion/vim-easymotion'
+" Plug 'easymotion/vim-easymotion'
 
 " Find & Replace
 Plug 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }
@@ -114,6 +114,16 @@ Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-
 " which-key
 Plug 'liuchengxu/vim-which-key'
 
+" floaterm
+Plug 'voldikss/vim-floaterm'
+
+" vim-dadbod
+Plug 'tpope/vim-dadbod'
+" vim-dadbod-ui
+Plug 'kristijanhusak/vim-dadbod-ui'
+" vim-dadbod-completion
+Plug 'kristijanhusak/vim-dadbod-completion'
+
 call plug#end()
 " ===================== Install Plugins with Vim-Plug end =====================
 
@@ -130,15 +140,15 @@ nnoremap \p :! mupdf $(echo % \| sed 's/tex$/pdf/') & disown<CR><CR>
 nnoremap \c :! ls \| grep -E '*.aux\|*.log\|*.nav\|*.out\|*.snm\|*.toc\|*.pdf' \| xargs rm -rf {}<CR><CR>
 
 " vim-latex-live-preview
-" let g:livepreview_previewer = 'zathura'
-let g:livepreview_previewer = 'mupdf'
-let g:livepreview_engine = 'pdflatex'
+" let g:livepreview_previewer='zathura'
+let g:livepreview_previewer='mupdf'
+let g:livepreview_engine='pdflatex'
 
 " airline
 let g:airline_theme='onedark'
 
 " lightline
-let g:lightline = {
+let g:lightline={
       \ 'colorscheme': 'wombat',
       \ }
 
@@ -149,7 +159,7 @@ set termguicolors " enable true colors support
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 " colorscheme
-let g:SnazzyTransparent = 1
+let g:SnazzyTransparent=1
 colorscheme snazzy
 " colorscheme gruvbox
 " colorscheme hybrid
@@ -158,22 +168,22 @@ colorscheme snazzy
 " === vim-peekaboo
 " ===
 " suppress the default key bindings if you need imap <C-r> keybinding
-" let g:peekaboo_ins_prefix = '<S>'
+" let g:peekaboo_ins_prefix='<S>'
 
 " ===
 " === NERDTree
 " ===
 nnoremap tt :NERDTreeToggle<CR>
-"let NERDTreeMapOpenExpl = ""
-"let NERDTreeMapUpdir = ""
-"let NERDTreeMapUpdirKeepOpen = ""
-"let NERDTreeMapOpenSplit = ""
-"let NERDTreeOpenVSplit = ""
-"let NERDTreeMapActivateNode = ""
-"let NERDTreeMapOpenInTab = ""
-"let NERDTreeMapPreview = ""
-"let NERDTreeMapCloseDir = ""
-"let NERDTreeMapChangeRoot = ""
+"let NERDTreeMapOpenExpl=""
+"let NERDTreeMapUpdir=""
+"let NERDTreeMapUpdirKeepOpen=""
+"let NERDTreeMapOpenSplit=""
+"let NERDTreeOpenVSplit=""
+"let NERDTreeMapActivateNode=""
+"let NERDTreeMapOpenInTab=""
+"let NERDTreeMapPreview=""
+"let NERDTreeMapCloseDir=""
+"let NERDTreeMapChangeRoot=""
 
 " ==
 " == wildfire
@@ -182,12 +192,12 @@ nnoremap tt :NERDTreeToggle<CR>
 nnoremap <CR> <plug>(wildfire-fuel)
 " this selects the previous closest text object.
 " vmap <C-SPACE> <plug>(wildfire-water)
-let g:wildfire_objects = ["i'", 'i"', "i>", "i)", "i]", "i}", "ip", "it"]
+let g:wildfire_objects=["i'", 'i"', "i>", "i)", "i]", "i}", "ip", "it"]
 
 " ==
 " == NERDTree-git
 " ==
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeIndicatorMapCustom={
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
     \ "Untracked" : "✭",
@@ -202,8 +212,8 @@ let g:NERDTreeIndicatorMapCustom = {
 " ===
 " === ale
 " ===
-"let b:ale_linters = ['pylint']
-"let b:ale_fixers = ['autopep8', 'yapf']
+"let b:ale_linters=['pylint']
+"let b:ale_fixers=['autopep8', 'yapf']
 
 " ===
 " === Tagbar might need sudo pacman -S ctags
@@ -214,16 +224,16 @@ nnoremap <silent> T :TagbarOpenAutoClose<CR>
 " ===
 " === MarkdownPreview
 " ===
-let g:mkdp_auto_start = 0
-let g:mkdp_auto_close = 1
-let g:mkdp_refresh_slow = 0
-let g:mkdp_command_for_global = 0
-let g:mkdp_open_to_the_world = 0
-let g:mkdp_open_ip = ''
-let g:mkdp_browser = 'chromium'
-let g:mkdp_echo_preview_url = 1
-let g:mkdp_browserfunc = ''
-let g:mkdp_preview_options = {
+let g:mkdp_auto_start=0
+let g:mkdp_auto_close=1
+let g:mkdp_refresh_slow=0
+let g:mkdp_command_for_global=0
+let g:mkdp_open_to_the_world=0
+let g:mkdp_open_ip=''
+let g:mkdp_browser='chromium'
+let g:mkdp_echo_preview_url=1
+let g:mkdp_browserfunc=''
+let g:mkdp_preview_options={
     \ 'mkit': {},
     \ 'katex': {},
     \ 'uml': {},
@@ -232,28 +242,28 @@ let g:mkdp_preview_options = {
     \ 'sync_scroll_type': 'middle',
     \ 'hide_yaml_meta': 1
     \ }
-let g:mkdp_markdown_css = ''
-let g:mkdp_highlight_css = ''
-let g:mkdp_port = ''
-let g:mkdp_page_title = '「${name}」'
+let g:mkdp_markdown_css=''
+let g:mkdp_highlight_css=''
+let g:mkdp_port=''
+let g:mkdp_page_title='「${name}」'
 
 " ===
 " === vim-table-mode
 " ===
-nnoremap <LEADER>tm :TableModeToggle<CR>
+nnoremap <leader>tm :TableModeToggle<CR>
 
 " ===
 " === vim-easymotion
 " ===
-let g:EasyMotion_do_mapping = 0
-let g:EasyMotion_do_shade = 0
-let g:EasyMotion_smartcase = 1
-nmap <LEADER>f <Plug>(easymotion-bd-f2)
+" let g:EasyMotion_do_mapping=0
+" let g:EasyMotion_do_shade=0
+" let g:EasyMotion_smartcase=1
+" nmap <leader>e <Plug>(easymotion-bd-f2)
 
 " ===
 " === Far.vim
 " ===
-nnoremap <LEADER>F :F  %<left><left>
+nnoremap <leader>F :F  %<left><left>
 
 " ===
 " === FZF
@@ -270,42 +280,45 @@ nnoremap <M-S-h> :History<CR>
 " noremap <M-S-f> :Ag<CR>
 " noremap <M-t> :BTags<CR>
 
-let g:fzf_preview_window = 'right:60%'
-let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+let g:fzf_preview_window='right:60%'
+let g:fzf_commits_log_options='--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 
 " ===
 " === RANGER
 " ===
 " suppress the default key bindings
-let g:ranger_map_keys = ''
-nnoremap <LEADER>ra :Ranger<CR>
+let g:ranger_map_keys=''
+nnoremap <leader>ra :Ranger<CR>
 
 " ===
 " === Python-syntax
 " ===
-let g:python_highlight_all = 1
-" let g:python_slow_sync = 0
+let g:python_highlight_all=1
+" let g:python_slow_sync=0
 
 " ===
 " === vim-indent-guide
 " ===
-"let g:indent_guides_guide_size = 1
-"let g:indent_guides_start_level = 2
-"let g:indent_guides_enable_on_vim_startup = 1
-"let g:indent_guides_color_change_percent = 1
-"silent! unmap <LEADER>ig
-"autocmd WinEnter * silent! unmap <LEADER>ig
+" suppress the default key bindings
+" autocmd WinEnter * silent! unmap ,ig
+nmap <silent> <Leader><leader>ig <Plug>IndentGuidesToggle
+let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_guide_size=1
+let g:indent_guides_start_level=2
+let g:indent_guides_color_change_percent=1
+" autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
+" autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 
 " ===
 " === Undotree
 " ===
 "map P :UndotreeToggle<CR>
-"let g:undotree_DiffAutoOpen = 1
-"let g:undotree_SetFocusWhenToggle = 1
-"let g:undotree_ShortIndicators = 1
-"let g:undotree_WindowLayout = 2
-"let g:undotree_DiffpanelHeight = 8
-"let g:undotree_SplitWidth = 24
+"let g:undotree_DiffAutoOpen=1
+"let g:undotree_SetFocusWhenToggle=1
+"let g:undotree_ShortIndicators=1
+"let g:undotree_WindowLayout=2
+"let g:undotree_DiffpanelHeight=8
+"let g:undotree_SplitWidth=24
 "function g:Undotree_CustomMap()
 	"nmap <buffer> j <plug>UndotreeNextState
 	"nmap <buffer> k <plug>UndotreePreviousState
@@ -316,93 +329,114 @@ let g:python_highlight_all = 1
 " ===
 " === rainbow
 " ===
-let g:rainbow_active = 1
+let g:rainbow_active=1
 
 " ===
 " === vim-bookmarks
 " ===
-let g:bookmark_no_default_key_mappings = 1
-nmap <LEADER>mt <Plug>BookmarkToggle
-nmap <LEADER>ma <Plug>BookmarkAnnotate
-nmap <LEADER>ml <Plug>BookmarkShowAll
-nmap <LEADER>mn <Plug>BookmarkNext
-nmap <LEADER>mp <Plug>BookmarkPrev
-nmap <LEADER>mc <Plug>BookmarkClear
-nmap <LEADER>mx <Plug>BookmarkClearAll
-nmap <LEADER>mk <Plug>BookmarkMoveUp
-nmap <LEADER>mj <Plug>BookmarkMoveDown
-nmap <LEADER>mg <Plug>BookmarkMoveToLine
-let g:bookmark_save_per_working_dir = 1
-let g:bookmark_auto_save = 1
-let g:bookmark_highlight_lines = 1
-let g:bookmark_manage_per_buffer = 1
-let g:bookmark_save_per_working_dir = 1
-let g:bookmark_center = 1
-let g:bookmark_auto_close = 1
-let g:bookmark_location_list = 1
+let g:bookmark_no_default_key_mappings=1
+nmap <leader>mt <Plug>BookmarkToggle
+nmap <leader>ma <Plug>BookmarkAnnotate
+nmap <leader>ml <Plug>BookmarkShowAll
+nmap <leader>mn <Plug>BookmarkNext
+nmap <leader>mp <Plug>BookmarkPrev
+nmap <leader>mc <Plug>BookmarkClear
+nmap <leader>mx <Plug>BookmarkClearAll
+nmap <leader>mk <Plug>BookmarkMoveUp
+nmap <leader>mj <Plug>BookmarkMoveDown
+nmap <leader>mg <Plug>BookmarkMoveToLine
+let g:bookmark_save_per_working_dir=1
+let g:bookmark_auto_save=1
+let g:bookmark_highlight_lines=1
+let g:bookmark_manage_per_buffer=1
+let g:bookmark_save_per_working_dir=1
+let g:bookmark_center=1
+let g:bookmark_auto_close=1
+let g:bookmark_location_list=1
 
 " ==
 " == vim-startify
 " ==
+" let g:startify_session_autoload=1
+let g:startify_session_dir='~/.config/nvim/session'
+let g:startify_lists=[
+          \ { 'type': 'files',     'header': ['   Files']            },
+          \ { 'type': 'dir',       'header': ['   Current Directory '. getcwd()] },
+          \ { 'type': 'sessions',  'header': ['   Sessions']       },
+          \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+          \ ]
+let g:startify_bookmarks=[
+            \ { 'c': '~/.config/i3/config' },
+            \ { 'i': '~/.config/nvim/init.vim' },
+            \ { 'z': '~/.zshrc' },
+            \ '~/workspace',
+            \ '~/Downloads',
+            \ '~/picture',
+            \ ]
+
 " Open Startify
-nnoremap <LEADER>\ :Startify<CR>
+nnoremap <leader>\ :Startify<CR>
+nnoremap <leader>Ss :SSave! 
+nnoremap <leader>Sl :SLoad 
+nnoremap <leader>Sd :SDelete!<CR>
+nnoremap <leader>Sc :SClose<CR>
 
 " ==
 " == vim-surround
 " ==
 " suppress the default key bindings
-let g:surround_no_insert_mappings = 1
+let g:surround_no_insert_mappings=1
 
 " ==
 " == vim-signify
 " ==
 " 设置要检查的VCS
-let g:signify_vcs_list = ['git']
+let g:signify_vcs_list=['git']
 " 插入模式下指定updatetime时间后无操作将缓存区交换文件写入磁盘
-let g:signify_cursorhold_insert     = 1
+let g:signify_cursorhold_insert    =1
 " 正常模式下指定updatetime时间后无操作将缓存区交换文件写入磁盘
-let g:signify_cursorhold_normal     = 1
+let g:signify_cursorhold_normal    =1
 " 缓冲区被修改时更新符号
-let g:signify_update_on_bufenter    = 0
+let g:signify_update_on_bufenter   =0
 " vim获取焦点时更新符号
-let g:signify_update_on_focusgained = 1
+let g:signify_update_on_focusgained=1
 " 键盘映射
-nnoremap <LEADER>gsd :SignifyDiff<CR>
-nnoremap <LEADER>gst :SignifyToggle<CR>
-nnoremap <LEADER>gsh :SignifyToggleHighlight<CR>
-nnoremap <LEADER>gsr :SignifyRefresh<CR>
-nnoremap <LEADER>gsx :SignifyDebug<CR>
+nnoremap <leader>gsd :SignifyDiff<CR>
+nnoremap <leader>gst :SignifyToggle<CR>
+nnoremap <leader>gsh :SignifyToggleHighlight<CR>
+nnoremap <leader>gsr :SignifyRefresh<CR>
+nnoremap <leader>gsx :SignifyDebug<CR>
 " hunk jumping
-nnoremap <LEADER>gsj <plug>(signify-next-hunk)
-nnoremap <LEADER>gsk <plug>(signify-prev-hunk)
+nnoremap <leader>gsj <plug>(signify-next-hunk)
+nnoremap <leader>gsk <plug>(signify-prev-hunk)
 
 " ==
 " == GitGutter
 " ==
-""let g:gitgutter_signs = 0
-"let g:gitgutter_map_keys = 0
-"let g:gitgutter_override_sign_column_highlight = 1
-""let g:gitgutter_highlight_linenrs = 1
-"let g:gitgutter_preview_win_floating = 1
+""let g:gitgutter_signs=0
+"let g:gitgutter_map_keys=0
+"let g:gitgutter_override_sign_column_highlight=1
+""let g:gitgutter_highlight_linenrs=1
+"let g:gitgutter_preview_win_floating=1
 "autocmd BufWritePost * GitGutter
-"nnoremap <LEADER>gf :GitGutterFold<CR>
-"nnoremap <LEADER>gh :GitGutterPreviewHunk<CR>
-"nnoremap <LEADER>g[ :GitGutterPrevHunk<CR>
-"nnoremap <LEADER>g] :GitGutterNextHunk<CR>
+"nnoremap <leader>gf :GitGutterFold<CR>
+"nnoremap <leader>gh :GitGutterPreviewHunk<CR>
+"nnoremap <leader>g[ :GitGutterPrevHunk<CR>
+"nnoremap <leader>g] :GitGutterNextHunk<CR>
 
 " ===
 " === vim-fugitive
 " ===
-nnoremap <LEADER>gb :Gblame<CR>
-nnoremap <LEADER>dh :diffget //2<CR>
-nnoremap <LEADER>dl :diffget //3<CR>
-nnoremap <LEADER>gg :G<CR>
+nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>dh :diffget //2<CR>
+nnoremap <leader>dl :diffget //3<CR>
+nnoremap <leader>gg :G<CR>
 
 " ===
 " === vimspector
 " ===
-let g:vimspector_enable_mappings = 'HUMAN'
-let g:vimspector_install_gadgets = [ 'vscode-cpptools', 'debugpy', 'vscode-go' ]
+let g:vimspector_enable_mappings='HUMAN'
+let g:vimspector_install_gadgets=[ 'vscode-cpptools', 'debugpy', 'vscode-go' ]
 " let g:vimspector_base_dir=expand( '$HOME/.config/nvim/vimspector-config' )
 
 " " 从模板文件读入到当前buffer
@@ -421,13 +455,76 @@ command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
 " sign define vimspectorBPDisabled text=☞ texthl=Normal
 " sign define vimspectorPC text=🔶 texthl=SpellBad
 
-" which-key
-" let g:mapleader = "\<Space>"
+" ===
+" === which-key
+" ===
+" let g:mapleader="\<Space>"
 " nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
-let g:mapleader = ','
-let g:maplocalleader = ','
+let g:mapleader=','
+let g:maplocalleader=','
 nnoremap <silent> <leader>      :<c-u>WhichKey ','<CR>
 nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
+
+" ===
+" === floaterm
+" ===
+let g:floaterm_keymap_toggle='<leader>ft'
+let g:floaterm_keymap_next='<leader>f='
+let g:floaterm_keymap_prev='<leader>f-'
+let g:floaterm_keymap_new='<leader>f+'
+" let g:floaterm_keymap_hide='<leader>fh'
+" let g:floaterm_keymap_show='<leader>fs'
+let g:floaterm_keymap_kill='<leader>fq'
+" floaterm
+" let g:floaterm_gitcommit='floaterm'
+" let g:floaterm_autoinsert=1
+" let g:floaterm_width=0.8
+" let g:floaterm_height=0.8
+" let g:floaterm_wintitle=0
+" let g:floaterm_autoclose=1
+nnoremap <silent> <leader>f; :FloatermNew --wintype=popup --height=6<CR>
+nnoremap <silent> <leader>ff :FloatermNew fzf<CR>
+nnoremap <silent> <leader>fg :FloatermNew lazygit<CR>
+nnoremap <silent> <leader>fn :FloatermNew node<CR>
+nnoremap <silent> <leader>fp :FloatermNew python<CR>
+nnoremap <silent> <leader>fh :FloatermNew htop<CR>
+nnoremap <silent> <leader>fd :FloatermNew ncdu<CR>
+
+" ===
+" === vim-dadbod-ui
+" ===
+" nnoremap <silent> <leader>dt :tabe<CR>:tabmove<CR>:DBUIToggle<CR>
+nnoremap <silent> <leader>dt :DBUIToggle<CR>
+nnoremap <silent> <leader>da :DBUIAddConnection<CR>
+"" \ 'dev': 'postgres://postgres:mypassword@localhost:5432/my-dev-db',
+let g:dbs={
+\ 'local': 'mysql://test@192.168.0.101:3306/test',
+\ 'remote': 'mysql://test@dev.seeu.ink:3306/test',
+\ }
+" ui icons
+" let g:db_ui_icons={
+"     \ 'expanded': '▾',
+"     \ 'collapsed': '▸',
+"     \ 'saved_query': '*',
+"     \ 'new_query': '+',
+"     \ 'tables': '~',
+"     \ 'buffers': '»',
+"     \ 'connection_ok': '✓',
+"     \ 'connection_error': '✕',
+"     \ }
+" table helpers  # to add a "count rows" helper for postgres
+let g:db_ui_table_helpers={
+\   'postgresql': {
+\     'Count': 'select count(*) from "{table}"'
+\   },
+\   'mysql': {
+\     'Count': 'select count(*) from "{table}"'
+\   }
+\ }
+" If this is set to 1, opening any of the table helpers will also automatically execute the query. default:0
+" let g:db_ui_auto_execute_table_helpers=0
+let g:db_ui_winwidth=60
+let g:db_ui_default_query = 'select * from "{table}" limit 10'
 
 " coc settings
 source ~/.config/nvim/coc.vim

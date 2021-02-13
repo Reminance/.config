@@ -2,7 +2,8 @@
 " ===
 " === coc
 " ===
-let g:coc_global_extensions = [
+  " \ 'coc-sourcekit',
+let g:coc_global_extensions=[
   \ 'coc-sh',
   \ 'coc-clangd',
   \ 'coc-cmake',
@@ -26,7 +27,6 @@ let g:coc_global_extensions = [
   \ 'coc-lists',
   \ 'coc-prettier',
   \ 'coc-snippets',
-  \ 'coc-sourcekit',
   \ 'coc-syntax',
   \ 'coc-tasks',
   \ 'coc-todolist',
@@ -42,6 +42,7 @@ let g:coc_global_extensions = [
   \ 'coc-pyls',
   \ 'coc-jedi',
   \ 'coc-leetcode',
+  \ 'coc-db',
   \ 'coc-sql',
   \ 'coc-emoji',
   \ 'coc-floaterm',
@@ -70,16 +71,16 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 function! s:check_back_space() abort
-	let col = col('.') - 1
+	let col=col('.') - 1
 	return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 inoremap <silent><expr> <c-space> coc#refresh()
 " use <,c,> to prev diagnostic;
-nmap <silent> <LEADER>c, <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>c, <Plug>(coc-diagnostic-prev)
 " use <,c.> to next diagnostic;
-nmap <silent> <LEADER>c. <Plug>(coc-diagnostic-next)
-" nmap <silent> <LEADER>c. <Plug>(coc-diagnostic-next-error)
+nmap <silent> <leader>c. <Plug>(coc-diagnostic-next)
+" nmap <silent> <leader>c. <Plug>(coc-diagnostic-next-error)
 inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
@@ -91,7 +92,7 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Open up coc-commands
-nnoremap <LEADER>cC :CocCommand<CR>
+nnoremap <leader>cC :CocCommand<CR>
 " Text Objects
 xmap kf <Plug>(coc-funcobj-i)
 xmap af <Plug>(coc-funcobj-a)
@@ -99,14 +100,14 @@ omap kf <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
 
 " Useful commands
-nnoremap <silent> <LEADER>y :<C-u>CocList -A --normal yank<cr>
+nnoremap <silent> <leader>y :<C-u>CocList -A --normal yank<cr>
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-nmap <LEADER>rn <Plug>(coc-rename)
-nnoremap <LEADER>tt :CocCommand explorer<CR>
+nmap <leader>rn <Plug>(coc-rename)
+nnoremap <leader>tt :CocCommand explorer<CR>
 
 nnoremap <silent> <C-H> :call <SID>show_documentation()<CR>
 function! s:show_documentation()
@@ -146,34 +147,37 @@ nnoremap <leader>tl :CocList todolist<CR>
 nnoremap <leader>tu :CocCommand todolist.download<CR>:CocCommand todolist.upload<CR>
 " coc-tasks
 nnoremap <leader>ts :CocList tasks<CR>
+
 " coc-snippets
-imap <C-\> <Plug>(coc-snippets-expand)
 vmap <C-n> <Plug>(coc-snippets-select)
-let g:coc_snippet_next = '<c-n>'
-let g:coc_snippet_prev = '<c-p>'
+imap <C-n> <Plug>(coc-snippets-expand)
+" 直接展开snippets
 imap <C-\> <Plug>(coc-snippets-expand-jump)
 xmap <leader>x  <Plug>(coc-convert-snippet)
-let g:snips_author = 'Reminance'
+let g:snips_author='Reminance'
+" 在snippets占位符间跳转
+let g:coc_snippet_next='<c-j>'
+let g:coc_snippet_prev='<c-k>'
 
 " Mappings for CoCList
 " Show all diagnostics.
-nnoremap <silent><nowait> <LEADER>cld  :<C-u>CocList diagnostics<cr>
+nnoremap <silent><nowait> <leader>cld  :<C-u>CocList diagnostics<cr>
 " Manage extensions.
-nnoremap <silent><nowait> <LEADER>cle  :<C-u>CocList extensions<cr>
+nnoremap <silent><nowait> <leader>cle  :<C-u>CocList extensions<cr>
 " Show commands.
-nnoremap <silent><nowait> <LEADER>clc  :<C-u>CocList commands<cr>
+nnoremap <silent><nowait> <leader>clc  :<C-u>CocList commands<cr>
 " Find symbol of current document.
-nnoremap <silent><nowait> <LEADER>clo  :<C-u>CocList outline<cr>
+nnoremap <silent><nowait> <leader>clo  :<C-u>CocList outline<cr>
 " Search workspace symbols.
-nnoremap <silent><nowait> <LEADER>cls  :<C-u>CocList -I symbols<cr>
+nnoremap <silent><nowait> <leader>cls  :<C-u>CocList -I symbols<cr>
 " Resume latest coc list.
-nnoremap <silent><nowait> <LEADER>clr  :<C-u>CocListResume<CR>
+nnoremap <silent><nowait> <leader>clr  :<C-u>CocListResume<CR>
 " marketplace coc list.
-nnoremap <silent><nowait> <LEADER>clm  :<C-u>CocList marketplace<CR>
+nnoremap <silent><nowait> <leader>clm  :<C-u>CocList marketplace<CR>
 " Do default action for next item.
-nnoremap <silent><nowait> <LEADER>cn  :<C-u>CocNext<CR>
+nnoremap <silent><nowait> <leader>cn  :<C-u>CocNext<CR>
 " Do default action for previous item
-nnoremap <silent><nowait> <LEADER>cp  :<C-u>CocPrev<CR>
+nnoremap <silent><nowait> <leader>cp  :<C-u>CocPrev<CR>
 
 
 

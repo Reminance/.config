@@ -1,19 +1,26 @@
 " ===================== Editor behavior =====================
 " set hidden " 允许在有未保存的修改时切换缓冲区，此时的修改由 vim 负责保存
+syntax on
 set cursorline
 let mapleader=","
 exec "nohlsearch"
-syntax on
 set number
 " set relativenumber
 set wrap
+set pumheight=10
 set showcmd
 set wildmenu
-set hlsearch
+" set spell
+" set hlsearch
 set incsearch
 set ignorecase
 set smartcase
 set background=dark
+
+" for better coc experience
+set updatetime=200
+set signcolumn=yes
+
 set nocompatible
 filetype on
 filetype indent on
@@ -43,13 +50,13 @@ set foldlevel=99
 set foldenable
 set ttyfast "should make scrolling faster
 set lazyredraw "same as above
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+let &t_SI="\<Esc>]50;CursorShape=1\x7"
+let &t_SR="\<Esc>]50;CursorShape=2\x7"
+let &t_EI="\<Esc>]50;CursorShape=0\x7"
 set laststatus=2
 set noshowmode
 set autochdir
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif " make cursor remain the position of last quit
 silent !mkdir -p ~/.config/nvim/tmp/backup
 silent !mkdir -p ~/.config/nvim/tmp/undo
 "silent !mkdir -p ~/.config/nvim/tmp/sessions
@@ -60,6 +67,8 @@ if has('persistent_undo')
 	set undofile
 	set undodir=~/.config/nvim/tmp/undo,.
 endif
+" You can't stop me
+cmap w!! w !sudo tee %
 
 " normal mode bindings
 nnoremap <C-Down> :res +5<CR>
@@ -77,8 +86,24 @@ inoremap <M-f> <S-Right>
 inoremap <M-b> <S-Left>
 inoremap <C-d> <Del>
 inoremap <C-k> <Esc>d$a
-inoremap <C-w> <SPACE><S-Left><Esc>lcaw
 inoremap <C-g> <Esc>
+map <C-g> <Esc>
+" <C-w> 向行首删除一个word
+inoremap <silent><expr> <C-w>
+      \ <SID>check_back_space_even_space() ? "" :
+      \ "<CR><Esc>k$caw<Del>"
+" <M-d> 向行尾删除一个word
+inoremap <silent><expr> <M-d>
+      \ <SID>check_delete_even_space() ? "" :
+      \ "<CR><Esc>caw<BS>"
+" 检查是否删除到了行首
+function! s:check_back_space_even_space() abort
+    return !(col('.') - 1)
+endfunction
+" 检查是否删除到了行尾
+function! s:check_delete_even_space() abort
+    return col('.') == col('$')
+endfunction
 " inoremap <C-n> <Down>
 " inoremap <C-p> <Up>
 
@@ -92,9 +117,9 @@ cnoremap <M-f> <S-Right>
 cnoremap <M-b> <S-Left>
 
 " ===================== Basic Mappings =====================
-nnoremap <LEADER><SPACE> :nohlsearch<CR>
+nnoremap <leader><SPACE> :nohlsearch<CR>
 " quit all the other window except for current
-nnoremap <LEADER>q <C-w>o
+nnoremap <leader>q <C-w>o
 inoremap <S-Del> <Esc>ddk$
 
 " Copy to system clipboard
@@ -102,7 +127,7 @@ inoremap <S-Del> <Esc>ddk$
 vnoremap Y "+y
 
 " Opening a terminal window
-"noremap <LEADER>/ :term<CR>
+"noremap <leader>/ :term<CR>
 
 " insert a <++>
 inoremap <M-i> <++>
@@ -113,15 +138,18 @@ inoremap <M-SPACE> <Esc>/<++><CR>:nohlsearch<CR>c4l
 " make Y to copy till the end of the line
 nnoremap Y y$
 
+" duplicate wordds
+" nnoremap <leader>dw /\(\<\w\+\>\)\_s*\1<CR>
+
 " Open the vimrc file anytime
-nnoremap <LEADER>i :e ~/.config/nvim/init.vim<CR>
+nnoremap <leader>i :e ~/.config/nvim/init.vim<CR>
 
 " Open the plugins.vim file anytime
-nnoremap <LEADER>p :e ~/.config/nvim/plugins.vim<CR>
+nnoremap <leader>p :e ~/.config/nvim/plugins.vim<CR>
 
 " Open the coc.vim file anytime
-nnoremap <LEADER>cc :e ~/.config/nvim/coc.vim<CR>
-nnoremap <LEADER>cs :e ~/.config/nvim/coc-settings.json<CR>
+nnoremap <leader>cc :e ~/.config/nvim/coc.vim<CR>
+nnoremap <leader>cs :e ~/.config/nvim/coc-settings.json<CR>
 
 " Open up lazygit
 nnoremap <C-\>g :tabe<CR>:tabmove<CR>:term lazygit<CR>
@@ -179,18 +207,18 @@ nnoremap <M-h> <C-w>h
 nnoremap <M-j> <C-w>j
 nnoremap <M-k> <C-w>k
 nnoremap <M-l> <C-w>l
-" Use <LEADER> + new arrow keys for moving the windows
-nnoremap <LEADER>h <C-w>H
-nnoremap <LEADER>j <C-w>J
-nnoremap <LEADER>k <C-w>K
-nnoremap <LEADER>l <C-w>L
+" Use <leader> + new arrow keys for moving the windows
+nnoremap <leader>h <C-w>H
+nnoremap <leader>j <C-w>J
+nnoremap <leader>k <C-w>K
+nnoremap <leader>l <C-w>L
 
 " ===================== Tab management
 " Create a new tab
 nnoremap <M-n> :tabe<CR>
 nnoremap <M-q> :tabclose<CR>
 " noremap <M-n> :tabnew 
-" noremap <LEADER>n :tabe<CR>
+" noremap <leader>n :tabe<CR>
 " switching tabs
 nnoremap <M-,> :-tabnext<CR>
 nnoremap <M-.> :+tabnext<CR>
@@ -204,14 +232,14 @@ endfor
 nnoremap <M-9> :tablast<CR>
 
 " open the quickfix
-nnoremap <LEADER>co :copen<CR>
+nnoremap <leader>co :copen<CR>
 
 " ===
 " === Create a _machine_specific.vim file to adjust machine specific stuff, like python interpreter location
 " ===
-let has_machine_specific_file = 1
+let has_machine_specific_file=1
 if empty(glob('~/.config/nvim/_machine_specific.vim'))
-	let has_machine_specific_file = 0
+	let has_machine_specific_file=0
 	silent! exec "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
 endif
 source ~/.config/nvim/_machine_specific.vim
@@ -240,7 +268,7 @@ func! CompileRunGcc()
 		" exec "!time java %<"
         " === make ===
 		exec "make"
-        " for debug
+        " === for debug ===
 		" exec "!time java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=5005,suspend=y %<"
 	elseif &filetype == 'sh'
 		:!time bash %
@@ -307,6 +335,30 @@ func! FormatAndEncodeFunc(format, encoding)
     execute 'set fileformat=' . a:format
     execute 'set fileencoding=' . a:encoding
 endfunc
+
+" sessions
+" 自带的session颜色丢失 用startify的session管理代替
+" auto save and load session for $HOME/.config/nvim/session/current.session
+" set sessionoptions="blank,buffers,curdir,folds,globals,help,localoptions,options,resize,sesdir,slash,tabpages,terminal,unix,winpos,winsize"
+" set sessionoptions="blank,buffers,folds,globals,help,localoptions,resize,sesdir,slash,tabpages,terminal,unix,winpos,winsize"
+" let g:OrigPWD=getcwd()
+" let g:OrigPWD='/home/xc/.config/nvim'
+" let g:AutoSessionFile='session/recent.session'
+" if filereadable("".g:OrigPWD."/".g:AutoSessionFile)
+"     if argc() == 0
+"         au VimEnter * call LoadRecentSession()
+"     endif
+" else
+"     if argc() == 0
+"         au VimLeave * call SaveRecentSession()
+"     endif
+" endif
+" function! SaveRecentSession()
+"     exec "mks! ".g:OrigPWD."/".g:AutoSessionFile
+" endfunction
+" function! LoadRecentSession()
+"     exe "source ".g:OrigPWD."/".g:AutoSessionFile
+" endfunction
 
 " plugins
 source ~/.config/nvim/plugins.vim

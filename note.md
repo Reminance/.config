@@ -114,3 +114,17 @@ curl -L archdi.sf.net/archdi > archdi
 or if sourceforge is down :
 curl -L matmoul.github.io/archdi > archdi
 ```
+
+# fuzzy find
+
+```
+sudo pacman -S fzf
+
+sudo pacman -S ripgrep
+
+yay -S universal-ctags-git
+
+sudo pacman -S the_silver_searcher
+
+pacman -S fd
+```

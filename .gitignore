@@ -12,6 +12,7 @@ nvim/tmp/
 nvim/.netrwhist
 nvim/_machine_specific.vim
 nvim/.vim-bookmarks
+nvim/session/
 *.conf
 *.dirs
 *.list
@@ -76,3 +77,4 @@ emacs*/places
 emacs*/.lsp*
 emacs*/eclipse.jdt.ls
 emacs*/workspace
+htop/
