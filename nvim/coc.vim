@@ -105,7 +105,7 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-nnoremap <LEADER>rn <Plug>(coc-rename)
+nmap <LEADER>rn <Plug>(coc-rename)
 nnoremap <LEADER>tt :CocCommand explorer<CR>
 
 nnoremap <silent> <C-H> :call <SID>show_documentation()<CR>

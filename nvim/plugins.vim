@@ -248,7 +248,7 @@ nnoremap <LEADER>tm :TableModeToggle<CR>
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_do_shade = 0
 let g:EasyMotion_smartcase = 1
-nnoremap <LEADER>f <Plug>(easymotion-bd-f2)
+nmap <LEADER>f <Plug>(easymotion-bd-f2)
 
 " ===
 " === Far.vim
@@ -322,16 +322,16 @@ let g:rainbow_active = 1
 " === vim-bookmarks
 " ===
 let g:bookmark_no_default_key_mappings = 1
-nnoremap <LEADER>mt <Plug>BookmarkToggle
-nnoremap <LEADER>ma <Plug>BookmarkAnnotate
-nnoremap <LEADER>ml <Plug>BookmarkShowAll
-nnoremap <LEADER>mi <Plug>BookmarkNext
-nnoremap <LEADER>mn <Plug>BookmarkPrev
-nnoremap <LEADER>mc <Plug>BookmarkClear
-nnoremap <LEADER>mx <Plug>BookmarkClearAll
-nnoremap <LEADER>mu <Plug>BookmarkMoveUp
-nnoremap <LEADER>me <Plug>BookmarkMoveDown
-nnoremap <LEADER>mg <Plug>BookmarkMoveToLine
+nmap <LEADER>mt <Plug>BookmarkToggle
+nmap <LEADER>ma <Plug>BookmarkAnnotate
+nmap <LEADER>ml <Plug>BookmarkShowAll
+nmap <LEADER>mn <Plug>BookmarkNext
+nmap <LEADER>mp <Plug>BookmarkPrev
+nmap <LEADER>mc <Plug>BookmarkClear
+nmap <LEADER>mx <Plug>BookmarkClearAll
+nmap <LEADER>mk <Plug>BookmarkMoveUp
+nmap <LEADER>mj <Plug>BookmarkMoveDown
+nmap <LEADER>mg <Plug>BookmarkMoveToLine
 let g:bookmark_save_per_working_dir = 1
 let g:bookmark_auto_save = 1
 let g:bookmark_highlight_lines = 1
