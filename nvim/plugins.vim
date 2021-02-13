@@ -13,9 +13,9 @@ endif
 " ===
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-" Plug 'itchyny/lightline.vim'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 Plug 'connorholyday/vim-snazzy'
 Plug 'morhetz/gruvbox'
 Plug 'w0ng/vim-hybrid'
@@ -124,6 +124,12 @@ Plug 'kristijanhusak/vim-dadbod-ui'
 " vim-dadbod-completion
 Plug 'kristijanhusak/vim-dadbod-completion'
 
+" vista.vim
+Plug 'liuchengxu/vista.vim'
+
+"ianding1/leetcode.vim
+Plug 'ianding1/leetcode.vim'
+
 call plug#end()
 " ===================== Install Plugins with Vim-Plug end =====================
 
@@ -148,8 +154,16 @@ let g:livepreview_engine='pdflatex'
 let g:airline_theme='onedark'
 
 " lightline
-let g:lightline={
+" NearestMethodOrFunction cames from vista function below
+let g:lightline = {
       \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified', 'method' ] ]
+      \ },
+      \ 'component_function': {
+      \   'method': 'NearestMethodOrFunction'
+      \ },
       \ }
 
 " ===
@@ -524,7 +538,33 @@ let g:db_ui_table_helpers={
 " If this is set to 1, opening any of the table helpers will also automatically execute the query. default:0
 " let g:db_ui_auto_execute_table_helpers=0
 let g:db_ui_winwidth=60
-let g:db_ui_default_query = 'select * from "{table}" limit 10'
+let g:db_ui_default_query='select * from "{table}" limit 10'
+
+" vista.vim
+function! NearestMethodOrFunction() abort
+  return get(b:, 'vista_nearest_method_or_function', '')
+endfunction
+" set statusline+=%{NearestMethodOrFunction()}
+nnoremap <leader>v :Vista!!<CR>
+nnoremap <C-t> :silent! Vista finder coc<CR>
+let g:vista_icon_indent=["╰─▸ ", "├─▸ "]
+let g:vista_default_executive='coc'
+let g:vista_fzf_preview=['right:50%']
+let g:vista#renderer#enable_icon=1
+let g:vista#renderer#icons={
+\   "function": "\uf794",
+\   "variable": "\uf71b",
+\  }
+
+" leetcode.vim
+let g:leetcode_china=1
+" Values: 'cpp', 'java', 'python', 'python3', 'csharp', 'javascript', 'ruby', 'swift', 'golang', 'scala', 'kotlin', 'rust'. Default:'cpp'.
+let g:leetcode_solution_filetype='java'
+let g:leetcode_browser='chromium'
+nnoremap <leader>ll :LeetCodeList<cr>
+nnoremap <leader>lt :LeetCodeTest<cr>
+nnoremap <leader>ls :LeetCodeSubmit<cr>
+nnoremap <leader>li :LeetCodeSignIn<cr>
 
 " coc settings
 source ~/.config/nvim/coc.vim
