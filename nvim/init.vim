@@ -1,6 +1,5 @@
 " ===================== Editor behavior =====================
 " set hidden " 允许在有未保存的修改时切换缓冲区，此时的修改由 vim 负责保存
-syntax on
 set cursorline
 let mapleader=","
 exec "nohlsearch"
@@ -15,7 +14,13 @@ set wildmenu
 set incsearch
 set ignorecase
 set smartcase
+
+" gui
+syntax on
 set background=dark
+set termguicolors " enable true colors support
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+set t_Co=256
 
 " for better coc experience
 set updatetime=200
@@ -84,14 +89,14 @@ inoremap <C-b> <Left>
 inoremap <C-f> <Right>
 inoremap <M-f> <S-Right>
 inoremap <M-b> <S-Left>
-inoremap <C-d> <Del>
+inoremap <C-d> <DEL>
 inoremap <C-k> <Esc>d$a
 inoremap <C-g> <Esc>
 map <C-g> <Esc>
 " <C-w> 向行首删除一个word
 inoremap <silent><expr> <C-w>
       \ <SID>check_back_space_even_space() ? "" :
-      \ "<CR><Esc>k$caw<Del>"
+      \ "\\<Left><S-Left><Esc>ct\\<DEL>"
 " <M-d> 向行尾删除一个word
 inoremap <silent><expr> <M-d>
       \ <SID>check_delete_even_space() ? "" :
@@ -112,44 +117,44 @@ cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 cnoremap <C-f> <Right>
 cnoremap <C-b> <Left>
-cnoremap <C-d> <Del>
+cnoremap <C-d> <DEL>
 cnoremap <M-f> <S-Right>
 cnoremap <M-b> <S-Left>
 
 " ===================== Basic Mappings =====================
-nnoremap <leader><SPACE> :nohlsearch<CR>
+nnoremap <LEADER><space> :nohlsearch<CR>
 " quit all the other window except for current
-nnoremap <leader>q <C-w>o
-inoremap <S-Del> <Esc>ddk$
+nnoremap <LEADER>q <C-w>o
+inoremap <S-DEL> <Esc>ddkA
 
 " Copy to system clipboard
 " might need to install a system clipboard tool such as : sudo pacman -S xclip
 vnoremap Y "+y
 
 " Opening a terminal window
-"noremap <leader>/ :term<CR>
+"noremap <LEADER>/ :term<CR>
 
 " insert a <++>
 inoremap <M-i> <++>
 " jump to next <++> and replace it
-nnoremap <M-SPACE> <Esc>/<++><CR>:nohlsearch<CR>c4l
-inoremap <M-SPACE> <Esc>/<++><CR>:nohlsearch<CR>c4l
+nnoremap <M-space> <Esc>/<++><CR>:nohlsearch<CR>c4l
+inoremap <M-space> <Esc>/<++><CR>:nohlsearch<CR>c4l
 
 " make Y to copy till the end of the line
 nnoremap Y y$
 
 " duplicate wordds
-" nnoremap <leader>dw /\(\<\w\+\>\)\_s*\1<CR>
+" nnoremap <LEADER>dw /\(\<\w\+\>\)\_s*\1<CR>
 
 " Open the vimrc file anytime
-nnoremap <leader>i :e ~/.config/nvim/init.vim<CR>
+nnoremap <LEADER>i :e ~/.config/nvim/init.vim<CR>
 
 " Open the plugins.vim file anytime
-nnoremap <leader>p :e ~/.config/nvim/plugins.vim<CR>
+nnoremap <LEADER>p :e ~/.config/nvim/plugins.vim<CR>
 
 " Open the coc.vim file anytime
-nnoremap <leader>cc :e ~/.config/nvim/coc.vim<CR>
-nnoremap <leader>cs :e ~/.config/nvim/coc-settings.json<CR>
+nnoremap <LEADER>cc :e ~/.config/nvim/coc.vim<CR>
+nnoremap <LEADER>cs :e ~/.config/nvim/coc-settings.json<CR>
 
 " Open up lazygit
 nnoremap <C-\>g :tabe<CR>:tabmove<CR>:term lazygit<CR>
@@ -170,10 +175,6 @@ tnoremap <C-\> <C-\><C-n>
 " noremap J 3j
 " noremap K 3k
 " noremap L 3l
-nnoremap H <nop>
-nnoremap J <nop>
-nnoremap K <nop>
-nnoremap L <nop>
 
 " ===================== Save & quit =====================
 nnoremap s <nop>
@@ -207,18 +208,18 @@ nnoremap <M-h> <C-w>h
 nnoremap <M-j> <C-w>j
 nnoremap <M-k> <C-w>k
 nnoremap <M-l> <C-w>l
-" Use <leader> + new arrow keys for moving the windows
-nnoremap <leader>h <C-w>H
-nnoremap <leader>j <C-w>J
-nnoremap <leader>k <C-w>K
-nnoremap <leader>l <C-w>L
+" Use <LEADER> + new arrow keys for moving the windows
+nnoremap <LEADER>h <C-w>H
+nnoremap <LEADER>j <C-w>J
+nnoremap <LEADER>k <C-w>K
+nnoremap <LEADER>l <C-w>L
 
 " ===================== Tab management
 " Create a new tab
 nnoremap <M-n> :tabe<CR>
 nnoremap <M-q> :tabclose<CR>
 " noremap <M-n> :tabnew 
-" noremap <leader>n :tabe<CR>
+" noremap <LEADER>n :tabe<CR>
 " switching tabs
 nnoremap <M-,> :-tabnext<CR>
 nnoremap <M-.> :+tabnext<CR>
@@ -232,7 +233,10 @@ endfor
 nnoremap <M-9> :tablast<CR>
 
 " open the quickfix
-nnoremap <leader>co :copen<CR>
+nnoremap <LEADER>co :copen<CR>
+
+" reading source into vim
+nnoremap <M-S-r> :r! cat 
 
 " ===
 " === Create a _machine_specific.vim file to adjust machine specific stuff, like python interpreter location

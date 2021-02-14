@@ -1,5 +1,5 @@
 " ===
-" === Auto load for first time uses
+" === Auto load for the first time
 " ===
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
 	silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
@@ -13,17 +13,23 @@ endif
 " ===
 call plug#begin('~/.config/nvim/plugged')
 
+" status line
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
 Plug 'itchyny/lightline.vim'
+
+" themes
 Plug 'connorholyday/vim-snazzy'
 Plug 'morhetz/gruvbox'
 Plug 'w0ng/vim-hybrid'
+Plug 'whatyouhide/vim-gotham'
 
 " code complete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " vim-peekaboo
+" Peekaboo extends " and @ in normal mode and <CTRL-R> in insert mode 
+" so you can see the contents of the registers.
 Plug 'junegunn/vim-peekaboo'
 
 " File navigation
@@ -46,20 +52,21 @@ Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' }
 "Plug 'mbbill/undotree/'
 
 " Other visual enhancement
-Plug 'nathanaelkane/vim-indent-guides'
+" Plug 'nathanaelkane/vim-indent-guides'
+Plug 'Yggdroot/indentLine'
 " Plug 'itchyny/vim-cursorword'
 
 " Git
-Plug 'rhysd/conflict-marker.vim'
+" Plug 'rhysd/conflict-marker.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 " Plug 'airblade/vim-gitgutter'
 " Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
 
 " HTML, CSS, JavaScript, PHP, JSON, etc.
-Plug 'elzr/vim-json'
+" Plug 'elzr/vim-json'
 Plug 'hail2u/vim-css3-syntax'
-Plug 'spf13/PIV', { 'for' :['php', 'vim-plug'] }
+" merge of ap vim-css-color and colorizer. The main goal was to fix cursorline bug and keep named colors(i.e. white, black, aqua).
 Plug 'gko/vim-coloresque', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
 Plug 'pangloss/vim-javascript', { 'for' :['javascript', 'vim-plug'] }
 Plug 'mattn/emmet-vim'
@@ -68,7 +75,7 @@ Plug 'mattn/emmet-vim'
 Plug 'honza/vim-snippets'
 
 " Python
-Plug 'vim-scripts/indentpython.vim'
+" Plug 'vim-scripts/indentpython.vim'
 
 " Go
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
@@ -90,7 +97,7 @@ Plug 'MattesGroeger/vim-bookmarks'
 Plug 'mhinz/vim-startify'
 Plug 'ryanoasis/vim-devicons'
 Plug 'luochen1990/rainbow'
-Plug 'wincent/terminus'
+" Plug 'wincent/terminus'
 
 " A Vim Plugin for Lively Previewing LaTeX PDF Output
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
@@ -99,14 +106,14 @@ Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug 'makerj/vim-pdf'
 " Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'` to change 'word' to `word`
-Plug 'godlygeek/tabular' " type ;Tabularize /= to align the =
+" Plug 'godlygeek/tabular' " type ;Tabularize /= to align the =
 Plug 'gcmt/wildfire.vim' " in Visual mode, type i' to select all text in '', or type i) i] i} ip
 Plug 'tpope/vim-commentary' " gcc to comment the current line
 
 " Dependencies
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'kana/vim-textobj-user'
-Plug 'fadein/vim-FIGlet'
+" Plug 'MarcWeber/vim-addon-mw-utils'
+" Plug 'kana/vim-textobj-user'
+" Plug 'fadein/vim-FIGlet'
 
 " Debugger
 Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python --enable-go'}
@@ -128,7 +135,10 @@ Plug 'kristijanhusak/vim-dadbod-completion'
 Plug 'liuchengxu/vista.vim'
 
 "ianding1/leetcode.vim
-Plug 'ianding1/leetcode.vim'
+" Plug 'ianding1/leetcode.vim'
+
+" vim-easy-align
+Plug 'junegunn/vim-easy-align'
 
 call plug#end()
 " ===================== Install Plugins with Vim-Plug end =====================
@@ -145,18 +155,26 @@ nnoremap \p :! mupdf $(echo % \| sed 's/tex$/pdf/') & disown<CR><CR>
 " delete the compling output
 nnoremap \c :! ls \| grep -E '*.aux\|*.log\|*.nav\|*.out\|*.snm\|*.toc\|*.pdf' \| xargs rm -rf {}<CR><CR>
 
-" vim-latex-live-preview
+" ===
+" === vim-latex-live-preview
+" ===
 " let g:livepreview_previewer='zathura'
 let g:livepreview_previewer='mupdf'
 let g:livepreview_engine='pdflatex'
 
-" airline
-let g:airline_theme='onedark'
+" ===
+" === airline
+" ===
+" let g:airline_theme='onedark'
 
-" lightline
+" ===
+" === lightline
+" ===
 " NearestMethodOrFunction cames from vista function below
+      " \ 'colorscheme': 'wombat',
+      " \ 'colorscheme': 'gotham',
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
+      \ 'colorscheme': 'jellybeans',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'readonly', 'filename', 'modified', 'method' ] ]
@@ -167,14 +185,11 @@ let g:lightline = {
       \ }
 
 " ===
-" === Dress up my vim
+" === colorscheme
 " ===
-set termguicolors " enable true colors support
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-
-" colorscheme
 let g:SnazzyTransparent=1
 colorscheme snazzy
+" colorscheme gotham
 " colorscheme gruvbox
 " colorscheme hybrid
 
@@ -205,7 +220,7 @@ nnoremap tt :NERDTreeToggle<CR>
 " This selects the next closest text object.
 nnoremap <CR> <plug>(wildfire-fuel)
 " this selects the previous closest text object.
-" vmap <C-SPACE> <plug>(wildfire-water)
+" vmap <C-space> <plug>(wildfire-water)
 let g:wildfire_objects=["i'", 'i"', "i>", "i)", "i]", "i}", "ip", "it"]
 
 " ==
@@ -233,7 +248,7 @@ let g:NERDTreeIndicatorMapCustom={
 " === Tagbar might need sudo pacman -S ctags
 " ===
 set tags=./.tags;,.tags
-nnoremap <silent> T :TagbarOpenAutoClose<CR>
+nnoremap <SILENT> T :TagbarOpenAutoClose<CR>
 
 " ===
 " === MarkdownPreview
@@ -264,7 +279,7 @@ let g:mkdp_page_title='「${name}」'
 " ===
 " === vim-table-mode
 " ===
-nnoremap <leader>tm :TableModeToggle<CR>
+nnoremap <LEADER>tm :TableModeToggle<CR>
 
 " ===
 " === vim-easymotion
@@ -272,12 +287,12 @@ nnoremap <leader>tm :TableModeToggle<CR>
 " let g:EasyMotion_do_mapping=0
 " let g:EasyMotion_do_shade=0
 " let g:EasyMotion_smartcase=1
-" nmap <leader>e <Plug>(easymotion-bd-f2)
+" nmap <LEADER>e <Plug>(easymotion-bd-f2)
 
 " ===
 " === Far.vim
 " ===
-nnoremap <leader>F :F  %<left><left>
+nnoremap <LEADER>F :F  %<left><left>
 
 " ===
 " === FZF
@@ -302,26 +317,25 @@ let g:fzf_commits_log_options='--graph --color=always --format="%C(auto)%h%d %s 
 " ===
 " suppress the default key bindings
 let g:ranger_map_keys=''
-nnoremap <leader>ra :Ranger<CR>
-
-" ===
-" === Python-syntax
-" ===
-let g:python_highlight_all=1
-" let g:python_slow_sync=0
+nnoremap <LEADER>ra :Ranger<CR>
 
 " ===
 " === vim-indent-guide
 " ===
-" suppress the default key bindings
-" autocmd WinEnter * silent! unmap ,ig
-nmap <silent> <Leader><leader>ig <Plug>IndentGuidesToggle
-let g:indent_guides_enable_on_vim_startup=1
-let g:indent_guides_guide_size=1
-let g:indent_guides_start_level=2
-let g:indent_guides_color_change_percent=1
-" autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
-" autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+" " suppress the default key bindings
+" " autocmd WinEnter * silent! unmap ,ig
+" nmap <SILENT> <LEADER><LEADER>ig <Plug>IndentGuidesToggle
+" let g:indent_guides_enable_on_vim_startup=1
+" let g:indent_guides_guide_size=1
+" let g:indent_guides_start_level=2
+" let g:indent_guides_color_change_percent=1
+" " autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
+" " autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+
+" ===
+" === indentLine
+" ===
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 " ===
 " === Undotree
@@ -349,16 +363,16 @@ let g:rainbow_active=1
 " === vim-bookmarks
 " ===
 let g:bookmark_no_default_key_mappings=1
-nmap <leader>mt <Plug>BookmarkToggle
-nmap <leader>ma <Plug>BookmarkAnnotate
-nmap <leader>ml <Plug>BookmarkShowAll
-nmap <leader>mn <Plug>BookmarkNext
-nmap <leader>mp <Plug>BookmarkPrev
-nmap <leader>mc <Plug>BookmarkClear
-nmap <leader>mx <Plug>BookmarkClearAll
-nmap <leader>mk <Plug>BookmarkMoveUp
-nmap <leader>mj <Plug>BookmarkMoveDown
-nmap <leader>mg <Plug>BookmarkMoveToLine
+nmap <LEADER>mt <Plug>BookmarkToggle
+nmap <LEADER>ma <Plug>BookmarkAnnotate
+nmap <LEADER>ml <Plug>BookmarkShowAll
+nmap <LEADER>mn <Plug>BookmarkNext
+nmap <LEADER>mp <Plug>BookmarkPrev
+nmap <LEADER>mc <Plug>BookmarkClear
+nmap <LEADER>mx <Plug>BookmarkClearAll
+nmap <LEADER>mk <Plug>BookmarkMoveUp
+nmap <LEADER>mj <Plug>BookmarkMoveDown
+nmap <LEADER>mg <Plug>BookmarkMoveToLine
 let g:bookmark_save_per_working_dir=1
 let g:bookmark_auto_save=1
 let g:bookmark_highlight_lines=1
@@ -389,11 +403,11 @@ let g:startify_bookmarks=[
             \ ]
 
 " Open Startify
-nnoremap <leader>\ :Startify<CR>
-nnoremap <leader>Ss :SSave! 
-nnoremap <leader>Sl :SLoad 
-nnoremap <leader>Sd :SDelete!<CR>
-nnoremap <leader>Sc :SClose<CR>
+nnoremap <LEADER>\ :Startify<CR>
+nnoremap <LEADER>Ss :SSave! 
+nnoremap <LEADER>Sl :SLoad 
+nnoremap <LEADER>Sd :SDelete!<CR>
+nnoremap <LEADER>Sc :SClose<CR>
 
 " ==
 " == vim-surround
@@ -401,28 +415,37 @@ nnoremap <leader>Sc :SClose<CR>
 " suppress the default key bindings
 let g:surround_no_insert_mappings=1
 
+" ===
+" === vim-fugitive
+" ===
+nnoremap <LEADER>gb :Gblame<CR>
+nnoremap <LEADER>gd :Gvdiffsplit<CR>
+nnoremap <LEADER>dh :diffget //2<CR>
+nnoremap <LEADER>dl :diffget //3<CR>
+nnoremap <LEADER>gg :G<CR>
+
 " ==
 " == vim-signify
 " ==
 " 设置要检查的VCS
 let g:signify_vcs_list=['git']
 " 插入模式下指定updatetime时间后无操作将缓存区交换文件写入磁盘
-let g:signify_cursorhold_insert    =1
+let g:signify_cursorhold_insert=1
 " 正常模式下指定updatetime时间后无操作将缓存区交换文件写入磁盘
-let g:signify_cursorhold_normal    =1
+let g:signify_cursorhold_normal=1
 " 缓冲区被修改时更新符号
-let g:signify_update_on_bufenter   =0
+let g:signify_update_on_bufenter=0
 " vim获取焦点时更新符号
 let g:signify_update_on_focusgained=1
 " 键盘映射
-nnoremap <leader>gsd :SignifyDiff<CR>
-nnoremap <leader>gst :SignifyToggle<CR>
-nnoremap <leader>gsh :SignifyToggleHighlight<CR>
-nnoremap <leader>gsr :SignifyRefresh<CR>
-nnoremap <leader>gsx :SignifyDebug<CR>
+nnoremap <LEADER>gsd :SignifyDiff<CR>
+nnoremap <LEADER>gst :SignifyToggle<CR>
+nnoremap <LEADER>gsh :SignifyToggleHighlight<CR>
+nnoremap <LEADER>gsr :SignifyRefresh<CR>
+nnoremap <LEADER>gsx :SignifyDebug<CR>
 " hunk jumping
-nnoremap <leader>gsj <plug>(signify-next-hunk)
-nnoremap <leader>gsk <plug>(signify-prev-hunk)
+nnoremap <LEADER>gsj <plug>(signify-next-hunk)
+nnoremap <LEADER>gsk <plug>(signify-prev-hunk)
 
 " ==
 " == GitGutter
@@ -433,18 +456,10 @@ nnoremap <leader>gsk <plug>(signify-prev-hunk)
 ""let g:gitgutter_highlight_linenrs=1
 "let g:gitgutter_preview_win_floating=1
 "autocmd BufWritePost * GitGutter
-"nnoremap <leader>gf :GitGutterFold<CR>
-"nnoremap <leader>gh :GitGutterPreviewHunk<CR>
-"nnoremap <leader>g[ :GitGutterPrevHunk<CR>
-"nnoremap <leader>g] :GitGutterNextHunk<CR>
-
-" ===
-" === vim-fugitive
-" ===
-nnoremap <leader>gb :Gblame<CR>
-nnoremap <leader>dh :diffget //2<CR>
-nnoremap <leader>dl :diffget //3<CR>
-nnoremap <leader>gg :G<CR>
+"nnoremap <LEADER>gf :GitGutterFold<CR>
+"nnoremap <LEADER>gh :GitGutterPreviewHunk<CR>
+"nnoremap <LEADER>g[ :GitGutterPrevHunk<CR>
+"nnoremap <LEADER>g] :GitGutterNextHunk<CR>
 
 " ===
 " === vimspector
@@ -464,7 +479,7 @@ command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
 			\   'sink': function('<sid>read_template_into_buffer')
 			\ })
 
-" " noremap <leader>vs :tabe .vimspector.json<CR>:LoadVimSpectorJsonTemplate<CR>
+" " noremap <LEADER>vs :tabe .vimspector.json<CR>:LoadVimSpectorJsonTemplate<CR>
 " sign define vimspectorBP text=☛ texthl=Normal
 " sign define vimspectorBPDisabled text=☞ texthl=Normal
 " sign define vimspectorPC text=🔶 texthl=SpellBad
@@ -472,23 +487,23 @@ command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
 " ===
 " === which-key
 " ===
-" let g:mapleader="\<Space>"
-" nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+" let g:mapleader="\<space>"
+" nnoremap <SILENT> <LEADER>      :<C-u>WhichKey '<space>'<CR>
 let g:mapleader=','
 let g:maplocalleader=','
-nnoremap <silent> <leader>      :<c-u>WhichKey ','<CR>
-nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
+nnoremap <SILENT> <LEADER>      :<C-u>WhichKey ','<CR>
+nnoremap <SILENT> <localleader> :<C-u>WhichKey  ','<CR>
 
 " ===
 " === floaterm
 " ===
-let g:floaterm_keymap_toggle='<leader>ft'
-let g:floaterm_keymap_next='<leader>f='
-let g:floaterm_keymap_prev='<leader>f-'
-let g:floaterm_keymap_new='<leader>f+'
-" let g:floaterm_keymap_hide='<leader>fh'
-" let g:floaterm_keymap_show='<leader>fs'
-let g:floaterm_keymap_kill='<leader>fq'
+let g:floaterm_keymap_toggle='<LEADER>ft'
+let g:floaterm_keymap_next='<LEADER>f='
+let g:floaterm_keymap_prev='<LEADER>f-'
+let g:floaterm_keymap_new='<LEADER>f+'
+" let g:floaterm_keymap_hide='<LEADER>fh'
+" let g:floaterm_keymap_show='<LEADER>fs'
+let g:floaterm_keymap_kill='<LEADER>fq'
 " floaterm
 " let g:floaterm_gitcommit='floaterm'
 " let g:floaterm_autoinsert=1
@@ -496,20 +511,20 @@ let g:floaterm_keymap_kill='<leader>fq'
 " let g:floaterm_height=0.8
 " let g:floaterm_wintitle=0
 " let g:floaterm_autoclose=1
-nnoremap <silent> <leader>f; :FloatermNew --wintype=popup --height=6<CR>
-nnoremap <silent> <leader>ff :FloatermNew fzf<CR>
-nnoremap <silent> <leader>fg :FloatermNew lazygit<CR>
-nnoremap <silent> <leader>fn :FloatermNew node<CR>
-nnoremap <silent> <leader>fp :FloatermNew python<CR>
-nnoremap <silent> <leader>fh :FloatermNew htop<CR>
-nnoremap <silent> <leader>fd :FloatermNew ncdu<CR>
+nnoremap <SILENT> <LEADER>f; :FloatermNew --wintype=popup --height=6<CR>
+nnoremap <SILENT> <LEADER>ff :FloatermNew fzf<CR>
+nnoremap <SILENT> <LEADER>fg :FloatermNew lazygit<CR>
+nnoremap <SILENT> <LEADER>fn :FloatermNew node<CR>
+nnoremap <SILENT> <LEADER>fp :FloatermNew python<CR>
+nnoremap <SILENT> <LEADER>fh :FloatermNew htop<CR>
+nnoremap <SILENT> <LEADER>fd :FloatermNew ncdu<CR>
 
 " ===
 " === vim-dadbod-ui
 " ===
-" nnoremap <silent> <leader>dt :tabe<CR>:tabmove<CR>:DBUIToggle<CR>
-nnoremap <silent> <leader>dt :DBUIToggle<CR>
-nnoremap <silent> <leader>da :DBUIAddConnection<CR>
+" nnoremap <SILENT> <LEADER>dt :tabe<CR>:tabmove<CR>:DBUIToggle<CR>
+nnoremap <SILENT> <LEADER>dt :DBUIToggle<CR>
+nnoremap <SILENT> <LEADER>da :DBUIAddConnection<CR>
 "" \ 'dev': 'postgres://postgres:mypassword@localhost:5432/my-dev-db',
 let g:dbs={
 \ 'local': 'mysql://test@192.168.0.101:3306/test',
@@ -545,7 +560,7 @@ function! NearestMethodOrFunction() abort
   return get(b:, 'vista_nearest_method_or_function', '')
 endfunction
 " set statusline+=%{NearestMethodOrFunction()}
-nnoremap <leader>v :Vista!!<CR>
+nnoremap <LEADER>v :Vista!!<CR>
 nnoremap <C-t> :silent! Vista finder coc<CR>
 let g:vista_icon_indent=["╰─▸ ", "├─▸ "]
 let g:vista_default_executive='coc'
@@ -557,14 +572,21 @@ let g:vista#renderer#icons={
 \  }
 
 " leetcode.vim
-let g:leetcode_china=1
-" Values: 'cpp', 'java', 'python', 'python3', 'csharp', 'javascript', 'ruby', 'swift', 'golang', 'scala', 'kotlin', 'rust'. Default:'cpp'.
-let g:leetcode_solution_filetype='java'
-let g:leetcode_browser='chromium'
-nnoremap <leader>ll :LeetCodeList<cr>
-nnoremap <leader>lt :LeetCodeTest<cr>
-nnoremap <leader>ls :LeetCodeSubmit<cr>
-nnoremap <leader>li :LeetCodeSignIn<cr>
+" let g:leetcode_china=1
+" " Values: 'cpp', 'java', 'python', 'python3', 'csharp', 'javascript', 'ruby', 'swift', 'golang', 'scala', 'kotlin', 'rust'. Default:'cpp'.
+" let g:leetcode_solution_filetype='java'
+" let g:leetcode_browser='chrome'
+" " let g:leetcode_browser='chromium'
+" nnoremap <LEADER>ll :LeetCodeList<cr>
+" nnoremap <LEADER>lt :LeetCodeTest<cr>
+" nnoremap <LEADER>ls :LeetCodeSubmit<cr>
+" nnoremap <LEADER>li :LeetCodeSignIn<cr>
+
+" vim-easy-align
+" Start interactive EasyAlign in visual mode (e.g. vipga); custom:vip<LEADER>ea
+xmap <LEADER>ea <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip); custom:<LEADER>eaip
+nmap <LEADER>ea <Plug>(EasyAlign)
 
 " coc settings
 source ~/.config/nvim/coc.vim
