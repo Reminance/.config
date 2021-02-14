@@ -111,7 +111,6 @@ nnoremap <LEADER>tt :CocCommand explorer<CR>
 
 nnoremap <SILENT> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
-    echo 1
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
   elseif (coc#rpc#ready())
