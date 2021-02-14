@@ -202,7 +202,7 @@ colorscheme snazzy
 " ===
 " === NERDTree
 " ===
-nnoremap tt :NERDTreeToggle<CR>
+nnoremap <Leader>nt :NERDTreeToggle<CR>
 "let NERDTreeMapOpenExpl=""
 "let NERDTreeMapUpdir=""
 "let NERDTreeMapUpdirKeepOpen=""
@@ -213,15 +213,6 @@ nnoremap tt :NERDTreeToggle<CR>
 "let NERDTreeMapPreview=""
 "let NERDTreeMapCloseDir=""
 "let NERDTreeMapChangeRoot=""
-
-" ==
-" == wildfire
-" ==
-" This selects the next closest text object.
-nnoremap <CR> <plug>(wildfire-fuel)
-" this selects the previous closest text object.
-" vmap <C-Space> <plug>(wildfire-water)
-let g:wildfire_objects=["i'", 'i"', "i>", "i)", "i]", "i}", "ip", "it"]
 
 " ==
 " == NERDTree-git
@@ -237,6 +228,15 @@ let g:NERDTreeIndicatorMapCustom={
     \ "Clean"     : "✔︎",
     \ "Unknown"   : "?"
     \ }
+
+" ==
+" == wildfire
+" ==
+" This selects the next closest text object.
+nnoremap <CR> <plug>(wildfire-fuel)
+" this selects the previous closest text object.
+" vmap <C-Space> <plug>(wildfire-water)
+let g:wildfire_objects=["i'", 'i"', "i>", "i)", "i]", "i}", "ip", "it"]
 
 " ===
 " === ale
@@ -560,8 +560,8 @@ function! NearestMethodOrFunction() abort
   return get(b:, 'vista_nearest_method_or_function', '')
 endfunction
 " set statusline+=%{NearestMethodOrFunction()}
-nnoremap <Leader>v :Vista!!<CR>
-nnoremap <C-t> :silent! Vista finder coc<CR>
+nnoremap <Leader>vv :Vista!!<CR>
+nnoremap <Leader>vf :silent! Vista finder coc<CR>
 let g:vista_icon_indent=["╰─▸ ", "├─▸ "]
 let g:vista_default_executive='coc'
 let g:vista_fzf_preview=['right:50%']
