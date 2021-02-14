@@ -2,9 +2,9 @@
 " === Auto load for the first time
 " ===
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
-	silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 
@@ -348,10 +348,10 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 "let g:undotree_DiffpanelHeight=8
 "let g:undotree_SplitWidth=24
 "function g:Undotree_CustomMap()
-	"nmap <buffer> j <plug>UndotreeNextState
-	"nmap <buffer> k <plug>UndotreePreviousState
-	"nmap <buffer> J 5<plug>UndotreeNextState
-	"nmap <buffer> K 5<plug>UndotreePreviousState
+    "nmap <buffer> j <plug>UndotreeNextState
+    "nmap <buffer> k <plug>UndotreePreviousState
+    "nmap <buffer> J 5<plug>UndotreeNextState
+    "nmap <buffer> K 5<plug>UndotreePreviousState
 "endfunc
 
 " ===
@@ -470,14 +470,14 @@ let g:vimspector_install_gadgets=[ 'vscode-cpptools', 'debugpy', 'vscode-go' ]
 
 " " 从模板文件读入到当前buffer
 function! s:read_template_into_buffer(template)
-	" has to be a function to avoid the extra space fzf#run insers otherwise
-	execute '0r ~/.config/nvim/vimspector-config/'.a:template
+    " has to be a function to avoid the extra space fzf#run insers otherwise
+    execute '0r ~/.config/nvim/vimspector-config/'.a:template
 endfunction
 command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
-			\   'source': 'ls -1 ~/.config/nvim/vimspector-config',
-			\   'down': 20,
-			\   'sink': function('<sid>read_template_into_buffer')
-			\ })
+            \   'source': 'ls -1 ~/.config/nvim/vimspector-config',
+            \   'down': 20,
+            \   'sink': function('<sid>read_template_into_buffer')
+            \ })
 
 " " noremap <Leader>vs :tabe .vimspector.json<CR>:LoadVimSpectorJsonTemplate<CR>
 " sign define vimspectorBP text=☛ texthl=Normal

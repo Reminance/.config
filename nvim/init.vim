@@ -70,9 +70,14 @@ set backupdir=~/.config/nvim/tmp/backup,.
 set directory=~/.config/nvim/tmp/backup,.
 " use for u(undo) and Ctrl-r(redo)
 if has('persistent_undo')
-	set undofile
-	set undodir=~/.config/nvim/tmp/undo,.
+    set undofile
+    set undodir=~/.config/nvim/tmp/undo,.
 endif
+
+" show the vim mappings
+nnoremap <leader>vmn :nmap 
+nnoremap <leader>vmi :imap 
+nnoremap <leader>vmv :vmap 
 
 " netrw settings
 nnoremap tt :Lexplore<CR><C-w>l
@@ -187,8 +192,10 @@ cnoremap <M-b> <S-Left>
 
 " ===================== Basic Mappings =====================
 nnoremap <Leader><Space> :nohlsearch<CR>
-" quit all the other window except for current
-nnoremap <Leader>q <C-w>o
+" quit all the other windows except for current  " (:h only)(<C-w>o)
+nnoremap <Leader>qw :only<CR>
+" quit all the other tabs except for current  " (:h tabonly)
+nnoremap <Leader>qt :tabonly<CR>
 inoremap <S-Del> <Esc>ddkA
 
 " Opening a terminal window
@@ -292,75 +299,75 @@ nnoremap <M-9> :tablast<CR>
 " open the quickfix
 nnoremap <Leader>co :copen<CR>
 
-" reading source into vim
-nnoremap <M-S-r> :r! cat 
+" reading source into vim(:h read) or :r! cat ~/.bashrc
+nnoremap <M-S-r> :r 
 
 " ===
 " === Create a _machine_specific.vim file to adjust machine specific stuff, like python interpreter location
 " ===
 let has_machine_specific_file=1
 if empty(glob('~/.config/nvim/_machine_specific.vim'))
-	let has_machine_specific_file=0
-	silent! exec "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
+    let has_machine_specific_file=0
+    silent! exec "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
 endif
 source ~/.config/nvim/_machine_specific.vim
 
 " Compile function
 nnoremap <M-r> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
-	exec "w"
-	if &filetype == 'c'
-		" exec "!g++ % -o %<"
-		exec "!gcc % -o %<"
-		exec "!time ./%<"
-	elseif &filetype == 'cpp'
-		set splitbelow
-		exec "!g++ -std=c++11 % -Wall -o %<"
-		:sp
-		:res -15
-		:term ./%<
-	elseif &filetype == 'java'
+    exec "w"
+    if &filetype == 'c'
+        " exec "!g++ % -o %<"
+        exec "!gcc % -o %<"
+        exec "!time ./%<"
+    elseif &filetype == 'cpp'
+        set splitbelow
+        exec "!g++ -std=c++11 % -Wall -o %<"
+        :sp
+        :res -15
+        :term ./%<
+    elseif &filetype == 'java'
         " ==== compile & run ===
-		" exec "!javac %"
-		" exec "!time java %<"
+        " exec "!javac %"
+        " exec "!time java %<"
         " === make & run ===
-		" exec 'set makeprg=javac\ -g\ %'
-		" exec "make"
-		" exec "!time java %<"
+        " exec 'set makeprg=javac\ -g\ %'
+        " exec "make"
+        " exec "!time java %<"
         " === make ===
-		exec "make"
+        exec "make"
         " === for debug ===
-		" exec "!time java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=5005,suspend=y %<"
-	elseif &filetype == 'sh'
-		:!time bash %
-	elseif &filetype == 'python'
-		set splitbelow
-		:sp
-		:term python3 %
-	elseif &filetype == 'html'
-		silent! exec "!".g:mkdp_browser." % &"
-	elseif &filetype == 'vimwiki'
-		exec "MarkdownPreview"
-	elseif &filetype == 'markdown'
-		exec "MarkdownPreview"
-	elseif &filetype == 'tex'
-		" silent! exec "VimtexStop"
-		" silent! exec "VimtexCompile"
-		silent! exec "LLPStartPreview"
-	elseif &filetype == 'dart'
-		CocCommand flutter.run -d iPhone\ 11\ Pro
-		CocCommand flutter.dev.openDevLog
-	elseif &filetype == 'javascript'
-		set splitbelow
-		:sp
-		:term export DEBUG="INFO,ERROR,WARNING"; node --trace-warnings .
-	elseif &filetype == 'go'
-		set splitbelow
-		:sp
-		:term go run .
-	elseif &filetype == 'nasm'
-		exec "!nasm -f bin % -o %<.bin"
-	endif
+        " exec "!time java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=5005,suspend=y %<"
+    elseif &filetype == 'sh'
+        :!time bash %
+    elseif &filetype == 'python'
+        set splitbelow
+        :sp
+        :term python3 %
+    elseif &filetype == 'html'
+        silent! exec "!".g:mkdp_browser." % &"
+    elseif &filetype == 'vimwiki'
+        exec "MarkdownPreview"
+    elseif &filetype == 'markdown'
+        exec "MarkdownPreview"
+    elseif &filetype == 'tex'
+        " silent! exec "VimtexStop"
+        " silent! exec "VimtexCompile"
+        silent! exec "LLPStartPreview"
+    elseif &filetype == 'dart'
+        CocCommand flutter.run -d iPhone\ 11\ Pro
+        CocCommand flutter.dev.openDevLog
+    elseif &filetype == 'javascript'
+        set splitbelow
+        :sp
+        :term export DEBUG="INFO,ERROR,WARNING"; node --trace-warnings .
+    elseif &filetype == 'go'
+        set splitbelow
+        :sp
+        :term go run .
+    elseif &filetype == 'nasm'
+        exec "!nasm -f bin % -o %<.bin"
+    endif
 endfunc
 
 " templates
