@@ -8,6 +8,7 @@ set number
 set wrap
 set pumheight=10
 set showcmd
+set path+=**
 set wildmenu
 " set spell
 " set hlsearch
@@ -32,7 +33,7 @@ filetype indent on
 filetype plugin on
 filetype plugin indent on
 set mouse=a
-set clipboard=unnamedplus
+" set clipboard^=unnamed,unnnamedplus
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 set fileformats=unix,dos,mac
 set backspace=indent,eol,start " 退格键可以退到上一行
@@ -89,72 +90,81 @@ inoremap <C-b> <Left>
 inoremap <C-f> <Right>
 inoremap <M-f> <S-Right>
 inoremap <M-b> <S-Left>
-inoremap <C-d> <DEL>
+inoremap <C-d> <Del>
 inoremap <C-k> <Esc>d$a
 inoremap <C-g> <Esc>
 map <C-g> <Esc>
 " <C-w> 向行首删除一个word
 inoremap <silent><expr> <C-w>
-      \ <SID>check_back_space_even_space() ? "" :
-      \ "\\<Left><S-Left><Esc>ct\\<DEL>"
+      \ <SID>is_first_of_line() ? "" :
+      \ "\\<Left><S-Left><Esc>ct\\<Del>"
 " <M-d> 向行尾删除一个word
 inoremap <silent><expr> <M-d>
-      \ <SID>check_delete_even_space() ? "" :
+      \ <SID>is_end_of_line() ? "" :
       \ "<CR><Esc>caw<BS>"
 " 检查是否删除到了行首
-function! s:check_back_space_even_space() abort
+function! s:is_first_of_line() abort
     return !(col('.') - 1)
 endfunction
-" 检查是否删除到了行尾
-function! s:check_delete_even_space() abort
+" 检查是否删除到了行尾 注意vim行尾有换行符, 所以 col(最后一个可视字符) + 1 = col('$')
+function! s:is_end_of_line() abort
     return col('.') == col('$')
 endfunction
 " inoremap <C-n> <Down>
 " inoremap <C-p> <Up>
+
+" === prevent replacing paste buffer on paste
+function! RestoreRegister()
+  let @" = s:restore_reg
+  return ''
+endfunction
+function! s:Repl()
+  let s:restore_reg = @"
+  return "p@=RestoreRegister()\<CR>"
+endfunction
+vmap <silent> <expr> p <sid>Repl()
+
+" use the system clipboard
+" might need to install a system clipboard tool such as : sudo pacman -S xclip / xsel
+noremap Y "+y
+noremap P "+p
 
 " command line mode bindings
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 cnoremap <C-f> <Right>
 cnoremap <C-b> <Left>
-cnoremap <C-d> <DEL>
+cnoremap <C-d> <Del>
 cnoremap <M-f> <S-Right>
 cnoremap <M-b> <S-Left>
 
 " ===================== Basic Mappings =====================
-nnoremap <LEADER><space> :nohlsearch<CR>
+nnoremap <Leader><Space> :nohlsearch<CR>
 " quit all the other window except for current
-nnoremap <LEADER>q <C-w>o
-inoremap <S-DEL> <Esc>ddkA
-
-" Copy to system clipboard
-" might need to install a system clipboard tool such as : sudo pacman -S xclip
-vnoremap Y "+y
+nnoremap <Leader>q <C-w>o
+inoremap <S-Del> <Esc>ddkA
 
 " Opening a terminal window
-"noremap <LEADER>/ :term<CR>
+"noremap <Leader>/ :term<CR>
 
 " insert a <++>
 inoremap <M-i> <++>
 " jump to next <++> and replace it
-nnoremap <M-space> <Esc>/<++><CR>:nohlsearch<CR>c4l
-inoremap <M-space> <Esc>/<++><CR>:nohlsearch<CR>c4l
-
-" make Y to copy till the end of the line
-nnoremap Y y$
+nnoremap <M-Space> <Esc>/<++><CR>:nohlsearch<CR>c4l
+inoremap <M-Space> <Esc>/<++><CR>:nohlsearch<CR>c4l
 
 " duplicate wordds
-" nnoremap <LEADER>dw /\(\<\w\+\>\)\_s*\1<CR>
+" nnoremap <Leader>dw /\(\<\w\+\>\)\_s*\1<CR>
 
 " Open the vimrc file anytime
-nnoremap <LEADER>i :e ~/.config/nvim/init.vim<CR>
+nnoremap <Leader>i :e ~/.config/nvim/init.vim<CR>
 
 " Open the plugins.vim file anytime
-nnoremap <LEADER>p :e ~/.config/nvim/plugins.vim<CR>
+nnoremap <Leader>p :e ~/.config/nvim/plugins.vim<CR>
 
 " Open the coc.vim file anytime
-nnoremap <LEADER>cc :e ~/.config/nvim/coc.vim<CR>
-nnoremap <LEADER>cs :e ~/.config/nvim/coc-settings.json<CR>
+nnoremap <Leader>cc :e ~/.config/nvim/coc.vim<CR>
+nnoremap <Leader>cs :e ~/.config/nvim/coc-settings.json<CR>
 
 " Open up lazygit
 nnoremap <C-\>g :tabe<CR>:tabmove<CR>:term lazygit<CR>
@@ -179,7 +189,7 @@ tnoremap <C-\> <C-\><C-n>
 " ===================== Save & quit =====================
 nnoremap s <nop>
 nnoremap S :w<CR>
-inoremap <C-s> <ESC>:w<CR>
+inoremap <C-s> <Esc>:w<CR>
 nnoremap Q :q<CR>
 nnoremap R :source $MYVIMRC<CR>
 
@@ -208,18 +218,18 @@ nnoremap <M-h> <C-w>h
 nnoremap <M-j> <C-w>j
 nnoremap <M-k> <C-w>k
 nnoremap <M-l> <C-w>l
-" Use <LEADER> + new arrow keys for moving the windows
-nnoremap <LEADER>h <C-w>H
-nnoremap <LEADER>j <C-w>J
-nnoremap <LEADER>k <C-w>K
-nnoremap <LEADER>l <C-w>L
+" Use <Leader> + new arrow keys for moving the windows
+nnoremap <Leader>h <C-w>H
+nnoremap <Leader>j <C-w>J
+nnoremap <Leader>k <C-w>K
+nnoremap <Leader>l <C-w>L
 
 " ===================== Tab management
 " Create a new tab
 nnoremap <M-n> :tabe<CR>
 nnoremap <M-q> :tabclose<CR>
 " noremap <M-n> :tabnew 
-" noremap <LEADER>n :tabe<CR>
+" noremap <Leader>n :tabe<CR>
 " switching tabs
 nnoremap <M-,> :-tabnext<CR>
 nnoremap <M-.> :+tabnext<CR>
@@ -233,7 +243,7 @@ endfor
 nnoremap <M-9> :tablast<CR>
 
 " open the quickfix
-nnoremap <LEADER>co :copen<CR>
+nnoremap <Leader>co :copen<CR>
 
 " reading source into vim
 nnoremap <M-S-r> :r! cat 

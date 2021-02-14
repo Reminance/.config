@@ -220,7 +220,7 @@ nnoremap tt :NERDTreeToggle<CR>
 " This selects the next closest text object.
 nnoremap <CR> <plug>(wildfire-fuel)
 " this selects the previous closest text object.
-" vmap <C-space> <plug>(wildfire-water)
+" vmap <C-Space> <plug>(wildfire-water)
 let g:wildfire_objects=["i'", 'i"', "i>", "i)", "i]", "i}", "ip", "it"]
 
 " ==
@@ -248,7 +248,7 @@ let g:NERDTreeIndicatorMapCustom={
 " === Tagbar might need sudo pacman -S ctags
 " ===
 set tags=./.tags;,.tags
-nnoremap <SILENT> T :TagbarOpenAutoClose<CR>
+nnoremap <silent> T :TagbarOpenAutoClose<CR>
 
 " ===
 " === MarkdownPreview
@@ -279,7 +279,7 @@ let g:mkdp_page_title='「${name}」'
 " ===
 " === vim-table-mode
 " ===
-nnoremap <LEADER>tm :TableModeToggle<CR>
+nnoremap <Leader>tm :TableModeToggle<CR>
 
 " ===
 " === vim-easymotion
@@ -287,12 +287,12 @@ nnoremap <LEADER>tm :TableModeToggle<CR>
 " let g:EasyMotion_do_mapping=0
 " let g:EasyMotion_do_shade=0
 " let g:EasyMotion_smartcase=1
-" nmap <LEADER>e <Plug>(easymotion-bd-f2)
+" nmap <Leader>e <Plug>(easymotion-bd-f2)
 
 " ===
 " === Far.vim
 " ===
-nnoremap <LEADER>F :F  %<left><left>
+nnoremap <Leader>F :F  %<left><left>
 
 " ===
 " === FZF
@@ -317,14 +317,14 @@ let g:fzf_commits_log_options='--graph --color=always --format="%C(auto)%h%d %s 
 " ===
 " suppress the default key bindings
 let g:ranger_map_keys=''
-nnoremap <LEADER>ra :Ranger<CR>
+nnoremap <Leader>ra :Ranger<CR>
 
 " ===
 " === vim-indent-guide
 " ===
 " " suppress the default key bindings
 " " autocmd WinEnter * silent! unmap ,ig
-" nmap <SILENT> <LEADER><LEADER>ig <Plug>IndentGuidesToggle
+" nmap <silent> <Leader><Leader>ig <Plug>IndentGuidesToggle
 " let g:indent_guides_enable_on_vim_startup=1
 " let g:indent_guides_guide_size=1
 " let g:indent_guides_start_level=2
@@ -363,16 +363,16 @@ let g:rainbow_active=1
 " === vim-bookmarks
 " ===
 let g:bookmark_no_default_key_mappings=1
-nmap <LEADER>mt <Plug>BookmarkToggle
-nmap <LEADER>ma <Plug>BookmarkAnnotate
-nmap <LEADER>ml <Plug>BookmarkShowAll
-nmap <LEADER>mn <Plug>BookmarkNext
-nmap <LEADER>mp <Plug>BookmarkPrev
-nmap <LEADER>mc <Plug>BookmarkClear
-nmap <LEADER>mx <Plug>BookmarkClearAll
-nmap <LEADER>mk <Plug>BookmarkMoveUp
-nmap <LEADER>mj <Plug>BookmarkMoveDown
-nmap <LEADER>mg <Plug>BookmarkMoveToLine
+nmap <Leader>mt <Plug>BookmarkToggle
+nmap <Leader>ma <Plug>BookmarkAnnotate
+nmap <Leader>ml <Plug>BookmarkShowAll
+nmap <Leader>mn <Plug>BookmarkNext
+nmap <Leader>mp <Plug>BookmarkPrev
+nmap <Leader>mc <Plug>BookmarkClear
+nmap <Leader>mx <Plug>BookmarkClearAll
+nmap <Leader>mk <Plug>BookmarkMoveUp
+nmap <Leader>mj <Plug>BookmarkMoveDown
+nmap <Leader>mg <Plug>BookmarkMoveToLine
 let g:bookmark_save_per_working_dir=1
 let g:bookmark_auto_save=1
 let g:bookmark_highlight_lines=1
@@ -403,11 +403,11 @@ let g:startify_bookmarks=[
             \ ]
 
 " Open Startify
-nnoremap <LEADER>\ :Startify<CR>
-nnoremap <LEADER>Ss :SSave! 
-nnoremap <LEADER>Sl :SLoad 
-nnoremap <LEADER>Sd :SDelete!<CR>
-nnoremap <LEADER>Sc :SClose<CR>
+nnoremap <Leader>\ :Startify<CR>
+nnoremap <Leader>Ss :SSave! 
+nnoremap <Leader>Sl :SLoad 
+nnoremap <Leader>Sd :SDelete!<CR>
+nnoremap <Leader>Sc :SClose<CR>
 
 " ==
 " == vim-surround
@@ -418,11 +418,11 @@ let g:surround_no_insert_mappings=1
 " ===
 " === vim-fugitive
 " ===
-nnoremap <LEADER>gb :Gblame<CR>
-nnoremap <LEADER>gd :Gvdiffsplit<CR>
-nnoremap <LEADER>dh :diffget //2<CR>
-nnoremap <LEADER>dl :diffget //3<CR>
-nnoremap <LEADER>gg :G<CR>
+nnoremap <Leader>gb :Gblame<CR>
+nnoremap <Leader>gd :Gvdiffsplit<CR>
+nnoremap <Leader>dh :diffget //2<CR>
+nnoremap <Leader>dl :diffget //3<CR>
+nnoremap <Leader>gg :G<CR>
 
 " ==
 " == vim-signify
@@ -438,14 +438,14 @@ let g:signify_update_on_bufenter=0
 " vim获取焦点时更新符号
 let g:signify_update_on_focusgained=1
 " 键盘映射
-nnoremap <LEADER>gsd :SignifyDiff<CR>
-nnoremap <LEADER>gst :SignifyToggle<CR>
-nnoremap <LEADER>gsh :SignifyToggleHighlight<CR>
-nnoremap <LEADER>gsr :SignifyRefresh<CR>
-nnoremap <LEADER>gsx :SignifyDebug<CR>
+nnoremap <Leader>gsd :SignifyDiff<CR>
+nnoremap <Leader>gst :SignifyToggle<CR>
+nnoremap <Leader>gsh :SignifyToggleHighlight<CR>
+nnoremap <Leader>gsr :SignifyRefresh<CR>
+nnoremap <Leader>gsx :SignifyDebug<CR>
 " hunk jumping
-nnoremap <LEADER>gsj <plug>(signify-next-hunk)
-nnoremap <LEADER>gsk <plug>(signify-prev-hunk)
+nnoremap <Leader>gsj <plug>(signify-next-hunk)
+nnoremap <Leader>gsk <plug>(signify-prev-hunk)
 
 " ==
 " == GitGutter
@@ -456,10 +456,10 @@ nnoremap <LEADER>gsk <plug>(signify-prev-hunk)
 ""let g:gitgutter_highlight_linenrs=1
 "let g:gitgutter_preview_win_floating=1
 "autocmd BufWritePost * GitGutter
-"nnoremap <LEADER>gf :GitGutterFold<CR>
-"nnoremap <LEADER>gh :GitGutterPreviewHunk<CR>
-"nnoremap <LEADER>g[ :GitGutterPrevHunk<CR>
-"nnoremap <LEADER>g] :GitGutterNextHunk<CR>
+"nnoremap <Leader>gf :GitGutterFold<CR>
+"nnoremap <Leader>gh :GitGutterPreviewHunk<CR>
+"nnoremap <Leader>g[ :GitGutterPrevHunk<CR>
+"nnoremap <Leader>g] :GitGutterNextHunk<CR>
 
 " ===
 " === vimspector
@@ -479,7 +479,7 @@ command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
 			\   'sink': function('<sid>read_template_into_buffer')
 			\ })
 
-" " noremap <LEADER>vs :tabe .vimspector.json<CR>:LoadVimSpectorJsonTemplate<CR>
+" " noremap <Leader>vs :tabe .vimspector.json<CR>:LoadVimSpectorJsonTemplate<CR>
 " sign define vimspectorBP text=☛ texthl=Normal
 " sign define vimspectorBPDisabled text=☞ texthl=Normal
 " sign define vimspectorPC text=🔶 texthl=SpellBad
@@ -487,23 +487,23 @@ command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
 " ===
 " === which-key
 " ===
-" let g:mapleader="\<space>"
-" nnoremap <SILENT> <LEADER>      :<C-u>WhichKey '<space>'<CR>
+" let g:mapleader="\<Space>"
+" nnoremap <silent> <Leader>      :<C-u>WhichKey '<Space>'<CR>
 let g:mapleader=','
 let g:maplocalleader=','
-nnoremap <SILENT> <LEADER>      :<C-u>WhichKey ','<CR>
-nnoremap <SILENT> <localleader> :<C-u>WhichKey  ','<CR>
+nnoremap <silent> <Leader>      :<C-u>WhichKey ','<CR>
+nnoremap <silent> <localleader> :<C-u>WhichKey  ','<CR>
 
 " ===
 " === floaterm
 " ===
-let g:floaterm_keymap_toggle='<LEADER>ft'
-let g:floaterm_keymap_next='<LEADER>f='
-let g:floaterm_keymap_prev='<LEADER>f-'
-let g:floaterm_keymap_new='<LEADER>f+'
-" let g:floaterm_keymap_hide='<LEADER>fh'
-" let g:floaterm_keymap_show='<LEADER>fs'
-let g:floaterm_keymap_kill='<LEADER>fq'
+let g:floaterm_keymap_toggle='<Leader>ft'
+let g:floaterm_keymap_next='<Leader>f='
+let g:floaterm_keymap_prev='<Leader>f-'
+let g:floaterm_keymap_new='<Leader>f+'
+" let g:floaterm_keymap_hide='<Leader>fh'
+" let g:floaterm_keymap_show='<Leader>fs'
+let g:floaterm_keymap_kill='<Leader>fq'
 " floaterm
 " let g:floaterm_gitcommit='floaterm'
 " let g:floaterm_autoinsert=1
@@ -511,20 +511,20 @@ let g:floaterm_keymap_kill='<LEADER>fq'
 " let g:floaterm_height=0.8
 " let g:floaterm_wintitle=0
 " let g:floaterm_autoclose=1
-nnoremap <SILENT> <LEADER>f; :FloatermNew --wintype=popup --height=6<CR>
-nnoremap <SILENT> <LEADER>ff :FloatermNew fzf<CR>
-nnoremap <SILENT> <LEADER>fg :FloatermNew lazygit<CR>
-nnoremap <SILENT> <LEADER>fn :FloatermNew node<CR>
-nnoremap <SILENT> <LEADER>fp :FloatermNew python<CR>
-nnoremap <SILENT> <LEADER>fh :FloatermNew htop<CR>
-nnoremap <SILENT> <LEADER>fd :FloatermNew ncdu<CR>
+nnoremap <silent> <Leader>f; :FloatermNew --wintype=popup --height=6<CR>
+nnoremap <silent> <Leader>ff :FloatermNew fzf<CR>
+nnoremap <silent> <Leader>fg :FloatermNew lazygit<CR>
+nnoremap <silent> <Leader>fn :FloatermNew node<CR>
+nnoremap <silent> <Leader>fp :FloatermNew python<CR>
+nnoremap <silent> <Leader>fh :FloatermNew htop<CR>
+nnoremap <silent> <Leader>fd :FloatermNew ncdu<CR>
 
 " ===
 " === vim-dadbod-ui
 " ===
-" nnoremap <SILENT> <LEADER>dt :tabe<CR>:tabmove<CR>:DBUIToggle<CR>
-nnoremap <SILENT> <LEADER>dt :DBUIToggle<CR>
-nnoremap <SILENT> <LEADER>da :DBUIAddConnection<CR>
+" nnoremap <silent> <Leader>dt :tabe<CR>:tabmove<CR>:DBUIToggle<CR>
+nnoremap <silent> <Leader>dt :DBUIToggle<CR>
+nnoremap <silent> <Leader>da :DBUIAddConnection<CR>
 "" \ 'dev': 'postgres://postgres:mypassword@localhost:5432/my-dev-db',
 let g:dbs={
 \ 'local': 'mysql://test@192.168.0.101:3306/test',
@@ -560,7 +560,7 @@ function! NearestMethodOrFunction() abort
   return get(b:, 'vista_nearest_method_or_function', '')
 endfunction
 " set statusline+=%{NearestMethodOrFunction()}
-nnoremap <LEADER>v :Vista!!<CR>
+nnoremap <Leader>v :Vista!!<CR>
 nnoremap <C-t> :silent! Vista finder coc<CR>
 let g:vista_icon_indent=["╰─▸ ", "├─▸ "]
 let g:vista_default_executive='coc'
@@ -577,16 +577,16 @@ let g:vista#renderer#icons={
 " let g:leetcode_solution_filetype='java'
 " let g:leetcode_browser='chrome'
 " " let g:leetcode_browser='chromium'
-" nnoremap <LEADER>ll :LeetCodeList<cr>
-" nnoremap <LEADER>lt :LeetCodeTest<cr>
-" nnoremap <LEADER>ls :LeetCodeSubmit<cr>
-" nnoremap <LEADER>li :LeetCodeSignIn<cr>
+" nnoremap <Leader>ll :LeetCodeList<CR>
+" nnoremap <Leader>lt :LeetCodeTest<CR>
+" nnoremap <Leader>ls :LeetCodeSubmit<CR>
+" nnoremap <Leader>li :LeetCodeSignIn<CR>
 
 " vim-easy-align
-" Start interactive EasyAlign in visual mode (e.g. vipga); custom:vip<LEADER>ea
-xmap <LEADER>ea <Plug>(EasyAlign)
-" Start interactive EasyAlign for a motion/text object (e.g. gaip); custom:<LEADER>eaip
-nmap <LEADER>ea <Plug>(EasyAlign)
+" Start interactive EasyAlign in visual mode (e.g. vipga); custom:vip<Leader>ea
+xmap <Leader>ea <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip); custom:<Leader>eaip
+nmap <Leader>ea <Plug>(EasyAlign)
 
 " coc settings
 source ~/.config/nvim/coc.vim

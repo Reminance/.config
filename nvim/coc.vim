@@ -65,7 +65,7 @@ let g:coc_global_extensions=[
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " use <tab> for trigger completion and navigate to the next complete item
-inoremap <SILENT><expr> <TAB>
+inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -75,24 +75,24 @@ function! s:check_back_space() abort
 	return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-inoremap <SILENT><expr> <C-space> coc#refresh()
+inoremap <silent><expr> <C-Space> coc#refresh()
 " use <,c,> to prev diagnostic;
-nmap <SILENT> <LEADER>c, <Plug>(coc-diagnostic-prev)
+nmap <silent> <Leader>c, <Plug>(coc-diagnostic-prev)
 " use <,c.> to next diagnostic;
-nmap <SILENT> <LEADER>c. <Plug>(coc-diagnostic-next)
-" nmap <SILENT> <LEADER>c. <Plug>(coc-diagnostic-next-error)
-inoremap <SILENT><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+nmap <silent> <Leader>c. <Plug>(coc-diagnostic-next)
+" nmap <silent> <Leader>c. <Plug>(coc-diagnostic-next-error)
+inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-inoremap <SILENT><expr> <cr> pumvisible() ? coc#_select_confirm()
+" format on enter, <CR> could be remapped by other vim plugin
+inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Open up coc-commands
-nnoremap <LEADER>cC :CocCommand<CR>
+nnoremap <Leader>cC :CocCommand<CR>
 " Text Objects
 xmap kf <Plug>(coc-funcobj-i)
 xmap af <Plug>(coc-funcobj-a)
@@ -100,16 +100,16 @@ omap kf <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
 
 " Useful commands
-nnoremap <SILENT> <LEADER>y :<C-u>CocList -A --normal yank<cr>
+nnoremap <silent> <Leader>y :<C-u>CocList -A --normal yank<CR>
 
-nmap <SILENT> gd <Plug>(coc-definition)
-nmap <SILENT> gt <Plug>(coc-type-definition)
-nmap <SILENT> gi <Plug>(coc-implementation)
-nmap <SILENT> gr <Plug>(coc-references)
-nmap <LEADER>rn <Plug>(coc-rename)
-nnoremap <LEADER>tt :CocCommand explorer<CR>
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gt <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <Leader>rn <Plug>(coc-rename)
+nnoremap <Leader>tt :CocCommand explorer<CR>
 
-nnoremap <SILENT> K :call <SID>show_documentation()<CR>
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
@@ -128,32 +128,32 @@ vmap <C-Y> <Plug>(coc-translator-pv)
 " function! s:cocActionsOpenFromSelected(type) abort
 "   execute 'CocCommand actions.open ' . a:type
 " endfunction
-" xmap <SILENT> <LEADER>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-" nmap <SILENT> <LEADER>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+" xmap <silent> <Leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+" nmap <silent> <Leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
 
 " Applying codeAction to the selected region.
-" Example: `<LEADER>aap` for current paragraph
+" Example: `<Leader>aap` for current paragraph
 xmap <M-CR> <Plug>(coc-codeaction-selected)
-" nmap <LEADER>cs  <Plug>(coc-codeaction-selected)
+" nmap <Leader>cs  <Plug>(coc-codeaction-selected)
 
 " Remap keys for applying codeAction to the current buffer.
 nmap <M-CR> <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
-nmap <LEADER>cq  <Plug>(coc-fix-current)
+nmap <Leader>cq  <Plug>(coc-fix-current)
 
 " coctodolist
-nnoremap <LEADER>tn :CocCommand todolist.create<CR>
-nnoremap <LEADER>tl :CocList todolist<CR>
-nnoremap <LEADER>tu :CocCommand todolist.download<CR>:CocCommand todolist.upload<CR>
+nnoremap <Leader>tn :CocCommand todolist.create<CR>
+nnoremap <Leader>tl :CocList todolist<CR>
+nnoremap <Leader>tu :CocCommand todolist.download<CR>:CocCommand todolist.upload<CR>
 " coc-tasks
-nnoremap <LEADER>ts :CocList tasks<CR>
+nnoremap <Leader>ts :CocList tasks<CR>
 
 " coc-snippets
 vmap <C-n> <Plug>(coc-snippets-select)
 imap <C-n> <Plug>(coc-snippets-expand)
 " 直接展开snippets
 imap <C-\> <Plug>(coc-snippets-expand-jump)
-xmap <LEADER>x  <Plug>(coc-convert-snippet)
+xmap <Leader>x  <Plug>(coc-convert-snippet)
 let g:snips_author='Reminance'
 " 在snippets占位符间跳转
 let g:coc_snippet_next='<C-j>'
@@ -161,23 +161,23 @@ let g:coc_snippet_prev='<C-k>'
 
 " Mappings for CoCList
 " Show all diagnostics.
-nnoremap <SILENT><NOWAIT> <LEADER>cld  :<C-u>CocList diagnostics<cr>
+nnoremap <silent><nowait> <Leader>cld  :<C-u>CocList diagnostics<CR>
 " Manage extensions.
-nnoremap <SILENT><NOWAIT> <LEADER>cle  :<C-u>CocList extensions<cr>
+nnoremap <silent><nowait> <Leader>cle  :<C-u>CocList extensions<CR>
 " Show commands.
-nnoremap <SILENT><NOWAIT> <LEADER>clc  :<C-u>CocList commands<cr>
+nnoremap <silent><nowait> <Leader>clc  :<C-u>CocList commands<CR>
 " Find symbol of current document.
-nnoremap <SILENT><NOWAIT> <LEADER>clo  :<C-u>CocList outline<cr>
+nnoremap <silent><nowait> <Leader>clo  :<C-u>CocList outline<CR>
 " Search workspace symbols.
-nnoremap <SILENT><NOWAIT> <LEADER>cls  :<C-u>CocList -I symbols<cr>
+nnoremap <silent><nowait> <Leader>cls  :<C-u>CocList -I symbols<CR>
 " Resume latest coc list.
-nnoremap <SILENT><NOWAIT> <LEADER>clr  :<C-u>CocListResume<CR>
+nnoremap <silent><nowait> <Leader>clr  :<C-u>CocListResume<CR>
 " marketplace coc list.
-nnoremap <SILENT><NOWAIT> <LEADER>clm  :<C-u>CocList marketplace<CR>
+nnoremap <silent><nowait> <Leader>clm  :<C-u>CocList marketplace<CR>
 " Do default action for next item.
-nnoremap <SILENT><NOWAIT> <LEADER>cn  :<C-u>CocNext<CR>
+nnoremap <silent><nowait> <Leader>cn  :<C-u>CocNext<CR>
 " Do default action for previous item
-nnoremap <SILENT><NOWAIT> <LEADER>cp  :<C-u>CocPrev<CR>
+nnoremap <silent><nowait> <Leader>cp  :<C-u>CocPrev<CR>
 
 " ===
 " === coc-leetcode
@@ -185,18 +185,18 @@ nnoremap <SILENT><NOWAIT> <LEADER>cp  :<C-u>CocPrev<CR>
 " let g:leetcode_language='java'
 " let g:leetcode_trace_server=0
 " let g:leetcode_enabled=1
-" nnoremap <SILENT> <LEADER>ll :CocCommand leetecode.login<CR>
-" nnoremap <SILENT> <LEADER>lp :CocList LeetcodeProblems<CR>
-" nnoremap <SILENT> <LEADER>lr :CocCommand leetcode.run<CR>
-" nnoremap <SILENT> <LEADER>ls :CocCommand leetcode.submit<CR>
-" nnoremap <SILENT> <LEADER>lc :CocCommand leetcode.comments<CR>
+" nnoremap <silent> <Leader>ll :CocCommand leetecode.login<CR>
+" nnoremap <silent> <Leader>lp :CocList LeetcodeProblems<CR>
+" nnoremap <silent> <Leader>lr :CocCommand leetcode.run<CR>
+" nnoremap <silent> <Leader>ls :CocCommand leetcode.submit<CR>
+" nnoremap <silent> <Leader>lc :CocCommand leetcode.comments<CR>
 
 " ===
 " === coc-restclient
 " ===
-nnoremap <LEADER>crr :CocCommand rest-client.request <cr>
-nnoremap <LEADER>crl :r! cat ~/.config/coc/extensions/node_modules/coc-restclient/test/sample/single.http<CR>
-nnoremap <LEADER>crL :r! cat ~/.config/coc/extensions/node_modules/coc-restclient/test/sample/multiple.http<CR>
+nnoremap <Leader>crr :CocCommand rest-client.request<CR>
+nnoremap <Leader>crl :r! cat ~/.config/coc/extensions/node_modules/coc-restclient/test/sample/single.http<CR>
+nnoremap <Leader>crL :r! cat ~/.config/coc/extensions/node_modules/coc-restclient/test/sample/multiple.http<CR>
 
 " go coc settings
 autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
