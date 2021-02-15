@@ -3,7 +3,7 @@ set nocompatible
 " set hidden " 允许在有未保存的修改时切换缓冲区，此时的修改由 vim 负责保存
 set cursorline
 let mapleader=","
-exec "nohlsearch"
+exe "nohlsearch"
 set number
 set relativenumber
 set wrap
@@ -142,17 +142,19 @@ inoremap <M-Space> <Esc>/<++><CR>:nohlsearch<CR>c4l
 " nnoremap <Leader>dw /\(\<\w\+\>\)\_s*\1<CR>
 
 " Open the vimrc file anytime
-nnoremap <Leader>.i :e ~/.config/nvim/init.vim<CR>
+nnoremap <Leader><Leader>i :e ~/.config/nvim/init.vim<CR>
 " Open the function.vim file anytime
-nnoremap <Leader>.f :e ~/.config/nvim/function.vim<CR>
+nnoremap <Leader><Leader>f :e ~/.config/nvim/function.vim<CR>
 " Open the _md_snippets.vim file anytime
-nnoremap <Leader>.m :e ~/.config/nvim/snippets/_md_snippets.vim<CR>
+nnoremap <Leader><Leader>m :e ~/.config/nvim/snippets/_md_snippets.vim<CR>
+" Open the presentation.vim file anytime
+nnoremap <Leader><Leader>P :e ~/.config/nvim/mode/presentation.vim<CR>
 " Open the plugins.vim file anytime
-nnoremap <Leader>.p :e ~/.config/nvim/plugins.vim<CR>
+nnoremap <Leader><Leader>p :e ~/.config/nvim/plugins.vim<CR>
 " Open the coc.vim file anytime
-nnoremap <Leader>.c :e ~/.config/nvim/coc.vim<CR>
+nnoremap <Leader><Leader>c :e ~/.config/nvim/coc.vim<CR>
 " Open the coc-settings.json file anytime
-nnoremap <Leader>.s :e ~/.config/nvim/coc-settings.json<CR>
+nnoremap <Leader><Leader>s :e ~/.config/nvim/coc-settings.json<CR>
 
 " Open up lazygit
 nnoremap <C-\>g :tabe<CR>:tabmove<CR>:term lazygit<CR>
@@ -226,7 +228,7 @@ nnoremap <M-<> :-tabmove<CR>
 nnoremap <M->> :+tabmove<CR>
 " Map alt-x keys to jump to a tab
 for i in range(1, 8)
-  execute "nnoremap <M-" . i . "> :tabnext " . i . "<CR>"
+  exe "nnoremap <M-" . i . "> :tabnext " . i . "<CR>"
 endfor
 nnoremap <M-9> :tablast<CR>
 
@@ -235,6 +237,12 @@ nnoremap <Leader>co :copen<CR>
 
 " reading source into vim(:h read) or :r! cat ~/.bashrc
 nnoremap <M-S-r> :r 
+
+" help shortcut
+nnoremap <Leader>hg :helpgrep 
+nnoremap <Leader>hn :cnext<CR>
+nnoremap <Leader>hp :cprev<CR>
+nnoremap <Leader>hl :copen<CR>
 
 " templates
 if has("autocmd")
@@ -248,7 +256,9 @@ if has("autocmd")
     augroup END
 endif
 
-" for assembly
+" ===
+" === for assembly
+" ===
 " changeToHex
 " nnoremap <M-\> :%!xxd<CR>
 " reverseFromHex
@@ -257,16 +267,25 @@ endif
 autocmd BufEnter *.asm,*.inc,*.nas :setlocal filetype=nasm
 
 " ===
+" === markdown settings
+" ===
+let g:markdown_folding=1
+" highlight Folded term=standout ctermfg=14 ctermbg=0
+autocmd BufEnter *.md,*.markdown,*.mdown,*.mkd,*.mkdn,*.mdwn,README.md :setlocal filetype=markdown | set foldlevel=1 | exe 'normal gg'
+autocmd FileType markdown nnoremap <buffer> <Tab> za
+
+" ===
 " === source the extra config
 " ===
 source ~/.config/nvim/function.vim
 source ~/.config/nvim/snippets/_md_snippets.vim
+source ~/.config/nvim/mode/presentation.vim
 
 " Create a _machine_specific.vim file to adjust machine specific stuff, like python interpreter location
 let has_machine_specific_file=1
 if empty(glob('~/.config/nvim/_machine_specific.vim'))
     let has_machine_specific_file=0
-    silent! exec "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
+    silent! exe "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
 endif
 source ~/.config/nvim/_machine_specific.vim
 

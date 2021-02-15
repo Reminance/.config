@@ -6,13 +6,14 @@ nohup.out
 .DS_Store
 view/
 jgit/
-nvim/plugged/
 sessions/
+nvim/plugged/
 nvim/tmp/
 nvim/.netrwhist
 nvim/_machine_specific.vim
 nvim/.vim-bookmarks
 nvim/session/
+nvim/tags*
 *.conf
 *.dirs
 *.list
