@@ -107,7 +107,7 @@ Plug 'makerj/vim-pdf'
 " Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'` to change 'word' to `word`
 " Plug 'godlygeek/tabular' " type ;Tabularize /= to align the =
-Plug 'gcmt/wildfire.vim' " in Visual mode, type i' to select all text in '', or type i) i] i} ip
+" Plug 'gcmt/wildfire.vim' " in Visual mode, type i' to select all text in '', or type i) i] i} ip
 Plug 'tpope/vim-commentary' " gcc to comment the current line
 
 " Dependencies
@@ -139,6 +139,9 @@ Plug 'liuchengxu/vista.vim'
 
 " vim-easy-align
 Plug 'junegunn/vim-easy-align'
+
+" tpope/vim-dispatch
+Plug 'tpope/vim-dispatch'
 
 call plug#end()
 " ===================== Install Plugins with Vim-Plug end =====================
@@ -229,14 +232,14 @@ let g:NERDTreeIndicatorMapCustom={
     \ "Unknown"   : "?"
     \ }
 
-" ==
-" == wildfire
-" ==
-" This selects the next closest text object.
-nnoremap <CR> <plug>(wildfire-fuel)
-" this selects the previous closest text object.
-" vmap <C-Space> <plug>(wildfire-water)
-let g:wildfire_objects=["i'", 'i"', "i>", "i)", "i]", "i}", "ip", "it"]
+" " ==
+" " == wildfire
+" " ==
+" " This selects the next closest text object.
+" nnoremap <CR> <plug>(wildfire-fuel)
+" " this selects the previous closest text object.
+" " vmap <C-Space> <plug>(wildfire-water)
+" let g:wildfire_objects=["i'", 'i"', "i>", "i)", "i]", "i}", "ip", "it"]
 
 " ===
 " === ale
@@ -444,8 +447,8 @@ nnoremap <Leader>gsh :SignifyToggleHighlight<CR>
 nnoremap <Leader>gsr :SignifyRefresh<CR>
 nnoremap <Leader>gsx :SignifyDebug<CR>
 " hunk jumping
-nnoremap <Leader>gsj <plug>(signify-next-hunk)
-nnoremap <Leader>gsk <plug>(signify-prev-hunk)
+nmap <Leader>gsj <plug>(signify-next-hunk)
+nmap <Leader>gsk <plug>(signify-prev-hunk)
 
 " ==
 " == GitGutter
@@ -587,6 +590,27 @@ let g:vista#renderer#icons={
 xmap <Leader>ea <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip); custom:<Leader>eaip
 nmap <Leader>ea <Plug>(EasyAlign)
+
+" tpope/vim-dispatch
+" By default dispatch.vim provides `<CR> for :Dispatch<CR>. You can find all
+" default maps under :h dispatch-maps
+" autocmd FileType java let b:dispatch = 'javac % && java %<'
+" autocmd FileType cucumber compiler cucumber | setl makeprg=cucumber\ \"%:p\"
+" autocmd FileType ruby
+"     \ if expand('%') =~# '_test\.rb$' |
+"     \   compiler rubyunit | setl makeprg=testrb\ \"%:p\" |
+"     \ elseif expand('%') =~# '_spec\.rb$' |
+"     \   compiler rspec | setl makeprg=rspec\ \"%:p\" |
+"     \ else |
+"     \   compiler ruby | setl makeprg=ruby\ -wc\ \"%:p\" |
+"     \ endif
+" autocmd User Bundler
+"     \ if &makeprg !~# 'bundle' | setl makeprg^=bundle\ exec\  | endif
+let g:dispatch_compilers = {
+    \ 'latex': 'tex',
+    \ 'bundle exec': '',
+    \ 'java': 'javac % && java %<'
+    \}
 
 " coc settings
 source ~/.config/nvim/coc.vim
