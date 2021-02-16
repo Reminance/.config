@@ -1,45 +1,48 @@
-au VimEnter no_plugins.vim setl window=66
-au VimEnter no_plugins.vim normal 8Gzz
-au VimEnter no_plugins.vim command! GO normal M17jzzH
-au VimEnter no_plugins.vim command! BACK normal M17kzzH
-au VimEnter no_plugins.vim command! RUN normal gg8Gzz
-au VimEnter no_plugins.vim nnoremap <buffer> <Down> :GO<CR>
-au VimEnter no_plugins.vim nnoremap <buffer> <Up> :BACK<CR>
-au VimEnter no_plugins.vim nnoremap <buffer> . :RUN<CR>
-au VimEnter no_plugins.vim call ToggleHiddenAll()
+au BufEnter no_plugins.vim command! Pline execute 'echo getline(".")'
+au BufEnter no_plugins.vim command! START normal gg8Gzz:Pline<CR>
+au BufEnter no_plugins.vim command! GO normal M17jzzH:Pline<CR>
+au BufEnter no_plugins.vim command! BACK normal M17kzzH:Pline<CR>
+au BufEnter no_plugins.vim nnoremap <buffer> . :START<CR>
+au BufEnter no_plugins.vim nnoremap <buffer> <Down> :GO<CR>
+au BufEnter no_plugins.vim nnoremap <buffer> <Up> :BACK<CR>
+au BufEnter no_plugins.vim setl window=66 | exe 'START' | call HideAll()
+au BufLeave no_plugins.vim call ShowAll()
 
 " toggle hiding everything except for the presentation contents
-let s:hidden_all = 0
+let s:hidden_all=0
 function! ToggleHiddenAll()
-    if s:hidden_all  == 0
-        let s:hidden_all = 1
-        setl noshowmode
-        setl noruler
-        setl laststatus=0
-        setl noshowcmd
-        setl nonumber
-        setl norelativenumber
-        setl shortmess=F
+    echom 's:hidden_all:' . s:hidden_all
+    if s:hidden_all == 0
+        call HideAll()
     else
-        let s:hidden_all = 0
-        setl showmode
-        setl ruler
-        setl laststatus=2
-        setl showcmd
-        setl number
-        setl relativenumber
-        setl shortmess=filnxtToOF
+        call ShowAll()
     endif
+endfunction
+function! HideAll()
+    let s:hidden_all=1
+    setl noruler
+    setl laststatus=0
+    setl nonumber
+    setl norelativenumber
+    " setl noshowmode
+    " setl noshowcmd
+    " setl shortmess=F
+endfunction
+function! ShowAll()
+    let s:hidden_all=0
+    setl ruler
+    setl laststatus=2
+    setl number
+    setl relativenumber
+    " setl showmode
+    " setl showcmd
+    " setl shortmess=filnxtToOF
 endfunction
 nnoremap <Leader><Leader>h :call ToggleHiddenAll()<CR>
 
 
 
 
-" didn't work
-" au VimEnter no_plugins.vim command! RUN execute getline(".")
-" au VimEnter no_plugins.vim unmap H
-" au VimEnter no_plugins.vim unmap L
-" why dont these work :(
-" au VimEnter no_plugins.vim nnoremap ^f :GO<CR>
-" au VimEnter no_plugins.vim nnoremap ^b :BACK<CR>
+" 如果需要解绑键位 如下:
+" au BufEnter no_plugins.vim unmap H
+" au BufEnter no_plugins.vim unmap L

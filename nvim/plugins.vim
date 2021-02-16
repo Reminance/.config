@@ -307,10 +307,10 @@ nnoremap <M-S-g> :GFiles<CR>
 nnoremap <M-S-n> :Files<CR>
 nnoremap <M-S-e> :Buffers<CR>
 nnoremap <M-S-h> :History<CR>
-" noremap <M-;> :History:<CR>
+" nnoremap <M-;> :History:<CR>
 " The Silver Searcher
-" noremap <M-S-f> :Ag<CR>
-" noremap <M-t> :BTags<CR>
+" nnoremap <M-S-f> :Ag<CR>
+" nnoremap <M-t> :BTags<CR>
 
 let g:fzf_preview_window='right:60%'
 let g:fzf_commits_log_options='--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
@@ -482,7 +482,7 @@ command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
             \   'sink': function('<sid>read_template_into_buffer')
             \ })
 
-" " noremap <Leader>vs :tabe .vimspector.json<CR>:LoadVimSpectorJsonTemplate<CR>
+" " nnoremap <Leader>vs :tabe .vimspector.json<CR>:LoadVimSpectorJsonTemplate<CR>
 " sign define vimspectorBP text=☛ texthl=Normal
 " sign define vimspectorBPDisabled text=☞ texthl=Normal
 " sign define vimspectorPC text=🔶 texthl=SpellBad

@@ -171,10 +171,10 @@ nnoremap <C-\>l :set splitright<CR>:vsplit<CR>:term<CR>
 tnoremap <C-\> <C-\><C-n>
 
 " ===================== Quick Navigation =====================
-" noremap H 3h
-" noremap J 3j
-" noremap K 3k
-" noremap L 3l
+" nnoremap H 3h
+" nnoremap J 3j
+" nnoremap K 3k
+" nnoremap L 3l
 
 " ===================== Save & quit =====================
 nnoremap s <nop>
@@ -218,8 +218,8 @@ nnoremap <Leader>l <C-w>L
 " Create a new tab
 nnoremap <M-n> :tabe<CR>
 nnoremap <M-q> :tabclose<CR>
-" noremap <M-n> :tabnew 
-" noremap <Leader>n :tabe<CR>
+" nnoremap <M-n> :tabnew 
+" nnoremap <Leader>n :tabe<CR>
 " switching tabs
 nnoremap <M-,> :-tabnext<CR>
 nnoremap <M-.> :+tabnext<CR>
@@ -238,7 +238,7 @@ nnoremap <Leader>co :copen<CR>
 " reading source into vim(:h read) or :r! cat ~/.bashrc
 nnoremap <M-S-r> :r 
 
-" help shortcut
+" help shortcut(:helpgrep i_^n)
 nnoremap <Leader>hg :helpgrep 
 nnoremap <Leader>hn :cnext<CR>
 nnoremap <Leader>hp :cprev<CR>
