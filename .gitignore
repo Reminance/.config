@@ -16,7 +16,7 @@ nvim/.vim-bookmarks
 nvim/session/
 nvim/tags*
 nvim/selected
-*.conf
+QtProject.conf
 *.dirs
 *.list
 *.locale
