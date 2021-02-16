@@ -149,10 +149,14 @@ nnoremap <Leader>tu :CocCommand todolist.download<CR>:CocCommand todolist.upload
 nnoremap <Leader>ts :CocList tasks<CR>
 
 " coc-snippets
-vmap <C-n> <Plug>(coc-snippets-select)
-imap <C-n> <Plug>(coc-snippets-expand)
-" 直接展开snippets
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+" 直接展开snippets 如果有lsp的补全也回跳过， 直接展开snippetes的候选
+" Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-\> <Plug>(coc-snippets-expand-jump)
+" Use <leader>x for convert visual selected code to snippet
 xmap <Leader>x  <Plug>(coc-convert-snippet)
 let g:snips_author='Reminance'
 " 在snippets占位符间跳转

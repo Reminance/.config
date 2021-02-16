@@ -36,7 +36,8 @@ set mouse=a
 " set clipboard^=unnamed,unnnamedplus
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 set fileformats=unix,dos,mac
-set backspace=indent,eol,start " 退格键可以退到上一行
+" (:h backspace?), default "indent,eol,start"; eol让退格键可以退到上一行
+set backspace=indent,start
 let &t_ut=''
 set textwidth=80
 set tabstop=4
@@ -50,7 +51,6 @@ set list
 set listchars=tab:▸\ ,trail:▫
 set scrolloff=2
 set indentexpr=
-set backspace=indent,eol,start
 " za，打开或关闭当前折叠；zc 关闭折叠; zo 打开折叠; zM，关闭所有折叠；zR，打开所有折叠
 set foldmethod=indent
 set foldlevel=99
@@ -245,11 +245,17 @@ nnoremap <Leader>hp :cprev<CR>
 nnoremap <Leader>co :copen<CR>
 
 " toggle spell check
-nnoremap <Leader>st :setl spell!<CR>
+nnoremap <Leader>spt :setl spell!<CR>
 " fix the last spell bad to the cursor; eg: [shcool], pressing ,sf will fix it to [school]
-nnoremap <Leader>sf [sz=
+nnoremap <Leader>spf [sz=
 " fix and jump back
 " nnoremap <Leader>sf mm[s1z=`m
+
+" quickly paste in command line; using <C-r>; (:h i_CTRL-R)[Insert the contents of a register.]
+nnoremap <Leader>Cp :<C-r>"
+
+" vim tutor
+nnoremap <Leader>vt :Tutor<CR>
 
 " templates
 if has("autocmd")

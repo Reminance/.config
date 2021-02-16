@@ -311,8 +311,10 @@ nnoremap <M-S-n> :Files<CR>
 nnoremap <M-S-e> :Buffers<CR>
 nnoremap <M-S-h> :History<CR>
 nnoremap <M-S-t> :BTags<CR>
+nnoremap <M-S-c> :BCommits<CR>
 let g:fzf_preview_window='right:60%'
-let g:fzf_commits_log_options='--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+let g:fzf_commits_log_options='--graph --color=always --format="%C(auto)%h%d %s %C(blue)%C(bold)%cr"'
+" nnoremap <M-S-c> :Commits<CR>
 
 " ===
 " === RANGER
@@ -387,13 +389,15 @@ let g:bookmark_location_list=1
 " ==
 " == vim-startify
 " ==
-" let g:startify_session_autoload=1
+let g:startify_custom_header='startify#pad(startify#fortune#cowsay())'
+let g:startify_session_autoload=1
 let g:startify_session_dir='~/.config/nvim/session'
 let g:startify_lists=[
           \ { 'type': 'files',     'header': ['   Files']            },
           \ { 'type': 'dir',       'header': ['   Current Directory '. getcwd()] },
           \ { 'type': 'sessions',  'header': ['   Sessions']       },
           \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+          \ { 'type': 'commands',  'header': ['   Commands']       },
           \ ]
 let g:startify_bookmarks=[
             \ { 'c': '~/.config/i3/config' },
@@ -406,13 +410,14 @@ let g:startify_bookmarks=[
 
 " Open Startify
 nnoremap <Leader>\ :Startify<CR>
-nnoremap <Leader>Ss :SSave! 
-nnoremap <Leader>Sl :SLoad 
-nnoremap <Leader>Sd :SDelete!<CR>
-nnoremap <Leader>Sc :SClose<CR>
+nnoremap <Leader>ss :SSave! Session.vim<CR>
+nnoremap <Leader>sl :SLoad! Session.vim<CR>
+nnoremap <Leader>sd :SDelete!<CR>
+nnoremap <Leader>sc :SClose<CR>
 
 " ==
 " == vim-surround
+" == cs"'    cs'</q>    cst"    ds"    ysiw]    yss)    yss"
 " ==
 " suppress the default key bindings
 let g:surround_no_insert_mappings=1
