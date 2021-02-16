@@ -158,17 +158,17 @@ nnoremap <Leader><Leader>c :e ~/.config/nvim/coc.vim<CR>
 nnoremap <Leader><Leader>s :e ~/.config/nvim/coc-settings.json<CR>
 
 " Open up lazygit
-nnoremap <C-\>g :tabe<CR>:tabmove<CR>:term lazygit<CR>
+nnoremap <C-\>g :tabe<CR>:tabmove<CR>:term lazygit<CR>:setl nonu<CR>:setl nornu<CR>a
 
 " Open a terminal in vim
-nnoremap <C-\><C-h> :set nosplitright<CR>:vsplit<CR>:term<CR>
-nnoremap <C-\>h :set nosplitright<CR>:vsplit<CR>:term<CR>
-nnoremap <C-\><C-j> :set splitbelow<CR>:split<CR>:term<CR>
-nnoremap <C-\>j :set splitbelow<CR>:split<CR>:term<CR>
-nnoremap <C-\><C-k> :set nosplitbelow<CR>:split<CR>:term<CR>
-nnoremap <C-\>k :set nosplitbelow<CR>:split<CR>:term<CR>
-nnoremap <C-\><C-l> :set splitright<CR>:vsplit<CR>:term<CR>
-nnoremap <C-\>l :set splitright<CR>:vsplit<CR>:term<CR>
+nnoremap <C-\><C-h> :set nosplitright<CR>:vnew<CR>:term<CR>:setl nonu<CR>:setl nornu<CR>a
+nnoremap <C-\>h :set nosplitright<CR>:vnew<CR>:term<CR>:setl nonu<CR>:setl nornu<CR>a
+nnoremap <C-\><C-j> :set splitbelow<CR>:new<CR>:term<CR>:setl nonu<CR>:setl nornu<CR>a
+nnoremap <C-\>j :set splitbelow<CR>:new<CR>:term<CR>:setl nonu<CR>:setl nornu<CR>a
+nnoremap <C-\><C-k> :set nosplitbelow<CR>:new<CR>:term<CR>:setl nonu<CR>:setl nornu<CR>a
+nnoremap <C-\>k :set nosplitbelow<CR>:new<CR>:term<CR>:setl nonu<CR>:setl nornu<CR>a
+nnoremap <C-\><C-l> :set splitright<CR>:vnew<CR>:term<CR>:setl nonu<CR>:setl nornu<CR>a
+nnoremap <C-\>l :set splitright<CR>:vnew<CR>:term<CR>:setl nonu<CR>:setl nornu<CR>a
 tnoremap <C-\> <C-\><C-n>
 
 " ===================== Quick Navigation =====================
@@ -185,10 +185,10 @@ nnoremap Q :q<CR>
 nnoremap R :source $MYVIMRC<CR>
 
 " ===================== split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
-nnoremap sh :set nosplitright<CR>:vsplit<CR>
-nnoremap sj :set splitbelow<CR>:split<CR>
-nnoremap sk :set nosplitbelow<CR>:split<CR>
-nnoremap sl :set splitright<CR>:vsplit<CR>
+nnoremap sh :set nosplitright<CR>:vnew<CR>
+nnoremap sj :set splitbelow<CR>:new<CR>
+nnoremap sk :set nosplitbelow<CR>:new<CR>
+nnoremap sl :set splitright<CR>:vnew<CR>
 nnoremap seh :set nosplitright<CR>:vsplit 
 nnoremap sej :set splitbelow<CR>:split 
 nnoremap sek :set nosplitbelow<CR>:split 
@@ -233,9 +233,6 @@ for i in range(1, 8)
 endfor
 nnoremap <M-9> :tablast<CR>
 
-" open the quickfix
-nnoremap <Leader>co :copen<CR>
-
 " reading source into vim(:h read) or :r! cat ~/.bashrc
 nnoremap <M-S-r> :r 
 
@@ -243,7 +240,9 @@ nnoremap <M-S-r> :r
 nnoremap <Leader>hg :helpgrep 
 nnoremap <Leader>hn :cnext<CR>
 nnoremap <Leader>hp :cprev<CR>
-nnoremap <Leader>hl :copen<CR>
+
+" open the quickfix list
+nnoremap <Leader>co :copen<CR>
 
 " toggle spell check
 nnoremap <Leader>st :setl spell!<CR>

@@ -446,8 +446,8 @@ nnoremap <Leader>gsh :SignifyToggleHighlight<CR>
 nnoremap <Leader>gsr :SignifyRefresh<CR>
 nnoremap <Leader>gsx :SignifyDebug<CR>
 " hunk jumping
-nmap <Leader>gsj <plug>(signify-next-hunk)
-nmap <Leader>gsk <plug>(signify-prev-hunk)
+nmap <Leader>gsn <plug>(signify-next-hunk)
+nmap <Leader>gsp <plug>(signify-prev-hunk)
 
 " ==
 " == GitGutter
@@ -608,6 +608,8 @@ let g:dispatch_compilers = {
     \ 'bundle exec': '',
     \ 'java': 'javac % && java %<'
     \}
+" open the quickfix from vim-dispatch
+nnoremap <Leader>Co :Copen<CR>
 
 " coc settings
 source ~/.config/nvim/coc.vim
