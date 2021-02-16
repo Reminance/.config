@@ -48,7 +48,7 @@ set shiftwidth=4
 set softtabstop=4
 set list
 set listchars=tab:▸\ ,trail:▫
-set scrolloff=5
+set scrolloff=2
 set indentexpr=
 set backspace=indent,eol,start
 " za，打开或关闭当前折叠；zc 关闭折叠; zo 打开折叠; zM，关闭所有折叠；zR，打开所有折叠
