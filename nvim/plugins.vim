@@ -303,15 +303,14 @@ nnoremap <Leader>F :F  %<left><left>
 nnoremap <M-S-l> :Lines<CR>
 " ripgrep
 nnoremap <M-S-f> :Rg<CR>
+" The Silver Searcher
+nnoremap <M-S-a> :Ag<CR>
 nnoremap <M-S-g> :GFiles<CR>
+nnoremap <M-S-d> :GFiles?<CR>
 nnoremap <M-S-n> :Files<CR>
 nnoremap <M-S-e> :Buffers<CR>
 nnoremap <M-S-h> :History<CR>
-" nnoremap <M-;> :History:<CR>
-" The Silver Searcher
-" nnoremap <M-S-f> :Ag<CR>
-" nnoremap <M-t> :BTags<CR>
-
+nnoremap <M-S-t> :BTags<CR>
 let g:fzf_preview_window='right:60%'
 let g:fzf_commits_log_options='--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 
@@ -495,7 +494,7 @@ command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
 let g:mapleader=','
 let g:maplocalleader=','
 nnoremap <silent> <Leader>      :<C-u>WhichKey ','<CR>
-nnoremap <silent> <localleader> :<C-u>WhichKey  ','<CR>
+nnoremap <silent> <LocalLeader> :<C-u>WhichKey  ','<CR>
 
 " ===
 " === floaterm
@@ -507,13 +506,11 @@ let g:floaterm_keymap_new='<Leader>f+'
 " let g:floaterm_keymap_hide='<Leader>fh'
 " let g:floaterm_keymap_show='<Leader>fs'
 let g:floaterm_keymap_kill='<Leader>fq'
-" floaterm
-" let g:floaterm_gitcommit='floaterm'
-" let g:floaterm_autoinsert=1
-" let g:floaterm_width=0.8
-" let g:floaterm_height=0.8
-" let g:floaterm_wintitle=0
-" let g:floaterm_autoclose=1
+let g:floaterm_opener='edit'
+let g:floaterm_autoinsert=1
+let g:floaterm_width=0.6
+let g:floaterm_height=0.6
+let g:floaterm_autoclose=1
 nnoremap <silent> <Leader>f; :FloatermNew --wintype=popup --height=6<CR>
 nnoremap <silent> <Leader>ff :FloatermNew fzf<CR>
 nnoremap <silent> <Leader>fg :FloatermNew lazygit<CR>

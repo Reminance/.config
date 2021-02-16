@@ -138,6 +138,7 @@ inoremap <M-i> <++>
 nnoremap <M-Space> <Esc>/<++><CR>:nohlsearch<CR>c4l
 inoremap <M-Space> <Esc>/<++><CR>:nohlsearch<CR>c4l
 
+
 " duplicate words
 " nnoremap <Leader>dw /\(\<\w\+\>\)\_s*\1<CR>
 
@@ -243,6 +244,13 @@ nnoremap <Leader>hg :helpgrep
 nnoremap <Leader>hn :cnext<CR>
 nnoremap <Leader>hp :cprev<CR>
 nnoremap <Leader>hl :copen<CR>
+
+" toggle spell check
+nnoremap <Leader>st :setl spell!<CR>
+" fix the last spell bad to the cursor; eg: [shcool], pressing ,sf will fix it to [school]
+nnoremap <Leader>sf [sz=
+" fix and jump back
+" nnoremap <Leader>sf mm[s1z=`m
 
 " templates
 if has("autocmd")
