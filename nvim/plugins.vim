@@ -1,16 +1,15 @@
-" ===
-" === Auto load for the first time
-" ===
+" Vim-plug Auto Load ----------------------------------------------------{{{
+
+" Auto load for the first time
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
     silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
                 \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" Vim-plug Auto Load }}}
+" Plug Install ----------------------------------------------------------{{{
 
-" ===
-" ===================== Install Plugins with Vim-Plug start =====================
-" ===
 call plug#begin('~/.config/nvim/plugged')
 
 " status line
@@ -144,12 +143,12 @@ Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-dispatch'
 
 call plug#end()
-" ===================== Install Plugins with Vim-Plug end =====================
 
+" Plug Install }}}
+" Plug Settings ---------------------------------------------------------{{{
 
-" ===================== Start of Plugin Settings =====================
+" latex {{{
 
-" latex
 " compile to pdf
 " arch requirements sudo pacman -S texlive-most texlive-lanf mupdf zathura
 nnoremap \l :! pdflatex %<CR><CR>
@@ -158,21 +157,19 @@ nnoremap \p :! mupdf $(echo % \| sed 's/tex$/pdf/') & disown<CR><CR>
 " delete the compling output
 nnoremap \c :! ls \| grep -E '*.aux\|*.log\|*.nav\|*.out\|*.snm\|*.toc\|*.pdf' \| xargs rm -rf {}<CR><CR>
 
-" ===
-" === vim-latex-live-preview
-" ===
+" vim-latex-live-preview
 " let g:livepreview_previewer='zathura'
 let g:livepreview_previewer='mupdf'
 let g:livepreview_engine='pdflatex'
 
-" ===
-" === airline
-" ===
+" latex }}}
+" airline {{{
+
 " let g:airline_theme='onedark'
 
-" ===
-" === lightline
-" ===
+" airline }}}
+" lightline {{{
+
 " NearestMethodOrFunction cames from vista function below
       " \ 'colorscheme': 'wombat',
       " \ 'colorscheme': 'gotham',
@@ -187,24 +184,24 @@ let g:lightline = {
       \ },
       \ }
 
-" ===
-" === colorscheme
-" ===
+" lightline }}}
+" colorscheme {{{
+
 let g:SnazzyTransparent=1
 colorscheme snazzy
 " colorscheme gotham
 " colorscheme gruvbox
 " colorscheme hybrid
 
-" ===
-" === vim-peekaboo
-" ===
+" colorscheme }}}
+" vim-peekaboo {{{
+
 " suppress the default key bindings if you need imap <C-r> keybinding
 " let g:peekaboo_ins_prefix='<S>'
 
-" ===
-" === NERDTree
-" ===
+" vim-peekaboo }}}
+" NERDTree {{{
+
 nnoremap <Leader>nt :NERDTreeToggle<CR>
 "let NERDTreeMapOpenExpl=""
 "let NERDTreeMapUpdir=""
@@ -217,9 +214,7 @@ nnoremap <Leader>nt :NERDTreeToggle<CR>
 "let NERDTreeMapCloseDir=""
 "let NERDTreeMapChangeRoot=""
 
-" ==
-" == NERDTree-git
-" ==
+" NERDTree-git
 let g:NERDTreeIndicatorMapCustom={
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
@@ -232,30 +227,31 @@ let g:NERDTreeIndicatorMapCustom={
     \ "Unknown"   : "?"
     \ }
 
-" " ==
-" " == wildfire
-" " ==
+" NERDTree }}}
+" wildfire {{{
+
 " " This selects the next closest text object.
 " nnoremap <CR> <plug>(wildfire-fuel)
 " " this selects the previous closest text object.
 " " vmap <C-Space> <plug>(wildfire-water)
 " let g:wildfire_objects=["i'", 'i"', "i>", "i)", "i]", "i}", "ip", "it"]
 
-" ===
-" === ale
-" ===
+" wildfire }}}
+" ale {{{
+
 "let b:ale_linters=['pylint']
 "let b:ale_fixers=['autopep8', 'yapf']
 
-" ===
-" === Tagbar might need sudo pacman -S ctags
-" ===
+" ale }}}
+" Tagbar {{{
+
+" Tagbar might need sudo pacman -S ctags
 set tags=./.tags;,.tags
 nnoremap <silent> T :TagbarOpenAutoClose<CR>
 
-" ===
-" === MarkdownPreview
-" ===
+" Tagbar }}}
+" MarkdownPreview {{{
+
 let g:mkdp_auto_start=0
 let g:mkdp_auto_close=1
 let g:mkdp_refresh_slow=0
@@ -279,27 +275,27 @@ let g:mkdp_highlight_css=''
 let g:mkdp_port=''
 let g:mkdp_page_title='「${name}」'
 
-" ===
-" === vim-table-mode
-" ===
+" MarkdownPreview }}}
+" vim-table-mode {{{
+
 nnoremap <Leader>tm :TableModeToggle<CR>
 
-" ===
-" === vim-easymotion
-" ===
+" vim-table-mode }}}
+" vim-easymotion {{{
+
 " let g:EasyMotion_do_mapping=0
 " let g:EasyMotion_do_shade=0
 " let g:EasyMotion_smartcase=1
 " nmap <Leader>e <Plug>(easymotion-bd-f2)
 
-" ===
-" === Far.vim
-" ===
+" vim-easymotion }}}
+" Far.vim {{{
+
 nnoremap <Leader>F :F  %<left><left>
 
-" ===
-" === FZF
-" ===
+" Far.vim }}}
+" fzf.vim {{{
+
 nnoremap <M-S-l> :Lines<CR>
 " ripgrep
 nnoremap <M-S-f> :Rg<CR>
@@ -316,16 +312,16 @@ let g:fzf_preview_window='right:60%'
 let g:fzf_commits_log_options='--graph --color=always --format="%C(auto)%h%d %s %C(blue)%C(bold)%cr"'
 " nnoremap <M-S-c> :Commits<CR>
 
-" ===
-" === RANGER
-" ===
+" fzf.vim }}}
+" ranger {{{
+
 " suppress the default key bindings
 let g:ranger_map_keys=''
 nnoremap <Leader>ra :Ranger<CR>
 
-" ===
-" === vim-indent-guide
-" ===
+" ranger }}}
+" vim-indent-guide {{{
+
 " " suppress the default key bindings
 " " autocmd WinEnter * silent! unmap ,ig
 " nmap <silent> <Leader><Leader>ig <Plug>IndentGuidesToggle
@@ -336,14 +332,14 @@ nnoremap <Leader>ra :Ranger<CR>
 " " autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
 " " autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 
-" ===
-" === indentLine
-" ===
+" vim-indent-guide }}}
+" indentLine {{{
+
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
-" ===
-" === Undotree
-" ===
+" indentLine }}}
+" Undotree {{{
+
 "map P :UndotreeToggle<CR>
 "let g:undotree_DiffAutoOpen=1
 "let g:undotree_SetFocusWhenToggle=1
@@ -358,14 +354,14 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊']
     "nmap <buffer> K 5<plug>UndotreePreviousState
 "endfunc
 
-" ===
-" === rainbow
-" ===
+" Undotree }}}
+" rainbow {{{
+
 let g:rainbow_active=1
 
-" ===
-" === vim-bookmarks
-" ===
+" rainbow }}}
+" vim-bookmarks {{{
+
 let g:bookmark_no_default_key_mappings=1
 nmap <Leader>mt <Plug>BookmarkToggle
 nmap <Leader>ma <Plug>BookmarkAnnotate
@@ -386,10 +382,12 @@ let g:bookmark_center=1
 let g:bookmark_auto_close=1
 let g:bookmark_location_list=1
 
-" ==
-" == vim-startify
-" ==
+" vim-bookmarks }}}
+" vim-startify {{{
+
 let g:startify_custom_header='startify#pad(startify#fortune#cowsay())'
+" let g:startify_custom_header='startify#pad(["REMINANCE"])'
+" let g:startify_custom_header=[]
 let g:startify_session_autoload=1
 let g:startify_session_dir='~/.config/nvim/session'
 let g:startify_lists=[
@@ -415,25 +413,25 @@ nnoremap <Leader>sl :SLoad! Session.vim<CR>
 nnoremap <Leader>sd :SDelete!<CR>
 nnoremap <Leader>sc :SClose<CR>
 
-" ==
-" == vim-surround
-" == cs"'    cs'</q>    cst"    ds"    ysiw]    yss)    yss"
-" ==
+" vim-startify }}}
+" vim-surround {{{
+
+" cs"'    cs'</q>    cst"    ds"    ysiw]    yss)    yss"
 " suppress the default key bindings
 let g:surround_no_insert_mappings=1
 
-" ===
-" === vim-fugitive
-" ===
+" vim-surround }}}
+" vim-fugitive {{{
+
 nnoremap <Leader>gb :Gblame<CR>
 nnoremap <Leader>gd :Gvdiffsplit<CR>
 nnoremap <Leader>dh :diffget //2<CR>
 nnoremap <Leader>dl :diffget //3<CR>
 nnoremap <Leader>gg :G<CR>
 
-" ==
-" == vim-signify
-" ==
+" vim-fugitive }}}
+" vim-signify {{{
+
 " 设置要检查的VCS
 let g:signify_vcs_list=['git']
 " 插入模式下指定updatetime时间后无操作将缓存区交换文件写入磁盘
@@ -454,9 +452,9 @@ nnoremap <Leader>gsx :SignifyDebug<CR>
 nmap <Leader>gsn <plug>(signify-next-hunk)
 nmap <Leader>gsp <plug>(signify-prev-hunk)
 
-" ==
-" == GitGutter
-" ==
+" vim-signify }}}
+" GitGutter {{{
+
 ""let g:gitgutter_signs=0
 "let g:gitgutter_map_keys=0
 "let g:gitgutter_override_sign_column_highlight=1
@@ -468,9 +466,9 @@ nmap <Leader>gsp <plug>(signify-prev-hunk)
 "nnoremap <Leader>g[ :GitGutterPrevHunk<CR>
 "nnoremap <Leader>g] :GitGutterNextHunk<CR>
 
-" ===
-" === vimspector
-" ===
+" GitGutter }}}
+" vimspector {{{
+
 let g:vimspector_enable_mappings='HUMAN'
 let g:vimspector_install_gadgets=[ 'vscode-cpptools', 'debugpy', 'vscode-go' ]
 " let g:vimspector_base_dir=expand( '$HOME/.config/nvim/vimspector-config' )
@@ -491,9 +489,9 @@ command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
 " sign define vimspectorBPDisabled text=☞ texthl=Normal
 " sign define vimspectorPC text=🔶 texthl=SpellBad
 
-" ===
-" === which-key
-" ===
+" vimspector }}}
+" which-key {{{
+
 " let g:mapleader="\<Space>"
 " nnoremap <silent> <Leader>      :<C-u>WhichKey '<Space>'<CR>
 let g:mapleader=','
@@ -501,9 +499,9 @@ let g:maplocalleader=','
 nnoremap <silent> <Leader>      :<C-u>WhichKey ','<CR>
 nnoremap <silent> <LocalLeader> :<C-u>WhichKey  ','<CR>
 
-" ===
-" === floaterm
-" ===
+" which-key }}}
+" floaterm {{{
+
 let g:floaterm_keymap_toggle='<Leader>ft'
 let g:floaterm_keymap_next='<Leader>f='
 let g:floaterm_keymap_prev='<Leader>f-'
@@ -524,9 +522,9 @@ nnoremap <silent> <Leader>fp :FloatermNew python<CR>
 nnoremap <silent> <Leader>fh :FloatermNew htop<CR>
 nnoremap <silent> <Leader>fd :FloatermNew ncdu<CR>
 
-" ===
-" === vim-dadbod-ui
-" ===
+" floaterm }}}
+" vim-dadbod-ui {{{
+
 " nnoremap <silent> <Leader>dt :tabe<CR>:tabmove<CR>:DBUIToggle<CR>
 nnoremap <silent> <Leader>dt :DBUIToggle<CR>
 nnoremap <silent> <Leader>da :DBUIAddConnection<CR>
@@ -560,7 +558,9 @@ let g:db_ui_table_helpers={
 let g:db_ui_winwidth=60
 let g:db_ui_default_query='select * from "{table}" limit 10'
 
-" vista.vim
+" vim-dadbod-ui }}}
+" vista {{{
+
 function! NearestMethodOrFunction() abort
   return get(b:, 'vista_nearest_method_or_function', '')
 endfunction
@@ -576,7 +576,9 @@ let g:vista#renderer#icons={
 \   "variable": "\uf71b",
 \  }
 
-" leetcode.vim
+" vista }}}
+" leetcode.vim {{{
+
 " let g:leetcode_china=1
 " " Values: 'cpp', 'java', 'python', 'python3', 'csharp', 'javascript', 'ruby', 'swift', 'golang', 'scala', 'kotlin', 'rust'. Default:'cpp'.
 " let g:leetcode_solution_filetype='java'
@@ -587,11 +589,16 @@ let g:vista#renderer#icons={
 " nnoremap <Leader>ls :LeetCodeSubmit<CR>
 " nnoremap <Leader>li :LeetCodeSignIn<CR>
 
-" vim-easy-align
+" leetcode.vim }}}
+" vim-easy-align {{{
+
 " Start interactive EasyAlign in visual mode (e.g. vipga); custom:vip<Leader>ea
 xmap <Leader>ea <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip); custom:<Leader>eaip
 nmap <Leader>ea <Plug>(EasyAlign)
+
+" vim-easy-align }}}
+" vim-dispatch {{{
 
 " tpope/vim-dispatch
 " By default dispatch.vim provides `<CR> for :Dispatch<CR>. You can find all
@@ -616,6 +623,12 @@ let g:dispatch_compilers = {
 " open the quickfix from vim-dispatch
 nnoremap <Leader>Co :Copen<CR>
 
+" vim-dispatch }}}
+" coc.nvim {{{
+
 " coc settings
 source ~/.config/nvim/coc.vim
-" ===================== End of Plugin Settings =====================
+
+" coc.nvim }}}
+
+" Plug Settings }}}

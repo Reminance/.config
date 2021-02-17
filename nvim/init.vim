@@ -1,69 +1,144 @@
-" ===================== Editor behavior =====================
+" ----------------------------------- VIMRC ------------------------------------
+" PreSetup --------------------------------------------------------------{{{
+
 set nocompatible
-" set hidden " 允许在有未保存的修改时切换缓冲区，此时的修改由 vim 负责保存
-set cursorline
-let mapleader=","
 exe "nohlsearch"
-set number
-set relativenumber
-set wrap
-set pumheight=10
-set showcmd
-set path+=**
-set wildmenu
-" set spell
-" set hlsearch
-set incsearch
-set ignorecase
-set smartcase
-
-" gui
-syntax on
-set background=dark
-set termguicolors " enable true colors support
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-set t_Co=256
-
-" for better coc experience
-set updatetime=200
-set signcolumn=yes
-
-filetype on
+filetype off
 filetype indent on
 filetype plugin on
 filetype plugin indent on
-set mouse=a
-" set clipboard^=unnamed,unnnamedplus
+
+" PreSetup }}}
+" Basic Options ---------------------------------------------------------{{{
+
+" Basic Settings {{{
+
+" let $BASH_ENV = "~/.bash_profile"
+" set shell=/bin/bash
+
+set hidden " 允许在有未保存的修改时切换缓冲区，此时的修改由 vim 负责保存
+set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 set fileformats=unix,dos,mac
-" (:h backspace?), default "indent,eol,start"; eol让退格键可以退到上一行
-set backspace=indent,start
-let &t_ut=''
-set textwidth=80
-set tabstop=4
-set sw=4
-set shiftwidth=4
-set expandtab
-set smarttab
-set shiftwidth=4
-set softtabstop=4
-set list
-set listchars=tab:▸\ ,trail:▫
-set scrolloff=2
-set indentexpr=
-" za，打开或关闭当前折叠；zc 关闭折叠; zo 打开折叠; zM，关闭所有折叠；zR，打开所有折叠
-set foldmethod=indent
-set foldlevel=99
-set foldenable
+set modelines=0
+set autoindent
+set showmode
+set showcmd
 set ttyfast "should make scrolling faster
 set lazyredraw "same as above
 let &t_SI="\<Esc>]50;CursorShape=1\x7"
 let &t_SR="\<Esc>]50;CursorShape=2\x7"
 let &t_EI="\<Esc>]50;CursorShape=0\x7"
 set laststatus=2
-set noshowmode
 set autochdir
+set ruler
+set linebreak
+set colorcolumn=+1
+set list
+set listchars=tab:▸\ ,trail:▫,eol:¬,extends:❯,precedes:❮
+set showbreak=↪
+set matchtime=3
+set autowrite
+set autoread
+set shiftround
+set title
+set signcolumn=yes
+
+" Save when losing focus
+au FocusLost * :silent! wall
+
+" Resize splits when the window is resized
+au VimResized * :wincmd =
+
+" fillchars
+set fillchars=diff:⣿,vert:│
+set fillchars=diff:⣿,vert:\|
+
+" Don't try to highlight lines longer than 800 characters.
+set synmaxcol=800
+
+" (:h backspace?), default "indent,eol,start"; eol让退格键可以退到上一行
+set backspace=indent,start
+
+" Basic Settings }}}
+" Leader Bindings {{{
+
+let mapleader=","
+let maplocalleader = "\\"
+
+" Leader Bindings }}}
+" Tabs, spaces, wrapping {{{
+
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set smarttab
+set wrap
+set textwidth=80
+
+" Tabs, spaces, wrapping }}}
+" Line Number {{{
+
+set number
+set relativenumber
+
+" Line Number }}}
+" Cursorline & ColorColumn {{{
+
+set cursorline
+" Only show cursorline in the current window and in normal mode.
+augroup cursorline
+    au!
+    au WinLeave,InsertEnter * set nocursorline
+    au WinEnter,InsertLeave * set cursorline
+augroup END
+augroup colorcolumn
+    au!
+    au ColorScheme * highlight ColorColumn term=reverse ctermbg=1 guifg=#f9f9ff guibg=#242729
+    au ColorScheme * highlight Folded term=reverse ctermbg=Black guifg=#00d6d6 guibg=NONE
+augroup end
+
+" Cursorline & ColorColumn }}}
+" Gui {{{
+
+syntax on
+set background=dark
+set termguicolors " enable true colors support
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+set t_Co=256
+let &t_ut=''
+
+" Gui }}}
+" Timeout {{{
+
+" Time out on key codes but not mappings.
+" Basically this makes terminal Vim work sanely.
+set timeout
+set timeoutlen=500
+set ttimeout
+set ttimeoutlen=10
+" for better coc experience
+set updatetime=200
+
+" Timeout }}}
+" Better Completion {{{
+
+" (:help 'complete')
+" set complete=.,w,b,u,t
+" set completeopt=longest,menuone,preview
+
+" Better Completion }}}
+" Line Return {{{
+
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif " make cursor remain the position of last quit
+
+" Line Return }}}
+" Backups {{{
+
+set backup                        " enable backups
+set noswapfile
+
 silent !mkdir -p ~/.config/nvim/tmp/backup
 silent !mkdir -p ~/.config/nvim/tmp/undo
 "silent !mkdir -p ~/.config/nvim/tmp/sessions
@@ -75,13 +150,62 @@ if has('persistent_undo')
     set undodir=~/.config/nvim/tmp/undo,.
 endif
 
-" show the vim mappings
-nnoremap <leader>vmn :nmap 
-nnoremap <leader>vmi :imap 
-nnoremap <leader>vmv :vmap 
+" Backups }}}
+" Wildmenu Completion {{{
 
-" You can't stop me
-cnoremap w!! w !sudo tee %
+set wildmenu
+set wildmode=list:longest
+set wildignore+=.hg,.git,.svn                    " Version control
+set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
+set wildignore+=*.spl                            " compiled spelling word lists
+set wildignore+=*.sw?                            " Vim swap files
+set wildignore+=*.DS_Store                       " OSX bullshit
+set wildignore+=*.luac                           " Lua byte code
+set wildignore+=migrations                       " Django migrations
+set wildignore+=*.pyc                            " Python byte code
+set wildignore+=*.orig                           " Merge resolution files
+
+" Clojure/Leiningen
+set wildignore+=classes
+set wildignore+=lib
+
+" Wildmenu Completion }}}
+" Highlight VCS Conflict Markers {{{
+
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
+" Highlight VCS Conflict Markers }}}
+
+" Basic Options }}}
+" Machine Specific Settings ---------------------------------------------{{{
+
+" Create a _machine_specific.vim file to adjust machine specific stuff, like python interpreter location
+let has_machine_specific_file=1
+if empty(glob('~/.config/nvim/_machine_specific.vim'))
+    let has_machine_specific_file=0
+    silent! exe "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
+endif
+source ~/.config/nvim/_machine_specific.vim
+
+" Machine Specific Settings }}}
+" Basic Mappings --------------------------------------------------------{{{
+
+" Save & quit
+nnoremap s <nop>
+nnoremap S :w<CR>
+inoremap <C-s> <Esc>:w<CR>
+nnoremap Q :q<CR>
+nnoremap R :source $MYVIMRC<CR>
+
+" show the vim mappings
+nnoremap <leader>vmn :nmap
+nnoremap <leader>vmi :imap
+nnoremap <leader>vmv :vmap
+
+" Sudo to write
+cnoremap w!! w !sudo tee % >/dev/null
 
 " normal mode bindings
 nnoremap <C-Down> :res +5<CR>
@@ -89,48 +213,12 @@ nnoremap <C-Up> :res -5<CR>
 nnoremap <C-Left> :vertical resize-5<CR>
 nnoremap <C-Right> :vertical resize+5<CR>
 
-" ===================== Cursor Movement =====================
-" insert mode bindings(emacs like)
-inoremap <C-a> <C-o>I
-inoremap <C-e> <C-o>A
-inoremap <M-a> <Esc>{jI
-inoremap <M-e> <Esc>}kA
-inoremap <C-b> <Left>
-inoremap <C-f> <Right>
-inoremap <M-f> <S-Right>
-inoremap <M-b> <S-Left>
-inoremap <C-d> <Del>
-inoremap <C-k> <C-o>D
-inoremap <M-k> <Esc>ddkA
-inoremap <S-Del> <Esc>ddkA
-inoremap <C-g> <Esc>
-map <C-g> <Esc>
-" inoremap <C-n> <Down>
-" inoremap <C-p> <Up>
-
-" use the system clipboard
-" might need to install a system clipboard tool such as : sudo pacman -S xclip / xsel
-noremap Y "+y
-noremap P "+p
-
-" command line mode bindings
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
-cnoremap <C-f> <Right>
-cnoremap <C-b> <Left>
-cnoremap <C-d> <Del>
-cnoremap <M-f> <S-Right>
-cnoremap <M-b> <S-Left>
-
-" ===================== Basic Mappings =====================
+" Basic Mappings
 nnoremap <Leader><Space> :nohlsearch<CR>
 " quit all the other windows except for current  " (:h only)(<C-w>o)
 nnoremap <Leader>qw :only<CR>
 " quit all the other tabs except for current  " (:h tabonly)
 nnoremap <Leader>qt :tabonly<CR>
-
-" Opening a terminal window
-" nnoremap <Leader>/ :term<CR>
 
 " insert a <++>
 inoremap <M-i> <++>
@@ -138,24 +226,12 @@ inoremap <M-i> <++>
 nnoremap <M-Space> <Esc>/<++><CR>:nohlsearch<CR>c4l
 inoremap <M-Space> <Esc>/<++><CR>:nohlsearch<CR>c4l
 
+" indent blocks and keep selected
+vnoremap < <gv
+vnoremap > >gv
 
 " duplicate words
 " nnoremap <Leader>dw /\(\<\w\+\>\)\_s*\1<CR>
-
-" Open the vimrc file anytime
-nnoremap <Leader><Leader>i :e ~/.config/nvim/init.vim<CR>
-" Open the function.vim file anytime
-nnoremap <Leader><Leader>f :e ~/.config/nvim/function.vim<CR>
-" Open the _md_snippets.vim file anytime
-nnoremap <Leader><Leader>m :e ~/.config/nvim/snippets/_md_snippets.vim<CR>
-" Open the presentation.vim file anytime
-nnoremap <Leader><Leader>P :e ~/.config/nvim/mode/presentation.vim<CR>
-" Open the plugins.vim file anytime
-nnoremap <Leader><Leader>p :e ~/.config/nvim/plugins.vim<CR>
-" Open the coc.vim file anytime
-nnoremap <Leader><Leader>c :e ~/.config/nvim/coc.vim<CR>
-" Open the coc-settings.json file anytime
-nnoremap <Leader><Leader>s :e ~/.config/nvim/coc-settings.json<CR>
 
 " Open up lazygit
 nnoremap <C-\>g :tabe<CR>:tabmove<CR>:term lazygit<CR>:setl nonu<CR>:setl nornu<CR>a
@@ -169,75 +245,13 @@ nnoremap <C-\><C-k> :set nosplitbelow<CR>:new<CR>:term<CR>:setl nonu<CR>:setl no
 nnoremap <C-\>k :set nosplitbelow<CR>:new<CR>:term<CR>:setl nonu<CR>:setl nornu<CR>a
 nnoremap <C-\><C-l> :set splitright<CR>:vnew<CR>:term<CR>:setl nonu<CR>:setl nornu<CR>a
 nnoremap <C-\>l :set splitright<CR>:vnew<CR>:term<CR>:setl nonu<CR>:setl nornu<CR>a
-tnoremap <C-\> <C-\><C-n>
-
-" ===================== Quick Navigation =====================
-" nnoremap H 3h
-" nnoremap J 3j
-" nnoremap K 3k
-" nnoremap L 3l
-
-" ===================== Save & quit =====================
-nnoremap s <nop>
-nnoremap S :w<CR>
-inoremap <C-s> <Esc>:w<CR>
-nnoremap Q :q<CR>
-nnoremap R :source $MYVIMRC<CR>
-
-" ===================== split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
-nnoremap sh :set nosplitright<CR>:vnew<CR>
-nnoremap sj :set splitbelow<CR>:new<CR>
-nnoremap sk :set nosplitbelow<CR>:new<CR>
-nnoremap sl :set splitright<CR>:vnew<CR>
-nnoremap seh :set nosplitright<CR>:vsplit 
-nnoremap sej :set splitbelow<CR>:split 
-nnoremap sek :set nosplitbelow<CR>:split 
-nnoremap sel :set splitright<CR>:vsplit 
-
-" ===================== Place the two screens side by side (vertical)
-nnoremap sm <C-w>t<C-w>H
-" ===================== Place the two screens up and down (horizontal)
-nnoremap sn <C-w>t<C-w>K
-
-" ===================== Rotate screens
-nnoremap srm <C-w>b<C-w>H
-nnoremap srn <C-w>b<C-w>K
-
-" ===================== Window management
-" Use <ALT> + new arrow keys for moving the cursor around windows
-nnoremap <M-h> <C-w>h
-nnoremap <M-j> <C-w>j
-nnoremap <M-k> <C-w>k
-nnoremap <M-l> <C-w>l
-" Use <Leader> + new arrow keys for moving the windows
-nnoremap <Leader>h <C-w>H
-nnoremap <Leader>j <C-w>J
-nnoremap <Leader>k <C-w>K
-nnoremap <Leader>l <C-w>L
-
-" ===================== Tab management
-" Create a new tab
-nnoremap <M-n> :tabe<CR>
-nnoremap <M-q> :tabclose<CR>
-" nnoremap <M-n> :tabnew 
-" nnoremap <Leader>n :tabe<CR>
-" switching tabs
-nnoremap <M-,> :-tabnext<CR>
-nnoremap <M-.> :+tabnext<CR>
-" Move the tabs
-nnoremap <M-<> :-tabmove<CR>
-nnoremap <M->> :+tabmove<CR>
-" Map alt-x keys to jump to a tab
-for i in range(1, 8)
-  exe "nnoremap <M-" . i . "> :tabnext " . i . "<CR>"
-endfor
-nnoremap <M-9> :tablast<CR>
+tnoremap <Esc> <C-\><C-n><Esc><CR>
 
 " reading source into vim(:h read) or :r! cat ~/.bashrc
-nnoremap <M-S-r> :r 
+nnoremap <M-S-r> :r
 
 " help shortcut(:helpgrep i_^n)
-nnoremap <Leader>hg :helpgrep 
+nnoremap <Leader>hg :helpgrep
 nnoremap <Leader>hn :cnext<CR>
 nnoremap <Leader>hp :cprev<CR>
 
@@ -257,50 +271,530 @@ nnoremap <Leader>Cp :<C-r>"
 " vim tutor
 nnoremap <Leader>vt :Tutor<CR>
 
-" templates
-if has("autocmd")
-    augroup templates
-        autocmd BufNewFile *.sh 0r ~/.config/nvim/templates/sh.tpl
-        autocmd BufNewFile *.c 0r ~/.config/nvim/templates/c.tpl
-        autocmd BufNewFile *.java 0r ~/.config/nvim/templates/java.tpl
-        autocmd BufNewFile *.go 0r ~/.config/nvim/templates/go.tpl
-        autocmd BufNewFile *.py 0r ~/.config/nvim/templates/py.tpl
-        autocmd BufNewFile *.html 0r ~/.config/nvim/templates/html.tpl
-    augroup END
-endif
+" Clean trailing whitespace
+nnoremap <leader>ww mz:%s/\s\+$//<cr>:let @/=''<CR>`z
 
-" ===
-" === for assembly
-" ===
+" Panic Button
+nnoremap <F9> mzggg?G`z
+
+" Source
+nnoremap <leader>Sc :so %<CR>
+vnoremap <leader>Ss y:execute @@<CR>:echo 'Sourced selection.'<CR>
+nnoremap <leader>Sl ^vg_y:execute @@<CR>:echo 'Sourced line.'<CR>
+
+" Select (charwise) the contents of the current line, excluding indentation.
+" Great for pasting Python lines into REPLs.
+nnoremap vv ^vg_
+
+" templates
+augroup templates
+    autocmd!
+    autocmd BufNewFile *.sh 0r ~/.config/nvim/templates/sh.tpl
+    autocmd BufNewFile *.c 0r ~/.config/nvim/templates/c.tpl
+    autocmd BufNewFile *.java 0r ~/.config/nvim/templates/java.tpl
+    autocmd BufNewFile *.go 0r ~/.config/nvim/templates/go.tpl
+    autocmd BufNewFile *.py 0r ~/.config/nvim/templates/py.tpl
+    autocmd BufNewFile *.html 0r ~/.config/nvim/templates/html.tpl
+augroup END
+
+" Basic Mappings }}}
+" Searching And Movement ------------------------------------------------{{{
+
+set ignorecase
+set smartcase
+set incsearch
+set showmatch
+set hlsearch
+set gdefault
+
+set scrolloff=2
+
+" Cursor Movement
+" insert mode bindings(emacs like) {{{
+inoremap <C-a> <C-o>I
+inoremap <C-e> <C-o>A
+inoremap <M-a> <Esc>{jI
+inoremap <M-e> <Esc>}kA
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
+inoremap <M-f> <S-Right>
+inoremap <M-b> <S-Left>
+inoremap <C-d> <Del>
+inoremap <C-k> <C-o>D
+inoremap <M-k> <Esc>ddk$
+nnoremap <M-k> ddk$
+inoremap <S-Del> <Esc>ddkA
+inoremap <C-g> <Esc>
+map <C-g> <Esc>
+" inoremap <C-n> <Down>
+" inoremap <C-p> <Up>
+" insert mode bindings(emacs like) }}}
+
+" Quick Navigation {{{
+" nnoremap H 3h
+" nnoremap J 3j
+" nnoremap K 3k
+" nnoremap L 3l
+" Quick Navigation }}}
+
+" command line mode bindings {{{
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-f> <Right>
+cnoremap <C-b> <Left>
+cnoremap <C-d> <Del>
+cnoremap <M-f> <S-Right>
+cnoremap <M-b> <S-Left>
+" command line mode bindings }}}
+
+" Visual Mode */# from Scrooloose {{{
+
+function! s:VSetSearch()
+  let temp = @@
+  norm! gvy
+  let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
+  let @@ = temp
+endfunction
+
+vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
+vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
+
+" Visual Mode */# from Scrooloose }}}
+
+" List navigation {{{
+
+nnoremap <Left>  :cprev<cr>zvzz
+nnoremap <Right> :cnext<cr>zvzz
+nnoremap <Up>    :lprev<cr>zvzz
+nnoremap <Down>  :lnext<cr>zvzz
+
+" }}}
+
+" Searching And Movement }}}
+" Window Management -----------------------------------------------------{{{
+
+" split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
+nnoremap sh :set nosplitright<CR>:vnew<CR>
+nnoremap sj :set splitbelow<CR>:new<CR>
+nnoremap sk :set nosplitbelow<CR>:new<CR>
+nnoremap sl :set splitright<CR>:vnew<CR>
+nnoremap seh :set nosplitright<CR>:vsplit
+nnoremap sej :set splitbelow<CR>:split
+nnoremap sek :set nosplitbelow<CR>:split
+nnoremap sel :set splitright<CR>:vsplit
+
+" Place the two screens side by side (vertical)
+nnoremap sm <C-w>t<C-w>H
+" Place the two screens up and down (horizontal)
+nnoremap sn <C-w>t<C-w>K
+
+" Rotate screens
+nnoremap srm <C-w>b<C-w>H
+nnoremap srn <C-w>b<C-w>K
+
+" Window management
+" Use <ALT> + new arrow keys for moving the cursor around windows
+nnoremap <M-h> <C-w>h
+nnoremap <M-j> <C-w>j
+nnoremap <M-k> <C-w>k
+nnoremap <M-l> <C-w>l
+" Use <Leader> + new arrow keys for moving the windows
+nnoremap <Leader>h <C-w>H
+nnoremap <Leader>j <C-w>J
+nnoremap <Leader>k <C-w>K
+nnoremap <Leader>l <C-w>L
+
+" Don't move on *
+nnoremap <silent> * mm*`m
+
+" Window Management }}}
+" Tab Management --------------------------------------------------------{{{
+
+" Create a new tab
+nnoremap <M-n> :tabe<CR>
+nnoremap <M-q> :tabclose<CR>
+" nnoremap <M-n> :tabnew
+" nnoremap <Leader>n :tabe<CR>
+" switching tabs
+nnoremap <M-,> :-tabnext<CR>
+nnoremap <M-.> :+tabnext<CR>
+" Move the tabs
+nnoremap <M-<> :-tabmove<CR>
+nnoremap <M->> :+tabmove<CR>
+" Map alt-x keys to jump to a tab
+for i in range(1, 8)
+  exe "nnoremap <M-" . i . "> :tabnext " . i . "<CR>"
+endfor
+nnoremap <M-9> :tablast<CR>
+
+" Tab Management }}}
+" Open Settings File ----------------------------------------------------{{{
+
+" Open the vimrc file anytime
+nnoremap <Leader><Leader>i :e ~/.config/nvim/init.vim<CR>
+" Open the function.vim file anytime
+nnoremap <Leader><Leader>f :e ~/.config/nvim/function.vim<CR>
+" Open the _md_snippets.vim file anytime
+nnoremap <Leader><Leader>m :e ~/.config/nvim/snippets/_md_snippets.vim<CR>
+" Open the presentation.vim file anytime
+nnoremap <Leader><Leader>P :e ~/.config/nvim/mode/presentation.vim<CR>
+" Open the plugins.vim file anytime
+nnoremap <Leader><Leader>p :e ~/.config/nvim/plugins.vim<CR>
+" Open the coc.vim file anytime
+nnoremap <Leader><Leader>c :e ~/.config/nvim/coc.vim<CR>
+" Open the coc-settings.json file anytime
+nnoremap <Leader><Leader>s :e ~/.config/nvim/coc-settings.json<CR>
+
+" Open Settings File }}}
+" Clipboard -------------------------------------------------------------{{{
+
+" set clipboard^=unnamed,unnnamedplus
+
+" use the system clipboard
+" might need to install a system clipboard tool such as : sudo pacman -S xclip / xsel
+noremap Y "+y
+noremap P "+p
+
+" Clipboard }}}
+" Ultisnips -------------------------------------------------------------{{{
+
+function! s:edit_snippets(snippets_name)
+    exe 'vsp ~/.config/nvim/Ultisnips/'.a:snippets_name
+endfunction
+command! -bang -nargs=* EditUtilSnips call fzf#run({
+            \   'source': 'ls -1 ~/.config/nvim/Ultisnips',
+            \   'down': 20,
+            \   'sink': function('<sid>edit_snippets')
+            \ })
+
+" Ultisnips }}}
+" Folding ---------------------------------------------------------------{{{
+
+set foldlevelstart=0
+
+" Tab to toggle folds.
+nnoremap <Tab> za
+vnoremap <Tab> za
+
+" Make <S-Tab> recursively open whatever fold we're in, even if it's partially open.
+nnoremap <S-Tab> zczO
+
+function! MyFoldText() " {{{
+    let line = getline(v:foldstart)
+    let nucolwidth = &fdc + &number * &numberwidth
+    let windowwidth = winwidth(0) - nucolwidth - 3
+    let foldedlinecount = v:foldend - v:foldstart
+
+    " expand tabs into spaces
+    let onetab = strpart('          ', 0, &tabstop)
+    let line = substitute(line, '\t', onetab, 'g')
+    let line = substitute(line, split(&foldmarker, ",")[0], v:foldstart . '-' . v:foldend, 'g')
+    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+    " echo line
+    let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
+    return line . repeat(" ",fillcharcount) . foldedlinecount . ' '
+endfunction " }}}
+set foldtext=MyFoldText()
+
+" Folding }}}
+" Assembly --------------------------------------------------------------{{{
+
+" for assembly
 " changeToHex
 " nnoremap <M-\> :%!xxd<CR>
 " reverseFromHex
 " nnoremap <M-\|> :%!xxd -r<CR>
 " 备注: Vim 的操作大概涉及的场景有：读取，写入，缓冲区，选项，启动和退出，杂项。
-autocmd BufEnter *.asm,*.inc,*.nas :setlocal filetype=nasm
+augroup filetype_asm
+    au!
+    au BufEnter *.asm,*.inc,*.nas :setlocal filetype=asm
+    au FileType asm setlocal noexpandtab shiftwidth=8 tabstop=8 softtabstop=8
+augroup END
 
-" ===
-" === markdown settings
-" ===
+" Assembly }}}
+" C  --------------------------------------------------------------------{{{
+
+augroup filetype_c
+    au!
+    au FileType c setlocal foldmethod=marker foldmarker={,}
+augroup END
+
+" C  }}}
+" Java ------------------------------------------------------------------{{{
+
+augroup filetype_java
+    au!
+    au FileType java setlocal foldmethod=marker
+    au FileType java setlocal foldmarker={,}
+augroup END
+
+" Java }}}
+" JavaScript ------------------------------------------------------------{{{
+
+augroup filetype_javascript
+    au!
+    au FileType javascript setlocal foldmethod=marker
+    au FileType javascript setlocal foldmarker={,}
+    au FileType javascript call MakeSpacelessBufferIabbrev('clog', 'console.log();<left><left>')
+    " Make {<cr> insert a pair of brackets in such a way that the cursor is correctly
+    " positioned inside of them AND the following code doesn't get unfolded.}
+    au Filetype javascript inoremap <buffer> {<cr> {}<left><cr><space><space><space><space>.<cr><esc>kA<bs>
+    " Prettify a hunk of JSON with <localleader>p
+    au FileType javascript nnoremap <buffer> <localleader>p ^vg_:!python -m json.tool<cr>
+    au FileType javascript vnoremap <buffer> <localleader>p :!python -m json.tool<cr>
+augroup END
+
+" JavaScript }}}
+" CSS And LessCSS -------------------------------------------------------{{{
+
+augroup filetype_css
+    au!
+    au BufNewFile,BufRead *.less setlocal filetype=less
+    au Filetype less,css setlocal foldmethod=marker
+    au Filetype less,css setlocal foldmarker={,}
+    au Filetype less,css setlocal omnifunc=csscomplete#CompleteCSS
+    au Filetype less,css setlocal iskeyword+=-
+    au BufNewFile,BufRead *.less,*.css nnoremap <buffer> <localleader>S ?{<CR>jV/\v^\s*\}?$<CR>k:sort<CR>:noh<CR>
+    " Make {<cr> insert a pair of brackets in such a way that the cursor is correctly
+    " positioned inside of them AND the following code doesn't get unfolded.
+    au BufNewFile,BufRead *.less,*.css inoremap <buffer> {<cr> {}<left><cr><space><space><space><space>.<cr><esc>kA<bs>
+augroup END
+
+" CSS And LessCSS }}}
+" Markdown --------------------------------------------------------------{{{
+
+augroup filetype_markdown
+    au!
+    au BufEnter,BufNewFile,BufRead *.md,*.markdown,*.mdown,*.mkd,*.mkdn,*.mdwn,README.md setlocal filetype=markdown foldlevel=1
+    au Filetype markdown nnoremap <buffer> <localleader>p VV:'<,'>!python -m json.tool<cr>
+    au Filetype markdown vnoremap <buffer> <localleader>p :!python -m json.tool<cr>
+augroup END
+" markdown settings
 let g:markdown_folding=1
 " highlight Folded term=standout ctermfg=14 ctermbg=0
-autocmd BufEnter *.md,*.markdown,*.mdown,*.mkd,*.mkdn,*.mdwn,README.md :setlocal filetype=markdown | set foldlevel=1 | exe 'normal gg'
-autocmd FileType markdown nnoremap <buffer> <Tab> za
 
-" ===
-" === source the extra config
-" ===
-source ~/.config/nvim/function.vim
+" Markdown snippets
 source ~/.config/nvim/snippets/_md_snippets.vim
+
+" Markdown }}}
+" Nginx -----------------------------------------------------------------{{{
+
+augroup filetype_nginx
+    au!
+    au BufRead,BufNewFile /etc/nginx/conf/*                      set ft=nginx
+    au BufRead,BufNewFile /etc/nginx/sites-available/*           set ft=nginx
+    au BufRead,BufNewFile /usr/local/etc/nginx/sites-available/* set ft=nginx
+    au BufRead,BufNewFile vhost.nginx                            set ft=nginx
+    au FileType nginx setlocal foldmethod=marker foldmarker={,}
+augroup END
+
+" Nginx }}}
+" Python ----------------------------------------------------------------{{{
+
+augroup filetype_python
+    au!
+    au FileType python setlocal define=^\s*\\(def\\\\|class\\)
+    au FileType man nnoremap <buffer> <cr> :q<cr>
+    " Jesus tapdancing Christ, built-in Python syntax, you couldn't let me
+    " override this in a normal way, could you?
+    au FileType python if exists("python_space_error_highlight") | unlet python_space_error_highlight | endif
+    au FileType python iabbrev <buffer> afo assert False, "Okay"
+augroup END
+
+" Python }}}
+" QuickFix --------------------------------------------------------------{{{
+
+augroup filetype_quickfix
+    au!
+    au Filetype qf setlocal colorcolumn=0 nolist nocursorline nowrap tw=0
+augroup END
+
+" QuickFix }}}
+" Vim -------------------------------------------------------------------{{{
+
+augroup filetype_vim
+    au!
+    au FileType vim setlocal foldmethod=marker
+    au FileType help setlocal textwidth=78
+    au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
+augroup END
+
+" Vim }}}
+" Yaml ------------------------------------------------------------------{{{
+
+augroup filetype_yaml
+    au!
+    au FileType yaml set shiftwidth=2
+augroup END
+
+" Yaml }}}
+" XML -------------------------------------------------------------------{{{
+
+augroup filetype_xml
+    au!
+    au FileType xml setlocal foldmethod=manual
+    " Use <localleader>f to fold the current tag.
+    au FileType xml nnoremap <buffer> <localleader>f Vatzf
+    " Indent tag
+    au FileType xml nnoremap <buffer> <localleader>= Vat=
+augroup END
+
+" XML }}}
+" Basic Funcion ---------------------------------------------------------{{{
+
+source ~/.config/nvim/function.vim
+
+" Basic Funcion }}}
+" Utils -----------------------------------------------------------------{{{
+
+" Error Toggles {{{
+
+command! ErrorsToggle call ErrorsToggle()
+function! ErrorsToggle() " {{{
+  if exists("w:is_error_window")
+    unlet w:is_error_window
+    exec "q"
+  else
+    exec "Errors"
+    lopen
+    let w:is_error_window = 1
+  endif
+endfunction " }}}
+
+command! -bang -nargs=? QFixToggle call QFixToggle(<bang>0)
+function! QFixToggle(forced) " {{{
+  if exists("g:qfix_win") && a:forced == 0
+    cclose
+    unlet g:qfix_win
+  else
+    copen 10
+    let g:qfix_win = bufnr("$")
+  endif
+endfunction " }}}
+
+nmap <silent> <F3> :ErrorsToggle<cr>
+nmap <silent> <F4> :QFixToggle<cr>
+
+" Error Toggles }}}
+" MS to UTC {{{
+
+function! MS2UTC(ms)
+    let seconds = strpart(a:ms, 0, strlen(a:ms) - 3)
+    return substitute(system("date -ur " . seconds), "\n\n*", "", "")
+endfunction
+
+function! MS2UTCWord()
+    return MS2UTC(expand("<cword>"))
+endfunction
+
+nnoremap <leader>U :echo MS2UTCWord()<cr>
+
+" MS to UTC }}}
+" Highlight Word {{{
+"
+" This mini-plugin provides a few mappings for highlighting words temporarily.
+"
+" Sometimes you're looking at a hairy piece of code and would like a certain
+" word or two to stand out temporarily.  You can search for it, but that only
+" gives you one color of highlighting.  Now you can use <leader>N where N is
+" a number from 1-6 to highlight the current word in a specific color.
+
+function! HiInterestingWord(n) " {{{
+    " Save our location.
+    normal! mz
+
+    " Yank the current word into the z register.
+    normal! "zyiw
+
+    " Calculate an arbitrary match ID.  Hopefully nothing else is using it.
+    let mid = 86750 + a:n
+
+    " Clear existing matches, but don't worry if they don't exist.
+    silent! call matchdelete(mid)
+
+    " Construct a literal pattern that has to match at boundaries.
+    let pat = '\V\<' . escape(@z, '\') . '\>'
+
+    " Actually match the words.
+    call matchadd("InterestingWord" . a:n, pat, 1, mid)
+
+    " Move back to our original location.
+    normal! `z
+endfunction " }}}
+
+" Mappings {{{
+
+nnoremap <silent> <leader>1 :call HiInterestingWord(1)<cr>
+nnoremap <silent> <leader>2 :call HiInterestingWord(2)<cr>
+nnoremap <silent> <leader>3 :call HiInterestingWord(3)<cr>
+nnoremap <silent> <leader>4 :call HiInterestingWord(4)<cr>
+nnoremap <silent> <leader>5 :call HiInterestingWord(5)<cr>
+nnoremap <silent> <leader>6 :call HiInterestingWord(6)<cr>
+
+" Mappings }}}
+" Default Highlights {{{
+
+hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
+hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
+hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=121
+hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
+hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
+hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
+
+" Default Highlights }}}
+
+" Highlight Word }}}
+
+" Utils }}}
+" Presentation Mode -----------------------------------------------------{{{
+
 source ~/.config/nvim/mode/presentation.vim
 
-" Create a _machine_specific.vim file to adjust machine specific stuff, like python interpreter location
-let has_machine_specific_file=1
-if empty(glob('~/.config/nvim/_machine_specific.vim'))
-    let has_machine_specific_file=0
-    silent! exe "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
-endif
-source ~/.config/nvim/_machine_specific.vim
+" Presentation Mode }}}
+" Plugins Settings ------------------------------------------------------{{{
 
 " plugins
 source ~/.config/nvim/plugins.vim
+
+" Plugins Settings }}}
+" Environments (GUI/Console) ------------------------------------------- {{{
+
+if has('gui_running')
+    " GUI Vim
+
+    set guifont=Menlo\ Regular\ for\ Powerline:h12
+
+    " Remove all the UI cruft
+    " 'guioptions' 'go'	string	(default "egmrLT"   (MS-Windows))
+    set guioptions-=T
+    set guioptions-=l
+    set guioptions-=L
+    set guioptions-=r
+    set guioptions-=R
+
+    highlight SpellBad term=underline gui=undercurl guisp=Orange
+
+    " Different cursors for different modes.
+    set guicursor=n-c:block-Cursor-blinkon0
+    set guicursor+=v:block-vCursor-blinkon0
+    set guicursor+=i-ci:ver20-iCursor
+
+    if has("gui_macvim")
+        " Full screen means FULL screen
+        set fuoptions=maxvert,maxhorz
+
+        " Use the normal HIG movements, except for M-Up/Down
+        let macvim_skip_cmd_opt_movement = 1
+        " no   <D-Left>       <Home>
+    else
+        " Non-MacVim GUI, like Gvim
+    end
+else
+    " Console Vim
+    " For me, this means iTerm2, possibly through tmux
+
+    " Mouse support
+    set mouse=a
+endif
+
+" Environments (GUI/Console) }}}

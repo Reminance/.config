@@ -1,4 +1,5 @@
-" Compile function
+" Compile Function ------------------------------------------------------{{{
+
 nnoremap <M-r> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
     exec "w"
@@ -56,7 +57,9 @@ func! CompileRunGcc()
     endif
 endfunc
 
-" quickfix toggle
+" Compile Function }}}
+" Quickfix Toggle -------------------------------------------------------{{{
+
 " Copen comes with vim-dispatch, copen is builtin
 " nnoremap <Leader>qf :Copen<CR>
 nnoremap <Leader>qf :QFix<CR>
@@ -77,6 +80,9 @@ augroup QFixToggle
  autocmd BufWinEnter quickfix let g:qfix_win = bufnr("$")
  autocmd BufWinLeave * if exists("g:qfix_win") && expand("<abuf>") == g:qfix_win | unlet! g:qfix_win | endif
 augroup END
+
+" Quickfix Toggle }}}
+" Another Quickfix Toggle --testi----------------------------------------{{{
 
 " another quickfix toggle --testing
 function! GetBufferList()
@@ -109,7 +115,9 @@ endfunction
 nmap <silent> <leader>`l :call ToggleList("Location List", 'l')<CR>
 nmap <silent> <leader>`q :call ToggleList("Quickfix List", 'c')<CR>
 
-" sessions
+" Another Quickfix Toggle }}}
+" Sessions --------------------------------------------------------------{{{
+
 " 自带的session颜色丢失 用startify的session管理代替
 " auto save and load session for $HOME/.config/nvim/session/current.session
 " set sessionoptions="blank,buffers,curdir,folds,globals,help,localoptions,options,resize,sesdir,slash,tabpages,terminal,unix,winpos,winsize"
@@ -133,7 +141,9 @@ nmap <silent> <leader>`q :call ToggleList("Quickfix List", 'c')<CR>
 "     exe "source ".g:OrigPWD."/".g:AutoSessionFile
 " endfunction
 
-" format and encoding
+" Sessions }}}
+" Format And Encoding ---------------------------------------------------{{{
+
 command! -bang -nargs=* UnixEncodingUtf8 exec "set fileformat=unix | set fileencoding=utf-8"
 " <q-args>会自动对参数特殊字符进行转义 函数接收参数时，使用关键字<f-args>
 com! -bang -nargs=* FormatAndEncode call FormatAndEncodeFunc(<f-args>)
@@ -145,7 +155,9 @@ func! FormatAndEncodeFunc(format, encoding)
     execute 'set fileencoding=' . a:encoding
 endfunc
 
-" netrw settings
+" Format And Encoding }}}
+" Netrw Settings --------------------------------------------------------{{{
+
 nnoremap tt :Lexplore<CR><C-w>l
 " @see https://vi.stackexchange.com/questions/22455/how-to-override-netrw-delete-behavior
 " unfortunately, the visual mode is not supported by Netrw_UserMaps,
@@ -191,6 +203,9 @@ let g:netrw_list_hide='
             \ *__pycache__*
             \'
 
+" Netrw Settings }}}
+" CTRL-W And Meta-D -----------------------------------------------------{{{
+
 " 检查是否删除到了行首
 function! s:is_first_of_line() abort
     return !(col('.') - 1)
@@ -208,6 +223,9 @@ inoremap <silent><expr> <M-d>
       \ <SID>is_end_of_line() ? "" :
       \ "<C-o>de"
 
+" CTRL-W And Meta-D }}}
+" RestoreRegister -------------------------------------------------------{{{
+
 " prevent replacing paste buffer on paste
 function! RestoreRegister()
   let @" = s:restore_reg
@@ -219,3 +237,16 @@ function! s:Repl()
 endfunction
 vmap <silent> <expr> p <sid>Repl()
 
+" RestoreRegister }}}
+" SynStack --------------------------------------------------------------{{{
+
+" describe syntax under cursor
+function! <SID>SynStack()
+    if !exists("*synstack")
+        return
+    endif
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+nnoremap <Leader>ds :call <SID>SynStack()<CR>
+
+" SynStack }}}

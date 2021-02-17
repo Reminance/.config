@@ -14,6 +14,7 @@ nvim/.netrwhist
 nvim/_machine_specific.vim
 nvim/.vim-bookmarks
 nvim/session/
+nvim/spell/
 nvim/tags*
 nvim/selected
 QtProject.conf

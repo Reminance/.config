@@ -1,7 +1,5 @@
 
-" ===
-" === coc
-" ===
+" coc
   " \ 'coc-sourcekit',
   " \ 'coc-leetcode',
 let g:coc_global_extensions=[
