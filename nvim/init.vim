@@ -288,13 +288,13 @@ nnoremap vv ^vg_
 
 " templates
 augroup templates
-    autocmd!
-    autocmd BufNewFile *.sh 0r ~/.config/nvim/templates/sh.tpl
-    autocmd BufNewFile *.c 0r ~/.config/nvim/templates/c.tpl
-    autocmd BufNewFile *.java 0r ~/.config/nvim/templates/java.tpl
-    autocmd BufNewFile *.go 0r ~/.config/nvim/templates/go.tpl
-    autocmd BufNewFile *.py 0r ~/.config/nvim/templates/py.tpl
-    autocmd BufNewFile *.html 0r ~/.config/nvim/templates/html.tpl
+    au!
+    au BufNewFile *.sh 0r ~/.config/nvim/templates/sh.tpl
+    au BufNewFile *.c 0r ~/.config/nvim/templates/c.tpl
+    au BufNewFile *.java 0r ~/.config/nvim/templates/java.tpl
+    au BufNewFile *.go 0r ~/.config/nvim/templates/go.tpl
+    au BufNewFile *.py 0r ~/.config/nvim/templates/py.tpl
+    au BufNewFile *.html 0r ~/.config/nvim/templates/html.tpl
 augroup END
 
 " Basic Mappings }}}
