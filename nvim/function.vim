@@ -158,50 +158,50 @@ endfunc
 " Format And Encoding }}}
 " Netrw Settings --------------------------------------------------------{{{
 
-nnoremap tt :Lexplore<CR><C-w>l
-" @see https://vi.stackexchange.com/questions/22455/how-to-override-netrw-delete-behavior
-" unfortunately, the visual mode is not supported by Netrw_UserMaps,
-" so implement it with the help of augroup/autocmd
-" (although netrw is very peculiar about its mappings,
-" it seems to work okay too)
-augroup MyNetrw | au!
-    autocmd FileType netrw nnoremap <buffer>r :call g:MyNetrw_nop(1)<CR>
-augroup end
-" setup netrw mappings (:h g:Netrw_UserMaps)
-let g:Netrw_UserMaps = [['<C-l>', 'g:MyNetrw_ctrl_l'], ['s', 'g:MyNetrw_nop']]
-" implement normal mode refresh; islocal:1 stands for true
-function! g:MyNetrw_nop(islocal)
-    echom 'not supported operation'
-endfunction
-function! g:MyNetrw_ctrl_l(islocal)
-    if a:islocal
-        return 'refresh'
-    endif
-    " this is to handle remote deletion
-    echom 'not supported operation'
- endfunction
-let g:netrw_banner=1       " set 0 if you want to disable annoying banner
-let g:netrw_browse_split=4 " open in prior window
-let g:netrw_altv=1         " open splits to the right
-let g:netrw_liststyle=3    " tree view
-let g:netrw_list_hide=netrw_gitignore#Hide()
-" let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
-let g:netrw_winsize=15
-let g:netrw_list_hide='
-            \.*.netrwhist$,
-            \.*.swp$,
-            \ *.pyc$,
-            \ *.log$,
-            \ *.o$,
-            \ *.xmi$,
-            \ *.swp$,
-            \ *.bak$,
-            \ *.class$,
-            \ *.pyc$,
-            \ *.jar$,
-            \ *.war$,
-            \ *__pycache__*
-            \'
+" nnoremap tt :Lexplore<CR><C-w>l
+" " @see https://vi.stackexchange.com/questions/22455/how-to-override-netrw-delete-behavior
+" " unfortunately, the visual mode is not supported by Netrw_UserMaps,
+" " so implement it with the help of augroup/autocmd
+" " (although netrw is very peculiar about its mappings,
+" " it seems to work okay too)
+" augroup MyNetrw | au!
+"     autocmd FileType netrw nnoremap <buffer>r :call g:MyNetrw_nop(1)<CR>
+" augroup end
+" " setup netrw mappings (:h g:Netrw_UserMaps)
+" let g:Netrw_UserMaps = [['<C-l>', 'g:MyNetrw_ctrl_l'], ['s', 'g:MyNetrw_nop']]
+" " implement normal mode refresh; islocal:1 stands for true
+" function! g:MyNetrw_nop(islocal)
+"     echom 'not supported operation'
+" endfunction
+" function! g:MyNetrw_ctrl_l(islocal)
+"     if a:islocal
+"         return 'refresh'
+"     endif
+"     " this is to handle remote deletion
+"     echom 'not supported operation'
+"  endfunction
+" let g:netrw_banner=1       " set 0 if you want to disable annoying banner
+" let g:netrw_browse_split=4 " open in prior window
+" let g:netrw_altv=1         " open splits to the right
+" let g:netrw_liststyle=3    " tree view
+" let g:netrw_list_hide=netrw_gitignore#Hide()
+" " let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+" let g:netrw_winsize=15
+" let g:netrw_list_hide='
+"             \.*.netrwhist$,
+"             \.*.swp$,
+"             \ *.pyc$,
+"             \ *.log$,
+"             \ *.o$,
+"             \ *.xmi$,
+"             \ *.swp$,
+"             \ *.bak$,
+"             \ *.class$,
+"             \ *.pyc$,
+"             \ *.jar$,
+"             \ *.war$,
+"             \ *__pycache__*
+"             \'
 
 " Netrw Settings }}}
 " CTRL-W And Meta-D -----------------------------------------------------{{{

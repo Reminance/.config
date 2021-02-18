@@ -202,7 +202,7 @@ colorscheme snazzy
 " vim-peekaboo }}}
 " NERDTree {{{
 
-nnoremap <Leader>nt :NERDTreeToggle<CR>
+nnoremap tt :NERDTreeToggle<CR>
 "let NERDTreeMapOpenExpl=""
 "let NERDTreeMapUpdir=""
 "let NERDTreeMapUpdirKeepOpen=""
