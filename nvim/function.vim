@@ -112,8 +112,8 @@ function! ToggleList(bufname, pfx)
   endif
 endfunction
 
-nmap <silent> <leader>`l :call ToggleList("Location List", 'l')<CR>
-nmap <silent> <leader>`q :call ToggleList("Quickfix List", 'c')<CR>
+" nmap <silent> <Leader>`l :call ToggleList("Location List", 'l')<CR>
+" nmap <silent> <Leader>`q :call ToggleList("Quickfix List", 'c')<CR>
 
 " Another Quickfix Toggle }}}
 " Sessions --------------------------------------------------------------{{{

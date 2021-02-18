@@ -12,7 +12,9 @@ export PATH=$PATH:$GOROOT/bin:$GOBIN
 export PATH=$PATH:~/.config/bin
 export GOPROXY=https://goproxy.cn/
 export RANGER_LOAD_DEFAULT_RC=FALSE
-export EDITOR=nvim
+# Make VIM the global editor
+export VISUAL=nvim
+export EDITOR="$VISUAL"
 #export TERM=alacritty
 export TERM=xterm-256color
 export JDK_HOME=/usr/lib/jvm/java-8-openjdk

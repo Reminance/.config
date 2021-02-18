@@ -2,7 +2,6 @@
 " PreSetup --------------------------------------------------------------{{{
 
 set nocompatible
-exe "nohlsearch"
 filetype off
 filetype indent on
 filetype plugin on
@@ -35,7 +34,9 @@ set ruler
 set linebreak
 set colorcolumn=+1
 set list
-set listchars=tab:▸\ ,trail:▫,eol:¬,extends:❯,precedes:❮
+" set listchars=tab:▸\ ,trail:▫,eol:¬,extends:❯,precedes:❮,nbsp:␣,conceal:┊
+" set listchars=tab:»\ ,trail:·,eol:↲,extends:❯,precedes:❮,nbsp:␣,conceal:┊
+set listchars=tab:»\ ,trail:▫,eol:¬,extends:>,precedes:<,nbsp:␣,conceal:┊
 set showbreak=↪
 set matchtime=3
 set autowrite
@@ -43,6 +44,7 @@ set autoread
 set shiftround
 set title
 set signcolumn=yes
+set inccommand=split
 
 " Save when losing focus
 au FocusLost * :silent! wall
@@ -51,8 +53,7 @@ au FocusLost * :silent! wall
 au VimResized * :wincmd =
 
 " fillchars
-set fillchars=diff:⣿,vert:│
-set fillchars=diff:⣿,vert:\|
+" set fillchars=diff:⣿,vert:│
 
 " Don't try to highlight lines longer than 800 characters.
 set synmaxcol=800
@@ -69,9 +70,8 @@ let maplocalleader = "\\"
 " Leader Bindings }}}
 " Tabs, spaces, wrapping {{{
 
-set tabstop=4
+set tabstop=4 softtabstop=4
 set shiftwidth=4
-set softtabstop=4
 set expandtab
 set smarttab
 set wrap
@@ -154,6 +154,7 @@ endif
 " Wildmenu Completion {{{
 
 set wildmenu
+" set wildmode=full
 set wildmode=list:longest
 set wildignore+=.hg,.git,.svn                    " Version control
 set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
@@ -194,15 +195,24 @@ source ~/.config/nvim/_machine_specific.vim
 
 " Save & quit
 nnoremap s <nop>
-nnoremap S :w<CR>
-inoremap <C-s> <Esc>:w<CR>
+" ignore it for now
+nnoremap S <nop>
+nnoremap R <nop>
 nnoremap Q :q<CR>
-nnoremap R :source $MYVIMRC<CR>
+inoremap <C-s> <Esc>:w<CR>
+nnoremap <C-s> :w<CR>
+
+" Source
+nnoremap <Leader>Si :source $MYVIMRC<CR>
+nnoremap <Leader>S. :so %<CR>
+vnoremap <Leader>Sv y:execute @@<CR>:echo 'Sourced selection.'<CR>
+nnoremap <Leader>Sl ^vg_y:execute @@<CR>:echo 'Sourced line.'<CR>
+
 
 " show the vim mappings
-nnoremap <leader>vmn :nmap
-nnoremap <leader>vmi :imap
-nnoremap <leader>vmv :vmap
+nnoremap <Leader>vmn :nmap
+nnoremap <Leader>vmi :imap
+nnoremap <Leader>vmv :vmap
 
 " Sudo to write
 cnoremap w!! w !sudo tee % >/dev/null
@@ -245,7 +255,7 @@ nnoremap <C-\><C-k> :set nosplitbelow<CR>:new<CR>:term<CR>:setl nonu<CR>:setl no
 nnoremap <C-\>k :set nosplitbelow<CR>:new<CR>:term<CR>:setl nonu<CR>:setl nornu<CR>a
 nnoremap <C-\><C-l> :set splitright<CR>:vnew<CR>:term<CR>:setl nonu<CR>:setl nornu<CR>a
 nnoremap <C-\>l :set splitright<CR>:vnew<CR>:term<CR>:setl nonu<CR>:setl nornu<CR>a
-tnoremap <Esc> <C-\><C-n><Esc><CR>
+" tnoremap <Esc> <C-\><C-n><Esc><CR>
 
 " reading source into vim(:h read) or :r! cat ~/.bashrc
 nnoremap <M-S-r> :r
@@ -272,15 +282,10 @@ nnoremap <Leader>Cp :<C-r>"
 nnoremap <Leader>vt :Tutor<CR>
 
 " Clean trailing whitespace
-nnoremap <leader>ww mz:%s/\s\+$//<cr>:let @/=''<CR>`z
+nnoremap <Leader>ww mz:%s/\s\+$//<cr>:let @/=''<CR>`z
 
 " Panic Button
 nnoremap <F9> mzggg?G`z
-
-" Source
-nnoremap <leader>Sc :so %<CR>
-vnoremap <leader>Ss y:execute @@<CR>:echo 'Sourced selection.'<CR>
-nnoremap <leader>Sl ^vg_y:execute @@<CR>:echo 'Sourced line.'<CR>
 
 " Select (charwise) the contents of the current line, excluding indentation.
 " Great for pasting Python lines into REPLs.
@@ -322,7 +327,7 @@ inoremap <M-b> <S-Left>
 inoremap <C-d> <Del>
 inoremap <C-k> <C-o>D
 inoremap <M-k> <Esc>ddk$
-nnoremap <M-k> ddk$
+nnoremap <S-Del> ddkA
 inoremap <S-Del> <Esc>ddkA
 inoremap <C-g> <Esc>
 map <C-g> <Esc>
@@ -374,14 +379,14 @@ nnoremap <Down>  :lnext<cr>zvzz
 " Window Management -----------------------------------------------------{{{
 
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
-nnoremap sh :set nosplitright<CR>:vnew<CR>
-nnoremap sj :set splitbelow<CR>:new<CR>
-nnoremap sk :set nosplitbelow<CR>:new<CR>
-nnoremap sl :set splitright<CR>:vnew<CR>
-nnoremap seh :set nosplitright<CR>:vsplit
-nnoremap sej :set splitbelow<CR>:split
-nnoremap sek :set nosplitbelow<CR>:split
-nnoremap sel :set splitright<CR>:vsplit
+nnoremap sh :set nosplitright<CR>:vsplit<CR>
+nnoremap sj :set splitbelow<CR>:split<CR>
+nnoremap sk :set nosplitbelow<CR>:split<CR>
+nnoremap sl :set splitright<CR>:vsplit<CR>
+nnoremap seh :set nosplitright<CR>:vsplit 
+nnoremap sej :set splitbelow<CR>:split 
+nnoremap sek :set nosplitbelow<CR>:split 
+nnoremap sel :set splitright<CR>:vsplit 
 
 " Place the two screens side by side (vertical)
 nnoremap sm <C-w>t<C-w>H
@@ -443,7 +448,9 @@ nnoremap <Leader><Leader>p :e ~/.config/nvim/plugins.vim<CR>
 " Open the coc.vim file anytime
 nnoremap <Leader><Leader>c :e ~/.config/nvim/coc.vim<CR>
 " Open the coc-settings.json file anytime
-nnoremap <Leader><Leader>s :e ~/.config/nvim/coc-settings.json<CR>
+nnoremap <Leader><Leader>cs :e ~/.config/nvim/coc-settings.json<CR>
+" Open the scratchpad anytime
+nnoremap <Leader><Leader>s :FloatermNew nvim ~/.config/nvim/scratchpad.vim<CR>
 
 " Open Settings File }}}
 " Clipboard -------------------------------------------------------------{{{
@@ -471,13 +478,16 @@ command! -bang -nargs=* EditUtilSnips call fzf#run({
 " Folding ---------------------------------------------------------------{{{
 
 set foldlevelstart=0
+set foldcolumn=1
 
 " Tab to toggle folds.
 nnoremap <Tab> za
 vnoremap <Tab> za
+nnoremap <S-Tab> zc
+vnoremap <S-Tab> zc
 
-" Make <S-Tab> recursively open whatever fold we're in, even if it's partially open.
-nnoremap <S-Tab> zczO
+" Make <z0> recursively open whatever fold we're in, even if it's partially open.
+nnoremap z0 zczO
 
 function! MyFoldText() " {{{
     let line = getline(v:foldstart)
@@ -539,9 +549,9 @@ augroup filetype_javascript
     " Make {<cr> insert a pair of brackets in such a way that the cursor is correctly
     " positioned inside of them AND the following code doesn't get unfolded.}
     au Filetype javascript inoremap <buffer> {<cr> {}<left><cr><space><space><space><space>.<cr><esc>kA<bs>
-    " Prettify a hunk of JSON with <localleader>p
-    au FileType javascript nnoremap <buffer> <localleader>p ^vg_:!python -m json.tool<cr>
-    au FileType javascript vnoremap <buffer> <localleader>p :!python -m json.tool<cr>
+    " Prettify a hunk of JSON with <LocalLeader>p
+    au FileType javascript nnoremap <buffer> <LocalLeader>p ^vg_:!python -m json.tool<cr>
+    au FileType javascript vnoremap <buffer> <LocalLeader>p :!python -m json.tool<cr>
 augroup END
 
 " JavaScript }}}
@@ -554,7 +564,7 @@ augroup filetype_css
     au Filetype less,css setlocal foldmarker={,}
     au Filetype less,css setlocal omnifunc=csscomplete#CompleteCSS
     au Filetype less,css setlocal iskeyword+=-
-    au BufNewFile,BufRead *.less,*.css nnoremap <buffer> <localleader>S ?{<CR>jV/\v^\s*\}?$<CR>k:sort<CR>:noh<CR>
+    au BufNewFile,BufRead *.less,*.css nnoremap <buffer> <LocalLeader>S ?{<CR>jV/\v^\s*\}?$<CR>k:sort<CR>:noh<CR>
     " Make {<cr> insert a pair of brackets in such a way that the cursor is correctly
     " positioned inside of them AND the following code doesn't get unfolded.
     au BufNewFile,BufRead *.less,*.css inoremap <buffer> {<cr> {}<left><cr><space><space><space><space>.<cr><esc>kA<bs>
@@ -566,8 +576,8 @@ augroup END
 augroup filetype_markdown
     au!
     au BufEnter,BufNewFile,BufRead *.md,*.markdown,*.mdown,*.mkd,*.mkdn,*.mdwn,README.md setlocal filetype=markdown foldlevel=1
-    au Filetype markdown nnoremap <buffer> <localleader>p VV:'<,'>!python -m json.tool<cr>
-    au Filetype markdown vnoremap <buffer> <localleader>p :!python -m json.tool<cr>
+    au Filetype markdown nnoremap <buffer> <LocalLeader>p VV:'<,'>!python -m json.tool<cr>
+    au Filetype markdown vnoremap <buffer> <LocalLeader>p :!python -m json.tool<cr>
 augroup END
 " markdown settings
 let g:markdown_folding=1
@@ -633,10 +643,10 @@ augroup END
 augroup filetype_xml
     au!
     au FileType xml setlocal foldmethod=manual
-    " Use <localleader>f to fold the current tag.
-    au FileType xml nnoremap <buffer> <localleader>f Vatzf
+    " Use <LocalLeader>f to fold the current tag.
+    au FileType xml nnoremap <buffer> <LocalLeader>f Vatzf
     " Indent tag
-    au FileType xml nnoremap <buffer> <localleader>= Vat=
+    au FileType xml nnoremap <buffer> <LocalLeader>= Vat=
 augroup END
 
 " XML }}}
@@ -687,7 +697,7 @@ function! MS2UTCWord()
     return MS2UTC(expand("<cword>"))
 endfunction
 
-nnoremap <leader>U :echo MS2UTCWord()<cr>
+nnoremap <Leader>U :echo MS2UTCWord()<cr>
 
 " MS to UTC }}}
 " Highlight Word {{{
@@ -696,7 +706,7 @@ nnoremap <leader>U :echo MS2UTCWord()<cr>
 "
 " Sometimes you're looking at a hairy piece of code and would like a certain
 " word or two to stand out temporarily.  You can search for it, but that only
-" gives you one color of highlighting.  Now you can use <leader>N where N is
+" gives you one color of highlighting.  Now you can use <Leader>N where N is
 " a number from 1-6 to highlight the current word in a specific color.
 
 function! HiInterestingWord(n) " {{{
@@ -724,12 +734,12 @@ endfunction " }}}
 
 " Mappings {{{
 
-nnoremap <silent> <leader>1 :call HiInterestingWord(1)<cr>
-nnoremap <silent> <leader>2 :call HiInterestingWord(2)<cr>
-nnoremap <silent> <leader>3 :call HiInterestingWord(3)<cr>
-nnoremap <silent> <leader>4 :call HiInterestingWord(4)<cr>
-nnoremap <silent> <leader>5 :call HiInterestingWord(5)<cr>
-nnoremap <silent> <leader>6 :call HiInterestingWord(6)<cr>
+nnoremap <silent> <Leader>1 :call HiInterestingWord(1)<cr>
+nnoremap <silent> <Leader>2 :call HiInterestingWord(2)<cr>
+nnoremap <silent> <Leader>3 :call HiInterestingWord(3)<cr>
+nnoremap <silent> <Leader>4 :call HiInterestingWord(4)<cr>
+nnoremap <silent> <Leader>5 :call HiInterestingWord(5)<cr>
+nnoremap <silent> <Leader>6 :call HiInterestingWord(6)<cr>
 
 " Mappings }}}
 " Default Highlights {{{
@@ -751,14 +761,13 @@ hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 source ~/.config/nvim/mode/presentation.vim
 
 " Presentation Mode }}}
-" Plugins Settings ------------------------------------------------------{{{
+" Plugins Settings(Include Coc.nvim) ------------------------------------{{{
 
 " plugins
 source ~/.config/nvim/plugins.vim
 
 " Plugins Settings }}}
 " Environments (GUI/Console) ------------------------------------------- {{{
-
 if has('gui_running')
     " GUI Vim
 

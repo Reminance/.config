@@ -1,5 +1,7 @@
 source ~/.config/zsh/env.zsh
 source ~/.config/zsh/aliases.zsh
 source ~/.config/zsh/fzf.zsh
+source ~/.config/zsh/git.zsh
 source ~/.config/zsh/shortcut.zsh
+source ~/.config/zsh/welcome.zsh
 #ZSH_THEME="maran"

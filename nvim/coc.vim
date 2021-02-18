@@ -151,7 +151,7 @@ nnoremap <Leader>ts :CocList tasks<CR>
 imap <C-l> <Plug>(coc-snippets-expand)
 " Use <C-j> for select text for visual placeholder of snippet.
 vmap <C-j> <Plug>(coc-snippets-select)
-" 直接展开snippets 如果有lsp的补全也回跳过， 直接展开snippetes的候选
+" 直接展开snippets 如果有lsp的补全也会跳过， 直接展开snippetes的候选
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-\> <Plug>(coc-snippets-expand-jump)
 " Use <leader>x for convert visual selected code to snippet
