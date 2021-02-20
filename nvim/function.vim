@@ -15,8 +15,9 @@ func! CompileRunGcc()
         :term ./%<
     elseif &filetype == 'java'
         " ==== compile & run ===
-        exec "!javac %"
-        exec "!time java %<"
+        " exec "!javac % && time java %<"
+        " :FloatermNew --width=80 --height=40 javac % && time java %<
+        :FloatermNew javac % && time java %<
         " === make & run ===
         " exec 'set makeprg=javac\ -g\ %'
         " exec "make"
@@ -26,7 +27,8 @@ func! CompileRunGcc()
         " === for debug ===
         " exec "!time java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=5005,suspend=y %<"
     elseif &filetype == 'sh'
-        :!time bash %
+        " :!time bash %
+        :FloatermNew time bash %
     elseif &filetype == 'python'
         set splitbelow
         :sp

@@ -155,8 +155,7 @@ endif
 " Wildmenu Completion {{{
 
 set wildmenu
-" set wildmode=full
-set wildmode=list:longest
+set wildmode=longest:full
 set wildignore+=.hg,.git,.svn                    " Version control
 set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
@@ -318,6 +317,9 @@ set gdefault
 
 set scrolloff=2
 
+" Don't move on *
+nnoremap <silent> * mm*`m
+
 " Cursor Movement
 " insert mode bindings(emacs like) {{{
 inoremap <C-a> <C-o>I
@@ -407,14 +409,11 @@ nnoremap <M-h> <C-w>h
 nnoremap <M-j> <C-w>j
 nnoremap <M-k> <C-w>k
 nnoremap <M-l> <C-w>l
-" Use <Leader> + new arrow keys for moving the windows
-nnoremap <Leader>h <C-w>H
-nnoremap <Leader>j <C-w>J
-nnoremap <Leader>k <C-w>K
-nnoremap <Leader>l <C-w>L
-
-" Don't move on *
-nnoremap <silent> * mm*`m
+" Use shift arrow keys for moving the windows
+nnoremap <C-M-h> <C-w>H
+nnoremap <C-M-j> <C-w>J
+nnoremap <C-M-k> <C-w>K
+nnoremap <C-M-l> <C-w>L
 
 " Window Management }}}
 " Tab Management --------------------------------------------------------{{{

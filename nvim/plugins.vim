@@ -541,7 +541,7 @@ let g:floaterm_opener='edit'
 let g:floaterm_autoinsert=1
 let g:floaterm_width=0.6
 let g:floaterm_height=0.6
-let g:floaterm_autoclose=1
+" let g:floaterm_autoclose=1
 nnoremap <silent> <Leader>; :FloatermNew --wintype=popup --height=6<CR>
 nnoremap <silent> <Leader>ff :FloatermNew fzf<CR>
 nnoremap <silent> <Leader>fg :FloatermNew lazygit<CR>
