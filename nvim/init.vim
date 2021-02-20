@@ -59,7 +59,7 @@ au VimResized * :wincmd =
 set synmaxcol=800
 
 " (:h backspace?), default "indent,eol,start"; eol让退格键可以退到上一行
-set backspace=indent,start
+set backspace=indent,eol,start
 
 " Basic Settings }}}
 " Leader Bindings {{{
@@ -80,8 +80,7 @@ set textwidth=80
 " Tabs, spaces, wrapping }}}
 " Line Number {{{
 
-set number
-set relativenumber
+set nu rnu
 
 " Line Number }}}
 " Cursorline & ColorColumn {{{
@@ -106,8 +105,10 @@ syntax on
 set background=dark
 set termguicolors " enable true colors support
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-set t_Co=256
-let &t_ut=''
+if !has('gui_running')
+  set t_Co=256
+endif
+set t_ut=
 
 " Gui }}}
 " Timeout {{{
@@ -198,15 +199,18 @@ nnoremap s <nop>
 " ignore it for now
 nnoremap S <nop>
 nnoremap R <nop>
-nnoremap Q :q<CR>
+nnoremap Q <nop>
+nnoremap <C-q> :q<CR>
+inoremap <C-q> :q<CR>
 inoremap <C-s> <Esc>:w<CR>
 nnoremap <C-s> :w<CR>
 
 " Source
-nnoremap <Leader>Si :source $MYVIMRC<CR>
-nnoremap <Leader>S. :so %<CR>
-vnoremap <Leader>Sv y:execute @@<CR>:echo 'Sourced selection.'<CR>
-nnoremap <Leader>Sl ^vg_y:execute @@<CR>:echo 'Sourced line.'<CR>
+nnoremap <M-s> <nop>
+nnoremap <M-s>i :source $MYVIMRC<CR>
+nnoremap <M-s>. :so %<CR>
+vnoremap <M-s>v y:execute @@<CR>:echo 'Sourced selection.'<CR>
+nnoremap <M-s>l ^vg_y:execute @@<CR>:echo 'Sourced line.'<CR>
 
 
 " show the vim mappings
@@ -449,6 +453,10 @@ nnoremap <Leader><Leader>p :e ~/.config/nvim/plugins.vim<CR>
 nnoremap <Leader><Leader>c :e ~/.config/nvim/coc.vim<CR>
 " Open the coc-settings.json file anytime
 nnoremap <Leader><Leader>cs :e ~/.config/nvim/coc-settings.json<CR>
+" Open the nvim-lsp.vim file anytime
+nnoremap <Leader><Leader>lsp :e ~/.config/nvim/nvim-lsp.vim<CR>
+" Open the lua dir anytime
+nnoremap <Leader><Leader>lua :e ~/.config/nvim/lua<CR>
 " Open the scratchpad anytime
 nnoremap <Leader><Leader>s :FloatermNew nvim ~/.config/nvim/scratchpad.vim<CR>
 
@@ -532,8 +540,27 @@ augroup END
 " C  }}}
 " Java ------------------------------------------------------------------{{{
 
+" " Javadoc comments (/** and */ pairs) and code sections (marked by {} pairs)
+" " mark the start and end of folds.
+" " All other lines simply take the fold level that is going so far.
+" function! ProgramFoldLevel( lineNumber )
+"   let thisLine = getline( a:lineNumber )
+"   " Don't create fold if entire Javadoc comment or {} pair is on one line.
+"   if ( thisLine =~ '\%(\%(/\*\*\).*\%(\*/\)\)\|\%({.*}\)' )
+"     return '='
+"   elseif ( thisLine =~ '\%(^\s*/\*\*\s*$\)\|{' )
+"     return "a1"
+"   elseif ( thisLine =~ '\%(^\s*\*/\s*$\)\|}' )
+"     return "s1"
+"   endif
+"   return '='
+" endfunction
+" setlocal foldexpr=ProgramFoldLevel(v:lnum)
+" setlocal foldmethod=expr
 augroup filetype_java
     au!
+    " au FileType java setlocal foldmethod=expr
+    " au FileType java setlocal foldexpr=ProgramFoldLevel(v:lnum)
     au FileType java setlocal foldmethod=marker
     au FileType java setlocal foldmarker={,}
 augroup END
@@ -624,7 +651,7 @@ augroup END
 
 augroup filetype_vim
     au!
-    au FileType vim setlocal foldmethod=marker
+    au FileType vim setlocal foldmethod=marker foldlevel=99
     au FileType help setlocal textwidth=78
     au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
 augroup END
@@ -761,7 +788,7 @@ hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 source ~/.config/nvim/mode/presentation.vim
 
 " Presentation Mode }}}
-" Plugins Settings(Include Coc.nvim) ------------------------------------{{{
+" Plugins Settings(Included lsp) ----------------------------------------{{{
 
 " plugins
 source ~/.config/nvim/plugins.vim

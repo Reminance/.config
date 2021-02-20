@@ -3,8 +3,10 @@ alias ls='ls --color=auto'
 alias la='ls -A'
 alias l='ls -CF'
 
-alias vi='nvim'
-alias vim='nvim'
+NVIM=nvim
+NVIM_NIGHTLY=~/.config/sandbox/nvim-nightly/nvim-linux64/bin/nvim
+alias vi="$NVIM"
+alias vim="$NVIM_NIGHTLY"
 alias em='emacs'
 
 

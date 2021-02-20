@@ -18,6 +18,7 @@ nvim/spell/
 nvim/tags*
 nvim/selected
 nvim/scratchpad.vim
+jdtls/
 QtProject.conf
 *.dirs
 *.list

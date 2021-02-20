@@ -13,18 +13,15 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 " status line
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
-Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+" Plug 'itchyny/lightline.vim'
 
 " themes
 Plug 'connorholyday/vim-snazzy'
 Plug 'morhetz/gruvbox'
 Plug 'w0ng/vim-hybrid'
 Plug 'whatyouhide/vim-gotham'
-
-" code complete
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " vim-peekaboo
 " Peekaboo extends " and @ in normal mode and <CTRL-R> in insert mode 
@@ -67,10 +64,13 @@ Plug 'mhinz/vim-signify'
 Plug 'hail2u/vim-css3-syntax'
 " merge of ap vim-css-color and colorizer. The main goal was to fix cursorline bug and keep named colors(i.e. white, black, aqua).
 Plug 'gko/vim-coloresque', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
-Plug 'pangloss/vim-javascript', { 'for' :['javascript', 'vim-plug'] }
-Plug 'mattn/emmet-vim'
+" Plug 'pangloss/vim-javascript', { 'for' :['javascript', 'vim-plug'] }
+" Plug 'mattn/emmet-vim'
 
-" vim-snippets
+" Snippets
+" Track the engine.
+Plug 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'
 
 " Python
@@ -142,6 +142,17 @@ Plug 'junegunn/vim-easy-align'
 " tpope/vim-dispatch
 Plug 'tpope/vim-dispatch'
 
+" voldikss/vim-translator
+Plug 'voldikss/vim-translator'
+
+" code complete
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" neovim/nvim-lspconfig
+Plug 'neovim/nvim-lspconfig'
+Plug 'mfussenegger/nvim-jdtls'
+Plug 'nvim-lua/completion-nvim'
+
 call plug#end()
 
 " Plug Install }}}
@@ -166,6 +177,9 @@ let g:livepreview_engine='pdflatex'
 " airline {{{
 
 " let g:airline_theme='onedark'
+" let g:airline_theme='papercolor'
+" let g:airline_theme='codedark'
+let g:airline_theme='molokai'
 
 " airline }}}
 " lightline {{{
@@ -173,7 +187,8 @@ let g:livepreview_engine='pdflatex'
 " NearestMethodOrFunction cames from vista function below
       " \ 'colorscheme': 'wombat',
       " \ 'colorscheme': 'gotham',
-let g:lightline = {
+      " \ 'colorscheme': 'PaperColor',
+let g:lightline={
       \ 'colorscheme': 'jellybeans',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
@@ -250,6 +265,19 @@ set tags=./.tags;,.tags
 nnoremap <silent> T :TagbarOpenAutoClose<CR>
 
 " Tagbar }}}
+" Ultisnips {{{
+
+" Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
+" - https://github.com/Valloric/YouCompleteMe
+" - https://github.com/nvim-lua/completion-nvim
+let g:UltiSnipsExpandTrigger='<C-\>'
+let g:UltiSnipsJumpForwardTrigger='<C-j>'
+let g:UltiSnipsJumpBackwardTrigger='<C-k>'
+let g:UltiSnipsSnippetDirectories=["~/.config/nvim/Ultisnips"]
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+" Ultisnips }}}
 " MarkdownPreview {{{
 
 let g:mkdp_auto_start=0
@@ -562,13 +590,27 @@ let g:db_ui_default_query='select * from "{table}" limit 10'
 " vista {{{
 
 function! NearestMethodOrFunction() abort
-  return get(b:, 'vista_nearest_method_or_function', '')
+    return get(b:, 'vista_nearest_method_or_function', '')
 endfunction
 " set statusline+=%{NearestMethodOrFunction()}
+
+" By default vista.vim never run if you don't call it explicitly.
+"
+" If you want to show the nearest function in your statusline automatically,
+" you can add the following line to your vimrc
+autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 nnoremap <Leader>vv :Vista!!<CR>
-nnoremap <Leader>vf :silent! Vista finder coc<CR>
+" nnoremap <Leader>vf :silent! Vista finder coc<CR>
 let g:vista_icon_indent=["╰─▸ ", "├─▸ "]
-let g:vista_default_executive='coc'
+" let g:vista_default_executive='coc'
+let g:vista_default_executive='ctags'
+" Set the executive for some filetypes explicitly. Use the explicit executive
+" instead of the default one for these filetypes when using `:Vista` without
+" specifying the executive.
+" let g:vista_executive_for = {
+"   \ 'cpp': 'vim_lsp',
+"   \ 'php': 'vim_lsp',
+"   \ }
 let g:vista_fzf_preview=['right:50%']
 let g:vista#renderer#enable_icon=1
 let g:vista#renderer#icons={
@@ -624,11 +666,47 @@ let g:dispatch_compilers = {
 nnoremap <Leader>Co :Copen<CR>
 
 " vim-dispatch }}}
+" voldkiss/vim-translator settings {{{
+
+let g:translator_target_lang='zh'
+let g:translator_source_lang='auto'
+let g:translator_default_engines=['bing', 'google', 'haici', 'youdao']
+let g:translator_proxy_url=''
+let g:translator_history_enable=v:false
+let g:translator_window_type='popup'
+let g:translator_window_max_width=0.6
+let g:translator_window_max_height=0.6
+let g:translator_window_borderchars=['─', '│', '─', '│', '┌', '┐', '┘', '└']
+
+" Echo translation in the cmdline
+nmap <silent> <C-Y>y <Plug>Translate
+vmap <silent> <C-Y>y <Plug>TranslateV
+" Display translation in a window
+nmap <silent> <C-Y>w <Plug>TranslateW
+vmap <silent> <C-Y>w <Plug>TranslateWV
+" Replace the text with translation
+nmap <silent> <C-Y>r <Plug>TranslateR
+vmap <silent> <C-Y>r <Plug>TranslateRV
+" Translate the text in clipboard
+nmap <silent> <C-Y>x <Plug>TranslateX
+
+" Once the translation window is opened, type <C-w>p to jump into it and again to jump back
+" Beside, there is a function which can be used to scroll window, only works in neovim.
+nnoremap <silent><expr> <M-f> translator#window#float#has_scroll() ?
+                            \ translator#window#float#scroll(1) : "\<M-f>"
+nnoremap <silent><expr> <M-b> translator#window#float#has_scroll() ?
+                            \ translator#window#float#scroll(0) : "\<M-f>"
+
+" voldkiss/vim-translator settings }}}
 " coc.nvim {{{
 
-" coc settings
-source ~/.config/nvim/coc.vim
+" source ~/.config/nvim/coc.vim
 
 " coc.nvim }}}
+" nvim-lspconfig.nvim {{{
+
+source ~/.config/nvim/nvim-lsp.vim
+
+" nvim-lspconfig.nvim }}}
 
 " Plug Settings }}}
