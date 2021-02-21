@@ -22,9 +22,9 @@ let g:completion_confirm_key = "<CR>"
 "map <C-Space> to manually trigger completion
 imap <silent> <C-Space> <Plug>(completion_trigger)
 "use <C-j> to switch to previous completion
-imap <C-j> <Plug>(completion_next_source)
+" imap <C-j> <Plug>(completion_next_source)
 "use <C-k> to switch to next completion
-imap <C-k> <Plug>(completion_prev_source)
+" imap <C-k> <Plug>(completion_prev_source)
 
 " complete settings
 

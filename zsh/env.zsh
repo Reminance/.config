@@ -13,7 +13,9 @@ export PATH=$PATH:~/.config/bin
 export GOPROXY=https://goproxy.cn/
 export RANGER_LOAD_DEFAULT_RC=FALSE
 # Make VIM the global editor
-export VISUAL=nvim
+NVIM=nvim
+NVIM_NIGHTLY=~/.config/sandbox/nvim-nightly/nvim-linux64/bin/nvim
+export VISUAL="$NVIM_NIGHTLY"
 export EDITOR="$VISUAL"
 #export TERM=alacritty
 export TERM=xterm-256color

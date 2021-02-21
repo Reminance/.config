@@ -4,11 +4,11 @@ alias la='ls -A'
 alias lla='ls -lA'
 alias l='ls -CF'
 
-NVIM=nvim
-NVIM_NIGHTLY=~/.config/sandbox/nvim-nightly/nvim-linux64/bin/nvim
-alias vi="$NVIM"
-alias vim="$NVIM_NIGHTLY"
-alias em='emacs'
+# EDITOR from ~/.config/zsh/env.zsh
+alias vi="$EDITOR"
+alias vim="$EDITOR"
+alias nvim="$EDITOR"
+alias em='emacsclient -c -a %'
 
 
 alias lg='lazygit'

@@ -20,7 +20,6 @@ set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 set fileformats=unix,dos,mac
 set modelines=0
-set autoindent
 set showmode
 set showcmd
 set ttyfast "should make scrolling faster
@@ -38,11 +37,9 @@ set list
 " set listchars=tab:»\ ,trail:·,eol:↲,extends:❯,precedes:❮,nbsp:␣,conceal:┊
 set listchars=tab:»\ ,trail:▫,eol:¬,extends:>,precedes:<,nbsp:␣,conceal:┊
 set showbreak=↪
-set matchtime=3
-set autowrite
-set autoread
+set matchtime=5
+set autoread autowrite
 set shiftround
-set title
 set signcolumn=yes
 set inccommand=split
 
@@ -68,16 +65,13 @@ let mapleader=","
 let maplocalleader = "\\"
 
 " Leader Bindings }}}
-" Tabs, spaces, wrapping {{{
+" Tabs, spaces, wrapping, indent {{{
 
-set tabstop=4 softtabstop=4
-set shiftwidth=4
-set expandtab
-set smarttab
+set shiftwidth=4 tabstop=4 softtabstop=4 expandtab smarttab autoindent smartindent
 set nowrap
 " set textwidth=80
 
-" Tabs, spaces, wrapping }}}
+" Tabs, spaces, wrapping, indent }}}
 " Line Number {{{
 
 set nu rnu
@@ -386,6 +380,16 @@ nnoremap <Down>  :lnext<cr>zvzz
 
 " }}}
 
+" syntax highlighting of search results {{{{
+
+" for gui
+" au ColorScheme * highlight Search guibg=guibg guifg=guifg gui=italic,underline,bold
+au ColorScheme * highlight Search guibg=guibg guifg=Cyan gui=italic,underline,bold
+" for term
+" au ColorScheme * highlight Search ctermbg=black ctermfg=yellow term=underline
+
+" }}}
+
 " Searching And Movement }}}
 " Window Management {{{
 
@@ -462,7 +466,7 @@ nnoremap <Leader><Leader>lsp :e ~/.config/nvim/nvim-lsp.vim<CR>
 " Open the lua dir anytime
 nnoremap <Leader><Leader>lua :e ~/.config/nvim/lua<CR>
 " Open the scratchpad anytime
-nnoremap <Leader><Leader>s :FloatermNew nvim ~/.config/nvim/scratchpad.vim<CR>
+nnoremap <Leader><Leader>s :FloatermNew $EDITOR ~/.config/nvim/scratchpad.vim<CR>
 
 " Open Settings File }}}
 " Clipboard {{{
@@ -490,7 +494,7 @@ command! -bang -nargs=* EditUtilSnips call fzf#run({
 " Folding {{{
 
 set foldlevelstart=0
-set foldcolumn=1
+set foldcolumn=0
 
 " Tab to toggle folds.
 nnoremap <Tab> za
