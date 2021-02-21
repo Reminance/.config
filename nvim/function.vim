@@ -56,6 +56,8 @@ func! CompileRunGcc()
         :term go run .
     elseif &filetype == 'nasm'
         exec "!nasm -f bin % -o %<.bin"
+    elseif &filetype == 'lua'
+        :FloatermNew time lua %
     endif
 endfunc
 

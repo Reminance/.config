@@ -116,7 +116,7 @@ set t_ut=
 " Time out on key codes but not mappings.
 " Basically this makes terminal Vim work sanely.
 set timeout
-set timeoutlen=500
+set timeoutlen=1000
 set ttimeout
 set ttimeoutlen=10
 " for better coc experience
@@ -201,15 +201,17 @@ nnoremap R <nop>
 nnoremap Q <nop>
 nnoremap <C-q> :q<CR>
 inoremap <C-q> :q<CR>
+nnoremap <C-M-q> :qa<CR>
+inoremap <C-M-q> :qa<CR>
 inoremap <C-s> <Esc>:w<CR>
 nnoremap <C-s> :w<CR>
 
 " Source
-nnoremap <M-s> <nop>
-nnoremap <M-s>i :source $MYVIMRC<CR>
-nnoremap <M-s>. :so %<CR>
-vnoremap <M-s>v y:execute @@<CR>:echo 'Sourced selection.'<CR>
-nnoremap <M-s>l ^vg_y:execute @@<CR>:echo 'Sourced line.'<CR>
+nnoremap <M-x> <nop>
+nnoremap <M-x>si :source $MYVIMRC<CR>
+nnoremap <M-x>s. :so %<CR>
+vnoremap <M-x>sv y:execute @@<CR>:echo 'Sourced selection.'<CR>
+nnoremap <M-x>sl ^vg_y:execute @@<CR>:echo 'Sourced line.'<CR>
 
 
 " show the vim mappings
@@ -292,7 +294,7 @@ nnoremap <F9> mzggg?G`z
 
 " Select (charwise) the contents of the current line, excluding indentation.
 " Great for pasting Python lines into REPLs.
-nnoremap vv ^vg_
+nnoremap <Leader>vv ^vg_
 
 " templates
 augroup templates
@@ -600,10 +602,11 @@ augroup END
 " Markdown --------------------------------------------------------------{{{
 
 augroup filetype_markdown
-    au!
-    au BufEnter,BufNewFile,BufRead *.md,*.markdown,*.mdown,*.mkd,*.mkdn,*.mdwn,README.md setlocal filetype=markdown foldlevel=1
+    au BufEnter,BufNewFile,BufRead *.md,*.markdown,*.mdown,*.mkd,*.mkdn,*.mdwn setl filetype=markdown
+    au Filetype markdown setl foldlevel=1 tabstop=2 softtabstop=2 shiftwidth=2
     au Filetype markdown nnoremap <buffer> <LocalLeader>p VV:'<,'>!python -m json.tool<cr>
     au Filetype markdown vnoremap <buffer> <LocalLeader>p :!python -m json.tool<cr>
+    au Filetype markdown nnoremap <buffer> <M-f> $F.egf
 augroup END
 " markdown settings
 let g:markdown_folding=1
@@ -653,6 +656,7 @@ augroup filetype_vim
     au FileType vim setlocal foldmethod=marker foldlevel=99
     au FileType help setlocal textwidth=78
     au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
+    au Filetype vim nnoremap <buffer> <M-f> $F.egf
 augroup END
 
 " Vim }}}

@@ -436,8 +436,10 @@ let g:startify_bookmarks=[
 
 " Open Startify
 nnoremap <Leader>\ :Startify<CR>
-nnoremap <Leader>ss :SSave! Session.vim<CR>
-nnoremap <Leader>sl :SLoad! Session.vim<CR>
+nnoremap <Leader>ss :SSave! Session.session<CR>
+nnoremap <Leader>sS :SSave! 
+nnoremap <Leader>sl :SLoad! Session.session<CR>
+nnoremap <Leader>sL :SLoad! 
 nnoremap <Leader>sd :SDelete!<CR>
 nnoremap <Leader>sc :SClose<CR>
 
@@ -691,11 +693,11 @@ vmap <silent> <C-Y>r <Plug>TranslateRV
 nmap <silent> <C-Y>x <Plug>TranslateX
 
 " Once the translation window is opened, type <C-w>p to jump into it and again to jump back
-" Beside, there is a function which can be used to scroll window, only works in neovim.
-nnoremap <silent><expr> <M-f> translator#window#float#has_scroll() ?
-                            \ translator#window#float#scroll(1) : "\<M-f>"
-nnoremap <silent><expr> <M-b> translator#window#float#has_scroll() ?
-                            \ translator#window#float#scroll(0) : "\<M-f>"
+" " Beside, there is a function which can be used to scroll window, only works in neovim.
+" nnoremap <silent><expr> <M-f> translator#window#float#has_scroll() ?
+"                             \ translator#window#float#scroll(1) : "\<M-f>"
+" nnoremap <silent><expr> <M-b> translator#window#float#has_scroll() ?
+"                             \ translator#window#float#scroll(0) : "\<M-f>"
 
 " voldkiss/vim-translator settings }}}
 " coc.nvim {{{
