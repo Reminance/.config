@@ -290,7 +290,10 @@ nnoremap <Leader>vt :Tutor<CR>
 nnoremap <Leader>ww mz:%s/\s\+$//<cr>:let @/=''<CR>`z
 
 " Panic Button
-nnoremap <F9> mzggg?G`z
+nnoremap <M-x>e mzggg?G`z
+
+" Rot13 encode {motion} text.
+vnoremap <M-x>e mzg?`z
 
 " Select (charwise) the contents of the current line, excluding indentation.
 " Great for pasting Python lines into REPLs.
