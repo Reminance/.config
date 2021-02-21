@@ -601,7 +601,7 @@ endfunction
 " If you want to show the nearest function in your statusline automatically,
 " you can add the following line to your vimrc
 autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
-nnoremap <Leader>vv :Vista!!<CR>
+nnoremap <Leader>vt :Vista!!<CR>
 " nnoremap <Leader>vf :silent! Vista finder coc<CR>
 let g:vista_icon_indent=["╰─▸ ", "├─▸ "]
 " let g:vista_default_executive='coc'
