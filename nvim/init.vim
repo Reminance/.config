@@ -1,5 +1,5 @@
-" ----------------------------------- VIMRC ------------------------------------
-" PreSetup --------------------------------------------------------------{{{
+" ---------------------------------- VIMRC -----------------------------------
+" PreSetup -------------------------------------------------------------{{{
 
 set nocompatible
 filetype off
@@ -8,7 +8,7 @@ filetype plugin on
 filetype plugin indent on
 
 " PreSetup }}}
-" Basic Options ---------------------------------------------------------{{{
+" Basic Options --------------------------------------------------------{{{
 
 " Basic Settings {{{
 
@@ -32,7 +32,7 @@ set laststatus=2
 set autochdir
 set ruler
 set linebreak
-set colorcolumn=+1
+set colorcolumn=80
 set list
 " set listchars=tab:▸\ ,trail:▫,eol:¬,extends:❯,precedes:❮,nbsp:␣,conceal:┊
 " set listchars=tab:»\ ,trail:·,eol:↲,extends:❯,precedes:❮,nbsp:␣,conceal:┊
@@ -74,8 +74,8 @@ set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
 set smarttab
-set wrap
-set textwidth=80
+set nowrap
+" set textwidth=80
 
 " Tabs, spaces, wrapping }}}
 " Line Number {{{
@@ -180,7 +180,7 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 " Highlight VCS Conflict Markers }}}
 
 " Basic Options }}}
-" Machine Specific Settings ---------------------------------------------{{{
+" Machine Specific Settings --------------------------------------------{{{
 
 " Create a _machine_specific.vim file to adjust machine specific stuff, like python interpreter location
 let has_machine_specific_file=1
@@ -191,7 +191,7 @@ endif
 source ~/.config/nvim/_machine_specific.vim
 
 " Machine Specific Settings }}}
-" Basic Mappings --------------------------------------------------------{{{
+" Basic Mappings -------------------------------------------------------{{{
 
 " Save & quit
 nnoremap s <nop>
@@ -311,7 +311,7 @@ augroup templates
 augroup END
 
 " Basic Mappings }}}
-" Searching And Movement ------------------------------------------------{{{
+" Searching And Movement -----------------------------------------------{{{
 
 set ignorecase
 set smartcase
@@ -387,7 +387,7 @@ nnoremap <Down>  :lnext<cr>zvzz
 " }}}
 
 " Searching And Movement }}}
-" Window Management -----------------------------------------------------{{{
+" Window Management ----------------------------------------------------{{{
 
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
 nnoremap sh :set nosplitright<CR>:vsplit<CR>
@@ -421,7 +421,7 @@ nnoremap <C-M-k> <C-w>K
 nnoremap <C-M-l> <C-w>L
 
 " Window Management }}}
-" Tab Management --------------------------------------------------------{{{
+" Tab Management -------------------------------------------------------{{{
 
 " Create a new tab
 nnoremap <M-n> :tabe<CR>
@@ -441,7 +441,7 @@ endfor
 nnoremap <M-9> :tablast<CR>
 
 " Tab Management }}}
-" Open Settings File ----------------------------------------------------{{{
+" Open Settings File ---------------------------------------------------{{{
 
 " Open the vimrc file anytime
 nnoremap <Leader><Leader>i :e ~/.config/nvim/init.vim<CR>
@@ -465,7 +465,7 @@ nnoremap <Leader><Leader>lua :e ~/.config/nvim/lua<CR>
 nnoremap <Leader><Leader>s :FloatermNew nvim ~/.config/nvim/scratchpad.vim<CR>
 
 " Open Settings File }}}
-" Clipboard -------------------------------------------------------------{{{
+" Clipboard ------------------------------------------------------------{{{
 
 " set clipboard^=unnamed,unnnamedplus
 
@@ -475,7 +475,7 @@ noremap Y "+y
 noremap P "+p
 
 " Clipboard }}}
-" Ultisnips -------------------------------------------------------------{{{
+" Ultisnips ------------------------------------------------------------{{{
 
 function! s:edit_snippets(snippets_name)
     exe 'vsp ~/.config/nvim/Ultisnips/'.a:snippets_name
@@ -487,7 +487,7 @@ command! -bang -nargs=* EditUtilSnips call fzf#run({
             \ })
 
 " Ultisnips }}}
-" Folding ---------------------------------------------------------------{{{
+" Folding --------------------------------------------------------------{{{
 
 set foldlevelstart=0
 set foldcolumn=1
@@ -501,25 +501,22 @@ vnoremap <S-Tab> zc
 " Make <z0> recursively open whatever fold we're in, even if it's partially open.
 nnoremap z0 zczO
 
+let g:foldmarkerlhs=split(&foldmarker, ",")[0]
+let g:nucolwidth = &fdc + &number * &numberwidth
 function! MyFoldText() " {{{
     let line = getline(v:foldstart)
-    let nucolwidth = &fdc + &number * &numberwidth
-    let windowwidth = winwidth(0) - nucolwidth - 3
+    let windowwidth = winwidth(0) - g:nucolwidth - 3
     let foldedlinecount = v:foldend - v:foldstart
-
-    " expand tabs into spaces
-    let onetab = strpart('          ', 0, &tabstop)
-    let line = substitute(line, '\t', onetab, 'g')
-    let line = substitute(line, split(&foldmarker, ",")[0], v:foldstart . '-' . v:foldend, 'g')
-    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
-    " echo line
+    let linerange = v:foldstart . '-' . v:foldend
+    let line = substitute(line, g:foldmarkerlhs, linerange, 'g')
+    " let line = strpart(line, 0, &colorcolumn - 2 - len(linerange))
     let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-    return line . repeat(" ",fillcharcount) . foldedlinecount . ' '
+    return line . repeat(" ", fillcharcount) . foldedlinecount . ' '
 endfunction " }}}
 set foldtext=MyFoldText()
 
 " Folding }}}
-" Assembly --------------------------------------------------------------{{{
+" Assembly -------------------------------------------------------------{{{
 
 " for assembly
 " changeToHex
@@ -534,7 +531,7 @@ augroup filetype_asm
 augroup END
 
 " Assembly }}}
-" C  --------------------------------------------------------------------{{{
+" C  -------------------------------------------------------------------{{{
 
 augroup filetype_c
     au!
@@ -542,7 +539,7 @@ augroup filetype_c
 augroup END
 
 " C  }}}
-" Java ------------------------------------------------------------------{{{
+" Java -----------------------------------------------------------------{{{
 
 " " Javadoc comments (/** and */ pairs) and code sections (marked by {} pairs)
 " " mark the start and end of folds.
@@ -570,7 +567,7 @@ augroup filetype_java
 augroup END
 
 " Java }}}
-" JavaScript ------------------------------------------------------------{{{
+" JavaScript -----------------------------------------------------------{{{
 
 augroup filetype_javascript
     au!
@@ -586,7 +583,7 @@ augroup filetype_javascript
 augroup END
 
 " JavaScript }}}
-" CSS And LessCSS -------------------------------------------------------{{{
+" CSS And LessCSS ------------------------------------------------------{{{
 
 augroup filetype_css
     au!
@@ -602,7 +599,7 @@ augroup filetype_css
 augroup END
 
 " CSS And LessCSS }}}
-" Markdown --------------------------------------------------------------{{{
+" arkdown --------------------------------------------------------------{{{
 
 augroup filetype_markdown
     au BufEnter,BufNewFile,BufRead *.md,*.markdown,*.mdown,*.mkd,*.mkdn,*.mdwn setl filetype=markdown
@@ -619,7 +616,7 @@ let g:markdown_folding=1
 source ~/.config/nvim/snippets/_md_snippets.vim
 
 " Markdown }}}
-" Nginx -----------------------------------------------------------------{{{
+" Ninx -----------------------------------------------------------------{{{
 
 augroup filetype_nginx
     au!
@@ -631,7 +628,7 @@ augroup filetype_nginx
 augroup END
 
 " Nginx }}}
-" Python ----------------------------------------------------------------{{{
+" Pyhon ----------------------------------------------------------------{{{
 
 augroup filetype_python
     au!
@@ -644,7 +641,7 @@ augroup filetype_python
 augroup END
 
 " Python }}}
-" QuickFix --------------------------------------------------------------{{{
+" QuickFix -------------------------------------------------------------{{{
 
 augroup filetype_quickfix
     au!
@@ -652,18 +649,18 @@ augroup filetype_quickfix
 augroup END
 
 " QuickFix }}}
-" Vim -------------------------------------------------------------------{{{
+" Vim ------------------------------------------------------------------{{{
 
 augroup filetype_vim
     au!
-    au FileType vim setlocal foldmethod=marker foldlevel=99
-    au FileType help setlocal textwidth=78
+    au FileType vim setl foldmethod=marker foldlevel=99
+    au FileType help setl textwidth=78
     au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
     au Filetype vim nnoremap <buffer> <M-f> $F.egf
 augroup END
 
 " Vim }}}
-" Yaml ------------------------------------------------------------------{{{
+" Yaml -----------------------------------------------------------------{{{
 
 augroup filetype_yaml
     au!
@@ -671,7 +668,7 @@ augroup filetype_yaml
 augroup END
 
 " Yaml }}}
-" XML -------------------------------------------------------------------{{{
+" XML ------------------------------------------------------------------{{{
 
 augroup filetype_xml
     au!
@@ -683,12 +680,12 @@ augroup filetype_xml
 augroup END
 
 " XML }}}
-" Basic Funcion ---------------------------------------------------------{{{
+" Basic Funcion --------------------------------------------------------{{{
 
 source ~/.config/nvim/function.vim
 
 " Basic Funcion }}}
-" Utils -----------------------------------------------------------------{{{
+" Utils ----------------------------------------------------------------{{{
 
 " Error Toggles {{{
 
@@ -789,18 +786,18 @@ hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 " Highlight Word }}}
 
 " Utils }}}
-" Presentation Mode -----------------------------------------------------{{{
+" Presentation Mode ----------------------------------------------------{{{
 
 source ~/.config/nvim/mode/presentation.vim
 
 " Presentation Mode }}}
-" Plugins Settings(Included lsp) ----------------------------------------{{{
+" Plugins Settings(Included lsp) ---------------------------------------{{{
 
 " plugins
 source ~/.config/nvim/plugins.vim
 
 " Plugins Settings }}}
-" Environments (GUI/Console) ------------------------------------------- {{{
+" Environments (GUI/Console) ------------------------------------------ {{{
 if has('gui_running')
     " GUI Vim
 
