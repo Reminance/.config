@@ -1,5 +1,5 @@
 " ---------------------------------- VIMRC -----------------------------------
-" PreSetup -------------------------------------------------------------{{{
+" PreSetup {{{
 
 set nocompatible
 filetype off
@@ -8,7 +8,7 @@ filetype plugin on
 filetype plugin indent on
 
 " PreSetup }}}
-" Basic Options --------------------------------------------------------{{{
+" Basic Options {{{
 
 " Basic Settings {{{
 
@@ -180,7 +180,7 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 " Highlight VCS Conflict Markers }}}
 
 " Basic Options }}}
-" Machine Specific Settings --------------------------------------------{{{
+" Machine Specifisc Settings {{{
 
 " Create a _machine_specific.vim file to adjust machine specific stuff, like python interpreter location
 let has_machine_specific_file=1
@@ -191,7 +191,7 @@ endif
 source ~/.config/nvim/_machine_specific.vim
 
 " Machine Specific Settings }}}
-" Basic Mappings -------------------------------------------------------{{{
+" Basic Mappings {{{
 
 " Save & quit
 nnoremap s <nop>
@@ -311,7 +311,7 @@ augroup templates
 augroup END
 
 " Basic Mappings }}}
-" Searching And Movement -----------------------------------------------{{{
+" Searching And Movement {{{
 
 set ignorecase
 set smartcase
@@ -387,7 +387,7 @@ nnoremap <Down>  :lnext<cr>zvzz
 " }}}
 
 " Searching And Movement }}}
-" Window Management ----------------------------------------------------{{{
+" Window Management {{{
 
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
 nnoremap sh :set nosplitright<CR>:vsplit<CR>
@@ -421,7 +421,7 @@ nnoremap <C-M-k> <C-w>K
 nnoremap <C-M-l> <C-w>L
 
 " Window Management }}}
-" Tab Management -------------------------------------------------------{{{
+" Tab Management {{{
 
 " Create a new tab
 nnoremap <M-n> :tabe<CR>
@@ -441,7 +441,7 @@ endfor
 nnoremap <M-9> :tablast<CR>
 
 " Tab Management }}}
-" Open Settings File ---------------------------------------------------{{{
+" Open Settings File {{{
 
 " Open the vimrc file anytime
 nnoremap <Leader><Leader>i :e ~/.config/nvim/init.vim<CR>
@@ -465,7 +465,7 @@ nnoremap <Leader><Leader>lua :e ~/.config/nvim/lua<CR>
 nnoremap <Leader><Leader>s :FloatermNew nvim ~/.config/nvim/scratchpad.vim<CR>
 
 " Open Settings File }}}
-" Clipboard ------------------------------------------------------------{{{
+" Clipboard {{{
 
 " set clipboard^=unnamed,unnnamedplus
 
@@ -475,7 +475,7 @@ noremap Y "+y
 noremap P "+p
 
 " Clipboard }}}
-" Ultisnips ------------------------------------------------------------{{{
+" Ultisnips {{{
 
 function! s:edit_snippets(snippets_name)
     exe 'vsp ~/.config/nvim/Ultisnips/'.a:snippets_name
@@ -487,7 +487,7 @@ command! -bang -nargs=* EditUtilSnips call fzf#run({
             \ })
 
 " Ultisnips }}}
-" Folding --------------------------------------------------------------{{{
+" Folding {{{
 
 set foldlevelstart=0
 set foldcolumn=1
@@ -504,19 +504,20 @@ nnoremap z0 zczO
 let g:foldmarkerlhs=split(&foldmarker, ",")[0]
 let g:nucolwidth = &fdc + &number * &numberwidth
 function! MyFoldText() " {{{
-    let line = getline(v:foldstart)
     let windowwidth = winwidth(0) - g:nucolwidth - 3
     let foldedlinecount = v:foldend - v:foldstart
-    let linerange = v:foldstart . '-' . v:foldend
-    let line = substitute(line, g:foldmarkerlhs, linerange, 'g')
-    " let line = strpart(line, 0, &colorcolumn - 2 - len(linerange))
-    let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-    return line . repeat(" ", fillcharcount) . foldedlinecount . ' '
+    let linerange = ' [' . v:foldstart . '-' . v:foldend . ']'
+    let line = getline(v:foldstart)
+    let line = substitute(line, g:foldmarkerlhs, '', 'g')
+    let filldashcount = &colorcolumn - len(line) - len(linerange) - 1
+    let line = line . repeat('-', filldashcount) . linerange
+    let fillspacecount = windowwidth - len(line) - len(foldedlinecount)
+    return line . repeat(' ', fillspacecount) . foldedlinecount . ' '
 endfunction " }}}
 set foldtext=MyFoldText()
 
 " Folding }}}
-" Assembly -------------------------------------------------------------{{{
+" Assembly {{{
 
 " for assembly
 " changeToHex
@@ -531,7 +532,7 @@ augroup filetype_asm
 augroup END
 
 " Assembly }}}
-" C  -------------------------------------------------------------------{{{
+" C  {{{
 
 augroup filetype_c
     au!
@@ -539,7 +540,7 @@ augroup filetype_c
 augroup END
 
 " C  }}}
-" Java -----------------------------------------------------------------{{{
+" Java {{{
 
 " " Javadoc comments (/** and */ pairs) and code sections (marked by {} pairs)
 " " mark the start and end of folds.
@@ -567,7 +568,7 @@ augroup filetype_java
 augroup END
 
 " Java }}}
-" JavaScript -----------------------------------------------------------{{{
+" JavaScript {{{
 
 augroup filetype_javascript
     au!
@@ -583,7 +584,7 @@ augroup filetype_javascript
 augroup END
 
 " JavaScript }}}
-" CSS And LessCSS ------------------------------------------------------{{{
+" CSS And LessCSS {{{
 
 augroup filetype_css
     au!
@@ -599,7 +600,7 @@ augroup filetype_css
 augroup END
 
 " CSS And LessCSS }}}
-" arkdown --------------------------------------------------------------{{{
+" arkdown {{{
 
 augroup filetype_markdown
     au BufEnter,BufNewFile,BufRead *.md,*.markdown,*.mdown,*.mkd,*.mkdn,*.mdwn setl filetype=markdown
@@ -616,7 +617,7 @@ let g:markdown_folding=1
 source ~/.config/nvim/snippets/_md_snippets.vim
 
 " Markdown }}}
-" Ninx -----------------------------------------------------------------{{{
+" Ninx {{{
 
 augroup filetype_nginx
     au!
@@ -628,7 +629,7 @@ augroup filetype_nginx
 augroup END
 
 " Nginx }}}
-" Pyhon ----------------------------------------------------------------{{{
+" Pyhon {{{
 
 augroup filetype_python
     au!
@@ -641,7 +642,7 @@ augroup filetype_python
 augroup END
 
 " Python }}}
-" QuickFix -------------------------------------------------------------{{{
+" QuickFix {{{
 
 augroup filetype_quickfix
     au!
@@ -649,7 +650,7 @@ augroup filetype_quickfix
 augroup END
 
 " QuickFix }}}
-" Vim ------------------------------------------------------------------{{{
+" Vim {{{
 
 augroup filetype_vim
     au!
@@ -660,7 +661,7 @@ augroup filetype_vim
 augroup END
 
 " Vim }}}
-" Yaml -----------------------------------------------------------------{{{
+" Yaml {{{
 
 augroup filetype_yaml
     au!
@@ -668,7 +669,7 @@ augroup filetype_yaml
 augroup END
 
 " Yaml }}}
-" XML ------------------------------------------------------------------{{{
+" XML {{{
 
 augroup filetype_xml
     au!
@@ -680,12 +681,12 @@ augroup filetype_xml
 augroup END
 
 " XML }}}
-" Basic Funcion --------------------------------------------------------{{{
+" Basic Funcion {{{
 
 source ~/.config/nvim/function.vim
 
 " Basic Funcion }}}
-" Utils ----------------------------------------------------------------{{{
+" Utils {{{
 
 " Error Toggles {{{
 
@@ -786,18 +787,18 @@ hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 " Highlight Word }}}
 
 " Utils }}}
-" Presentation Mode ----------------------------------------------------{{{
+" Presentation Mode {{{
 
 source ~/.config/nvim/mode/presentation.vim
 
 " Presentation Mode }}}
-" Plugins Settings(Included lsp) ---------------------------------------{{{
+" Plugins Settings(Included lsp) {{{
 
 " plugins
 source ~/.config/nvim/plugins.vim
 
 " Plugins Settings }}}
-" Environments (GUI/Console) ------------------------------------------ {{{
+" Environments (GUI/Console) {{{
 if has('gui_running')
     " GUI Vim
 

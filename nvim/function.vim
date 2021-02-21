@@ -1,4 +1,4 @@
-" Compile Function -----------------------------------------------------{{{
+" Compile Function {{{
 
 nnoremap <M-r> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
@@ -62,7 +62,7 @@ func! CompileRunGcc()
 endfunc
 
 " Compile Function }}}
-" Quickfix Toggle ------------------------------------------------------{{{
+" Quickfix Toggle {{{
 
 " Copen comes with vim-dispatch, copen is builtin
 " nnoremap <Leader>qf :Copen<CR>
@@ -86,7 +86,7 @@ augroup QFixToggle
 augroup END
 
 " Quickfix Toggle }}}
-" Another Quickfix Toggle --testi---------------------------------------{{{
+" Another Quickfix Toggle --testi{{{
 
 " another quickfix toggle --testing
 function! GetBufferList()
@@ -120,7 +120,7 @@ endfunction
 " nmap <silent> <Leader>`q :call ToggleList("Quickfix List", 'c')<CR>
 
 " Another Quickfix Toggle }}}
-" Sessions -------------------------------------------------------------{{{
+" Sessions {{{
 
 " 自带的session颜色丢失 用startify的session管理代替
 " auto save and load session for $HOME/.config/nvim/session/current.session
@@ -146,7 +146,7 @@ endfunction
 " endfunction
 
 " Sessions }}}
-" Format And Encoding --------------------------------------------------{{{
+" Format And Encoding {{{
 
 command! -bang -nargs=* UnixEncodingUtf8 exec "set fileformat=unix | set fileencoding=utf-8"
 " <q-args>会自动对参数特殊字符进行转义 函数接收参数时，使用关键字<f-args>
@@ -160,7 +160,7 @@ func! FormatAndEncodeFunc(format, encoding)
 endfunc
 
 " Format And Encoding }}}
-" Netrw Settings -------------------------------------------------------{{{
+" Netrw Settings {{{
 
 " nnoremap tt :Lexplore<CR><C-w>l
 " " @see https://vi.stackexchange.com/questions/22455/how-to-override-netrw-delete-behavior
@@ -208,7 +208,7 @@ endfunc
 "             \'
 
 " Netrw Settings }}}
-" CTRL-W And Meta-D ----------------------------------------------------{{{
+" CTRL-W And Meta-D {{{
 
 " 检查是否删除到了行首
 function! s:is_first_of_line() abort
@@ -228,7 +228,7 @@ inoremap <silent><expr> <M-d>
       \ "<C-o>de"
 
 " CTRL-W And Meta-D }}}
-" RestoreRegister ------------------------------------------------------{{{
+" RestoreRegister {{{
 
 " prevent replacing paste buffer on paste
 function! RestoreRegister()
@@ -242,7 +242,7 @@ endfunction
 vmap <silent> <expr> p <sid>Repl()
 
 " RestoreRegister }}}
-" SynStack -------------------------------------------------------------{{{
+" SynStack {{{
 
 " describe syntax under cursor
 function! <SID>SynStack()

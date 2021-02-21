@@ -1,4 +1,4 @@
-" Vim-plug Auto Load ---------------------------------------------------{{{
+" Vim-plug Auto Load {{{
 
 " Auto load for the first time
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
@@ -8,7 +8,7 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 " Vim-plug Auto Load }}}
-" Plug Install ---------------------------------------------------------{{{
+" Plug Install {{{
 
 call plug#begin('~/.config/nvim/plugged')
 
@@ -156,7 +156,7 @@ Plug 'nvim-lua/completion-nvim'
 call plug#end()
 
 " Plug Install }}}
-" Plug Settings --------------------------------------------------------{{{
+" Plug Settings {{{
 
 " latex {{{
 
