@@ -298,6 +298,7 @@ augroup templates
     au!
     au BufNewFile *.sh 0r ~/.config/nvim/templates/sh.tpl
     au BufNewFile *.c 0r ~/.config/nvim/templates/c.tpl
+    au BufNewFile *.cpp 0r ~/.config/nvim/templates/cpp.tpl
     au BufNewFile *.java 0r ~/.config/nvim/templates/java.tpl
     au BufNewFile *.go 0r ~/.config/nvim/templates/go.tpl
     au BufNewFile *.py 0r ~/.config/nvim/templates/py.tpl
@@ -391,6 +392,19 @@ au ColorScheme * highlight Search guibg=guibg guifg=Cyan gui=italic,underline,bo
 " }}}
 
 " Searching And Movement }}}
+" Tags & Ctags {{{
+
+set tags=./.tags;,tags
+
+" use CTRL-T & :ta<CR> jump backward or forward
+nnoremap <Leader>tg :!ctags -R<CR>
+nnoremap <Leader>tl :tags<CR>
+nnoremap <Leader>ts :ptselect <C-r><C-w><CR>
+nnoremap <Leader>tj :ptjump <C-r><C-w><CR>
+nnoremap <Leader>tn :ptnext<CR>
+nnoremap <Leader>tp :ptprevious<CR>
+
+" Tags & Ctags }}}
 " Window Management {{{
 
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)

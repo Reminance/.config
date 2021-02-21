@@ -261,7 +261,6 @@ let g:NERDTreeIndicatorMapCustom={
 " Tagbar {{{
 
 " Tagbar might need sudo pacman -S ctags
-set tags=./.tags;,.tags
 nnoremap <silent> T :TagbarOpenAutoClose<CR>
 
 " Tagbar }}}

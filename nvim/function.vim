@@ -5,14 +5,16 @@ func! CompileRunGcc()
     exec "w"
     if &filetype == 'c'
         " exec "!g++ % -o %<"
-        exec "!gcc % -o %<"
-        exec "!time ./%<"
+        " exec "!gcc % -o %<"
+        " exec "!time ./%<"
+        :FloatermNew gcc % -o %< && time ./%<
     elseif &filetype == 'cpp'
-        set splitbelow
-        exec "!g++ -std=c++11 % -Wall -o %<"
-        :sp
-        :res -15
-        :term ./%<
+        " set splitbelow
+        " exec "!g++ -std=c++11 % -Wall -o %<"
+        " :sp
+        " :res -15
+        " :term ./%<
+        :FloatermNew g++ -std=c++11 % -Wall -o %< && ./%<
     elseif &filetype == 'java'
         " ==== compile & run ===
         " exec "!javac % && time java %<"
@@ -30,9 +32,10 @@ func! CompileRunGcc()
         " :!time bash %
         :FloatermNew time bash %
     elseif &filetype == 'python'
-        set splitbelow
-        :sp
-        :term python3 %
+        " set splitbelow
+        " :sp
+        " :term python3 %
+        :FloatermNew python3 %
     elseif &filetype == 'html'
         silent! exec "!".g:mkdp_browser." % &"
     elseif &filetype == 'vimwiki'
@@ -47,13 +50,15 @@ func! CompileRunGcc()
         CocCommand flutter.run -d iPhone\ 11\ Pro
         CocCommand flutter.dev.openDevLog
     elseif &filetype == 'javascript'
-        set splitbelow
-        :sp
-        :term export DEBUG="INFO,ERROR,WARNING"; node --trace-warnings .
+        " set splitbelow
+        " :sp
+        " :term export DEBUG="INFO,ERROR,WARNING"; node --trace-warnings .
+        :FloatermNew export DEBUG="INFO,ERROR,WARNING"; node --trace-warnings .
     elseif &filetype == 'go'
-        set splitbelow
-        :sp
-        :term go run .
+        " set splitbelow
+        " :sp
+        " :term go run .
+        :FloatermNew go run %
     elseif &filetype == 'nasm'
         exec "!nasm -f bin % -o %<.bin"
     elseif &filetype == 'lua'
