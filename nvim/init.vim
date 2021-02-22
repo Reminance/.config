@@ -607,7 +607,7 @@ augroup filetype_css
 augroup END
 
 " CSS And LessCSS }}}
-" arkdown {{{
+" markdown {{{
 
 augroup filetype_markdown
     au BufEnter,BufNewFile,BufRead *.md,*.markdown,*.mdown,*.mkd,*.mkdn,*.mdwn setl filetype=markdown
@@ -624,7 +624,7 @@ let g:markdown_folding=1
 source ~/.config/nvim/snippets/_md_snippets.vim
 
 " Markdown }}}
-" Ninx {{{
+" Nginx {{{
 
 augroup filetype_nginx
     au!
@@ -636,7 +636,7 @@ augroup filetype_nginx
 augroup END
 
 " Nginx }}}
-" Pyhon {{{
+" Python {{{
 
 augroup filetype_python
     au!
