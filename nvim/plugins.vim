@@ -145,6 +145,9 @@ Plug 'tpope/vim-dispatch'
 " voldikss/vim-translator
 Plug 'voldikss/vim-translator'
 
+" auto-pairs
+Plug 'jiangmiao/auto-pairs'
+
 " code complete
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 

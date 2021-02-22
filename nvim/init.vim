@@ -1,4 +1,4 @@
-" ---------------------------------- VIMRC -----------------------------------
+" ----------------------------------- VIMRC -----------------------------------
 " PreSetup {{{
 
 set nocompatible
@@ -28,10 +28,12 @@ let &t_SI="\<Esc>]50;CursorShape=1\x7"
 let &t_SR="\<Esc>]50;CursorShape=2\x7"
 let &t_EI="\<Esc>]50;CursorShape=0\x7"
 set laststatus=2
-set autochdir
+set shiftwidth=4 tabstop=4 softtabstop=4 expandtab smarttab autoindent smartindent
+set wrap
+set textwidth=80
+set nu rnu
 set ruler
-set linebreak
-set colorcolumn=80
+set colorcolumn=+1
 set list
 " set listchars=tab:▸\ ,trail:▫,eol:¬,extends:❯,precedes:❮,nbsp:␣,conceal:┊
 " set listchars=tab:»\ ,trail:·,eol:↲,extends:❯,precedes:❮,nbsp:␣,conceal:┊
@@ -42,6 +44,10 @@ set autoread autowrite
 set shiftround
 set signcolumn=yes
 set inccommand=split
+let mapleader=","
+let maplocalleader = "\\"
+" set linebreak " auto wrap long lines with line break
+" set autochdir " auto change cwd
 
 " Save when losing focus
 au FocusLost * :silent! wall
@@ -59,24 +65,6 @@ set synmaxcol=800
 set backspace=indent,eol,start
 
 " Basic Settings }}}
-" Leader Bindings {{{
-
-let mapleader=","
-let maplocalleader = "\\"
-
-" Leader Bindings }}}
-" Tabs, spaces, wrapping, indent {{{
-
-set shiftwidth=4 tabstop=4 softtabstop=4 expandtab smarttab autoindent smartindent
-set nowrap
-" set textwidth=80
-
-" Tabs, spaces, wrapping, indent }}}
-" Line Number {{{
-
-set nu rnu
-
-" Line Number }}}
 " Cursorline & ColorColumn {{{
 
 set cursorline
@@ -167,11 +155,6 @@ set wildignore+=classes
 set wildignore+=lib
 
 " Wildmenu Completion }}}
-" Highlight VCS Conflict Markers {{{
-
-match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
-
-" Highlight VCS Conflict Markers }}}
 
 " Basic Options }}}
 " Machine Specifisc Settings {{{
@@ -221,6 +204,10 @@ nnoremap <C-Down> :res +5<CR>
 nnoremap <C-Up> :res -5<CR>
 nnoremap <C-Left> :vertical resize-5<CR>
 nnoremap <C-Right> :vertical resize+5<CR>
+
+" Create Blank Newlines and stay in Normal mode
+nnoremap <silent> zj moo<Esc>`o
+nnoremap <silent> zk moO<Esc>`o
 
 " Basic Mappings
 nnoremap <Leader><Space> :nohlsearch<CR>
