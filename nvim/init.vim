@@ -516,7 +516,7 @@ function! MyFoldText() " {{{
     let linerange = ' [' . v:foldstart . '-' . v:foldend . ']'
     let line = getline(v:foldstart)
     let line = substitute(line, g:foldmarkerlhs, '', 'g')
-    let filldashcount = &colorcolumn - len(line) - len(linerange) - 1
+    let filldashcount = &textwidth - len(line) - len(linerange)
     let line = line . repeat('-', filldashcount) . linerange
     let fillspacecount = windowwidth - len(line) - len(foldedlinecount)
     return line . repeat(' ', fillspacecount) . foldedlinecount . ' '
@@ -539,14 +539,14 @@ augroup filetype_asm
 augroup END
 
 " Assembly }}}
-" C  {{{
+" C {{{
 
 augroup filetype_c
     au!
     au FileType c setlocal foldmethod=marker foldmarker={,}
 augroup END
 
-" C  }}}
+" C }}}
 " Java {{{
 
 " " Javadoc comments (/** and */ pairs) and code sections (marked by {} pairs)
@@ -662,7 +662,6 @@ augroup END
 augroup filetype_vim
     au!
     au FileType vim setl foldmethod=marker foldlevel=99
-    au FileType help setl textwidth=78
     au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
     au Filetype vim nnoremap <buffer> <M-f> $F.egf
 augroup END
