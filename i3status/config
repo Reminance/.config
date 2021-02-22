@@ -8,8 +8,15 @@
 
 general {
         colors = true
+        color_good =     '#1dcc9f'
+        color_degraded = '#27c282'
+        color_bad =      '#aa0e50'
         output_format = i3bar
         interval = 5
+        # color_good =     '#22ddcc'
+        # color_degraded = '#dd9933'
+        # color_bad =      '#aa5566'
+        # markup = pango
 }
 
 order += "ipv6"
@@ -20,40 +27,58 @@ order += "disk /"
 order += "load"
 order += "cpu_usage"
 order += "memory"
+order += "volume master"
 order += "tztime local"
 
 wireless _first_ {
-        format_up = "W: (%quality at %essid) %ip"
-        format_down = "W: down"
+        format_up = " (%quality at %essid) %ip"
+        format_down = " down"
 }
 
 ethernet _first_ {
-        format_up = "E: %ip (%speed)"
-        format_down = "E: down"
+        format_up = "🌏 %ip (%speed)"
+        format_down = "🌏 down"
 }
 
 battery all {
-        format = "%status %percentage %remaining"
+        format = "%status %remaining (%consumption)"
+        status_chr = ""
+        status_bat = ""
+        status_full = ""
+        hide_seconds = "true"
+        integer_battery_capacity = "true"
+        low_threshold = "20"
+        threshold_type = "time"
+        format_down = " No battery"
 }
 
 disk "/" {
-        format = "%avail"
+        format = "🖴 %avail"
 }
 
 load {
-        format = "LOAD: %1min"
+        format = " LOAD: %1min"
 }
 
 cpu_usage {
-    format = "CPU: %usage"
+    format = " CPU: %usage"
+    # format = "🌏 🚀 ♪   ⛁                           ⚡              "
 }
 
 memory {
-        format = "MEM: %available (%total)"
+        format = " %available (%total)"
         threshold_degraded = "1G"
-        format_degraded = "MEMORY < %available"
+        format_degraded = " MEMORY < %available"
+}
+
+volume master {
+        format = " %volume"
+        format_muted = "🔇 muted %volume"
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
 }
 
 tztime local {
-        format = "%Y-%m-%d %H:%M:%S %A"
+        format = "  %H:%M:%S  %Y-%m-%d %A "
 }
