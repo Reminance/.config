@@ -500,10 +500,10 @@ set foldlevelstart=0
 set foldcolumn=0
 
 " Tab to toggle folds.
-nnoremap <Tab> za
-vnoremap <Tab> za
-nnoremap <S-Tab> zc
-vnoremap <S-Tab> zc
+nnoremap <CR> za
+vnoremap <CR> za
+nnoremap <S-CR> zc
+vnoremap <S-CR> zc
 
 " Make <z0> recursively open whatever fold we're in, even if it's partially open.
 nnoremap z0 zczO
