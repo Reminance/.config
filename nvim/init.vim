@@ -489,8 +489,10 @@ nnoremap <Leader><Leader>s :FloatermNew $EDITOR ~/.config/nvim/scratchpad.vim<CR
 
 " use the system clipboard
 " might need to install a system clipboard tool such as : sudo pacman -S xclip / xsel
-noremap Y "+y
-noremap P "+p
+" let @+=@*<CR> for copying to both the clipboard and primary selection.
+vnoremap Y "*y :let @+=@*<CR>
+nnoremap <Leader>p "+p
+nnoremap <Leader>P "+P
 
 " Clipboard }}}
 " Ultisnips {{{
