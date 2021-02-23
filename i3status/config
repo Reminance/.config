@@ -8,14 +8,14 @@
 
 general {
         colors = true
-        color_good =     '#1dcc9f'
-        color_degraded = '#27c282'
-        color_bad =      '#aa0e50'
         output_format = i3bar
         interval = 5
         # color_good =     '#22ddcc'
         # color_degraded = '#dd9933'
         # color_bad =      '#aa5566'
+        color_good =     '#1dcc9f'
+        color_degraded = '#27c282'
+        color_bad =      '#aa0e50'
         # markup = pango
 }
 
@@ -29,6 +29,13 @@ order += "cpu_usage"
 order += "memory"
 order += "volume master"
 order += "tztime local"
+
+# format = "🌏 🚀 ♪   ⛁                           ⚡              "
+
+ipv6 {
+    format_up = " %IPv6"
+    format_down = " no IPv6"
+}
 
 wireless _first_ {
         format_up = " (%quality at %essid) %ip"
@@ -62,7 +69,6 @@ load {
 
 cpu_usage {
     format = " CPU: %usage"
-    # format = "🌏 🚀 ♪   ⛁                           ⚡              "
 }
 
 memory {
@@ -80,5 +86,5 @@ volume master {
 }
 
 tztime local {
-        format = "  %H:%M:%S  %Y-%m-%d %A "
+        format = " %H:%M:%S   %Y-%m-%d %A "
 }
