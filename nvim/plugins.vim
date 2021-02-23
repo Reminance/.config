@@ -123,12 +123,12 @@ Plug 'liuchengxu/vim-which-key'
 " floaterm
 Plug 'voldikss/vim-floaterm'
 
-" vim-dadbod
-Plug 'tpope/vim-dadbod'
-" vim-dadbod-ui
-Plug 'kristijanhusak/vim-dadbod-ui'
-" vim-dadbod-completion
-Plug 'kristijanhusak/vim-dadbod-completion'
+" " vim-dadbod
+" Plug 'tpope/vim-dadbod'
+" " vim-dadbod-ui
+" Plug 'kristijanhusak/vim-dadbod-ui'
+" " vim-dadbod-completion
+" Plug 'kristijanhusak/vim-dadbod-completion'
 
 " vista.vim
 Plug 'liuchengxu/vista.vim'
@@ -145,9 +145,6 @@ Plug 'tpope/vim-dispatch'
 " voldikss/vim-translator
 Plug 'voldikss/vim-translator'
 
-" auto-pairs
-Plug 'jiangmiao/auto-pairs'
-
 " code complete
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -155,6 +152,8 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'neovim/nvim-lspconfig'
 Plug 'mfussenegger/nvim-jdtls'
 Plug 'nvim-lua/completion-nvim'
+Plug 'steelsojka/completion-buffers'
+" Plug 'kristijanhusak/completion-tags'
 
 call plug#end()
 
@@ -557,38 +556,38 @@ nnoremap <silent> <Leader>fd :FloatermNew ncdu<CR>
 " floaterm }}}
 " vim-dadbod-ui {{{
 
-" nnoremap <silent> <Leader>dt :tabe<CR>:tabmove<CR>:DBUIToggle<CR>
-nnoremap <silent> <Leader>dt :DBUIToggle<CR>
-nnoremap <silent> <Leader>da :DBUIAddConnection<CR>
-"" \ 'dev': 'postgres://postgres:mypassword@localhost:5432/my-dev-db',
-let g:dbs={
-\ 'local': 'mysql://test@192.168.0.101:3306/test',
-\ 'remote': 'mysql://test@dev.seeu.ink:3306/test',
-\ }
-" ui icons
-" let g:db_ui_icons={
-"     \ 'expanded': '▾',
-"     \ 'collapsed': '▸',
-"     \ 'saved_query': '*',
-"     \ 'new_query': '+',
-"     \ 'tables': '~',
-"     \ 'buffers': '»',
-"     \ 'connection_ok': '✓',
-"     \ 'connection_error': '✕',
-"     \ }
-" table helpers  # to add a "count rows" helper for postgres
-let g:db_ui_table_helpers={
-\   'postgresql': {
-\     'Count': 'select count(*) from "{table}"'
-\   },
-\   'mysql': {
-\     'Count': 'select count(*) from "{table}"'
-\   }
-\ }
-" If this is set to 1, opening any of the table helpers will also automatically execute the query. default:0
-" let g:db_ui_auto_execute_table_helpers=0
-let g:db_ui_winwidth=60
-let g:db_ui_default_query='select * from "{table}" limit 10'
+" " nnoremap <silent> <Leader>dt :tabe<CR>:tabmove<CR>:DBUIToggle<CR>
+" nnoremap <silent> <Leader>dt :DBUIToggle<CR>
+" nnoremap <silent> <Leader>da :DBUIAddConnection<CR>
+" "" \ 'dev': 'postgres://postgres:mypassword@localhost:5432/my-dev-db',
+" let g:dbs={
+" \ 'local': 'mysql://test@192.168.0.101:3306/test',
+" \ 'remote': 'mysql://test@dev.seeu.ink:3306/test',
+" \ }
+" " ui icons
+" " let g:db_ui_icons={
+" "     \ 'expanded': '▾',
+" "     \ 'collapsed': '▸',
+" "     \ 'saved_query': '*',
+" "     \ 'new_query': '+',
+" "     \ 'tables': '~',
+" "     \ 'buffers': '»',
+" "     \ 'connection_ok': '✓',
+" "     \ 'connection_error': '✕',
+" "     \ }
+" " table helpers  # to add a "count rows" helper for postgres
+" let g:db_ui_table_helpers={
+" \   'postgresql': {
+" \     'Count': 'select count(*) from "{table}"'
+" \   },
+" \   'mysql': {
+" \     'Count': 'select count(*) from "{table}"'
+" \   }
+" \ }
+" " If this is set to 1, opening any of the table helpers will also automatically execute the query. default:0
+" " let g:db_ui_auto_execute_table_helpers=0
+" let g:db_ui_winwidth=60
+" let g:db_ui_default_query='select * from "{table}" limit 10'
 
 " vim-dadbod-ui }}}
 " vista {{{

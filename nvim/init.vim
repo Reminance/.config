@@ -108,8 +108,9 @@ set updatetime=200
 " Better Completion {{{
 
 " (:help 'complete')
-" set complete=.,w,b,u,t
-" set completeopt=longest,menuone,preview
+set complete=.,w,b,u,t
+" set completeopt=longest,menuone,preview,noinsert,noselect
+set completeopt=longest,menuone,preview,noinsert
 
 " Better Completion }}}
 " Line Return {{{
@@ -667,6 +668,15 @@ augroup filetype_vim
 augroup END
 
 " Vim }}}
+" dbout(dadbod output) {{{
+
+" " dbui is buggy, so just comment below by now
+" augroup filetype_dbout
+"     au!
+"     au FileType dbout setl foldmethod=marker foldlevel=99
+" augroup END
+
+" dbout(dadbod output) }}}
 " Yaml {{{
 
 augroup filetype_yaml

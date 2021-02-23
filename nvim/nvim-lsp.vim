@@ -10,13 +10,12 @@ autocmd BufEnter * lua require'completion'.on_attach()
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" use <Tab> as trigger keys
-imap <Tab> <Plug>(completion_smart_tab)
-imap <S-Tab> <Plug>(completion_smart_s_tab)
+" " use <Tab> as trigger keys
+" imap <Tab> <Plug>(completion_smart_tab)
+" imap <S-Tab> <Plug>(completion_smart_s_tab)
 
-let g:completion_confirm_key = "<CR>"
 " let g:completion_confirm_key = ""
-" imap <expr> <cr>  pumvisible() ? complete_info()["selected"] != "-1" ?
+" imap <expr> <CR>  pumvisible() ? complete_info()["selected"] != "-1" ?
 "                  \ "\<Plug>(completion_confirm_completion)"  : "\<c-e>\<CR>" :  "\<CR>"
 
 "map <C-Space> to manually trigger completion
@@ -29,13 +28,23 @@ imap <silent> <C-Space> <Plug>(completion_trigger)
 " complete settings
 
 " Set completeopt to have a better completion experience
-set completeopt=menuone,noinsert,noselect
+" define the completeopt in init.vim
+" set completeopt=menuone,noinsert,noselect
 " Avoid showing message extra message when using completion
 set shortmess+=c
 
+" complete style
+    " \    {'complete_items': ['snippet', 'buffers', 'tags']},
+    "
+    " dbui is buggy, so comment below by now
+    " \ 'sql': [
+    " \    {'complete_items': ['vim-dadbod-completion']},
+    " \    {'mode': '<C-p>'},
+    " \    {'mode': '<C-n>'}
+    " \],
 let g:completion_chain_complete_list = {
     \ 'vim': [
-    \    {'complete_items': ['snippet']},
+    \    {'complete_items': ['snippet', 'buffers']},
     \    {'mode': '<C-p>'},
     \    {'mode': '<C-n>'}
     \],
@@ -59,7 +68,7 @@ let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy', 'all']
 " let g:completion_matching_ignore_case = 1
 let g:completion_matching_smart_case = 1
 let g:completion_trigger_keyword_length = 1 " default = 1
-let g:completion_trigger_on_delete = 0
+let g:completion_trigger_on_delete = 1
 let g:completion_timer_cycle = 100 "default value is 80
 augroup CompletionTriggerCharacter
     autocmd!
