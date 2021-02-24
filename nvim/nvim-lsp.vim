@@ -1,6 +1,14 @@
-augroup nvim-lsp
+augroup nvim_lsp
     au!
-    au FileType java lua require'lspconfig_jdtls'.setup()
+    au FileType java lua require'lspconfig/lspconfig_jdtls'.setup{}
+    au FileType c,cpp,objc,objcpp lua require'lspconfig'.ccls.setup{}
+    au FileType go,gomod lua require'lspconfig'.gopls.setup{}
+    au FileType rust lua require'lspconfig'.rls.setup{}
+    au FileType python lua require'lspconfig'.pyls.setup{}
+    au FileType sh lua require'lspconfig'.bashls.setup{}
+    au FileType lua lua require'lspconfig'.sumneko_lua.setup{}
+    au FileType html lua require'lspconfig'.html.setup{}
+    au FileType json lua require'lspconfig'.jsonls.setup{}
 augroup end
 
 " Use completion-nvim in every buffer
@@ -48,12 +56,43 @@ let g:completion_chain_complete_list = {
     \    {'mode': '<C-p>'},
     \    {'mode': '<C-n>'}
     \],
+    \ 'java': [
+    \    {'complete_items': ['snippet', 'lsp', 'buffers']},
+    \    {'mode': '<C-p>'},
+    \    {'mode': '<C-n>'}
+    \],
+    \ 'c': [
+    \    {'complete_items': ['snippet', 'lsp', 'buffers']},
+    \    {'mode': '<C-p>'},
+    \    {'mode': '<C-n>'}
+    \],
+    \ 'go': [
+    \    {'complete_items': ['snippet', 'lsp', 'buffers']},
+    \    {'mode': '<C-p>'},
+    \    {'mode': '<C-n>'}
+    \],
+    \ 'rust': [
+    \    {'complete_items': ['snippet', 'lsp', 'buffers']},
+    \    {'mode': '<C-p>'},
+    \    {'mode': '<C-n>'}
+    \],
+    \ 'python': [
+    \    {'complete_items': ['snippet', 'lsp', 'buffers']},
+    \    {'mode': '<C-p>'},
+    \    {'mode': '<C-n>'}
+    \],
+    \ 'sh': [
+    \    {'complete_items': ['snippet', 'lsp', 'buffers']},
+    \    {'mode': '<C-p>'},
+    \    {'mode': '<C-n>'}
+    \],
     \ 'lua': [
+    \    {'complete_items': ['snippet', 'lsp', 'buffers']},
     \    {'mode': '<C-p>'},
     \    {'mode': '<C-n>'}
     \],
     \ 'default': [
-    \    {'complete_items': ['lsp', 'snippet']},
+    \    {'complete_items': ['snippet', 'buffers']},
     \    {'mode': '<C-p>'},
     \    {'mode': '<C-n>'}
     \]
