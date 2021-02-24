@@ -28,6 +28,8 @@ func! CompileRunGcc()
         " exec "make"
         " === for debug ===
         " exec "!time java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=5005,suspend=y %<"
+    elseif &filetype == 'rust'
+        :FloatermNew rustc % && time ./%<
     elseif &filetype == 'sh'
         " :!time bash %
         :FloatermNew time bash %

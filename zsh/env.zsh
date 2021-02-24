@@ -11,6 +11,7 @@ export GOBIN=~/go/bin
 export PATH=$PATH:$GOROOT/bin:$GOBIN
 export PATH=$PATH:~/.config/bin
 export GOPROXY=https://goproxy.cn/
+export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup
 export RANGER_LOAD_DEFAULT_RC=FALSE
 # Make VIM the global editor
 NVIM=nvim
