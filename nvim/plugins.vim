@@ -153,7 +153,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'mfussenegger/nvim-jdtls'
 Plug 'nvim-lua/completion-nvim'
 Plug 'steelsojka/completion-buffers'
-" Plug 'kristijanhusak/completion-tags'
+Plug 'kristijanhusak/completion-tags'
 
 call plug#end()
 

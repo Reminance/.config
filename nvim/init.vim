@@ -110,7 +110,8 @@ set updatetime=200
 " (:help 'complete')
 set complete=.,w,b,u,t
 " set completeopt=longest,menuone,preview,noinsert,noselect
-set completeopt=longest,menuone,preview,noinsert
+set completeopt=menuone,preview,noinsert
+set shortmess+=c
 
 " Better Completion }}}
 " Line Return {{{
@@ -174,7 +175,7 @@ source ~/.config/nvim/_machine_specific.vim
 " Save & quit
 nnoremap s <nop>
 " ignore it for now
-nnoremap S <nop>
+" nnoremap S <nop>
 nnoremap R <nop>
 nnoremap Q <nop>
 nnoremap <C-q> :q<CR>
@@ -190,7 +191,6 @@ nnoremap <M-x>si :source $MYVIMRC<CR>
 nnoremap <M-x>s. :so %<CR>
 vnoremap <M-x>sv y:execute @@<CR>:echo 'Sourced selection.'<CR>
 nnoremap <M-x>sl ^vg_y:execute @@<CR>:echo 'Sourced line.'<CR>
-
 
 " show the vim mappings
 nnoremap <Leader>vmn :nmap

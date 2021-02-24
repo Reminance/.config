@@ -31,7 +31,7 @@ imap <silent> <C-Space> <Plug>(completion_trigger)
 " define the completeopt in init.vim
 " set completeopt=menuone,noinsert,noselect
 " Avoid showing message extra message when using completion
-set shortmess+=c
+" set shortmess+=c
 
 " complete style
     " \    {'complete_items': ['snippet', 'buffers', 'tags']},
@@ -44,7 +44,7 @@ set shortmess+=c
     " \],
 let g:completion_chain_complete_list = {
     \ 'vim': [
-    \    {'complete_items': ['snippet', 'buffers']},
+    \    {'complete_items': ['snippet', 'buffers', 'tags']},
     \    {'mode': '<C-p>'},
     \    {'mode': '<C-n>'}
     \],
