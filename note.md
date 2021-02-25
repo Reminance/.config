@@ -128,3 +128,17 @@ sudo pacman -S the_silver_searcher
 
 pacman -S fd
 ```
+
+# competitive programming
+
+```
+HackerRank: https://www.hackerrank.com/
+Learn typing: https://www.keybr.com/
+Scratch: https://scratch.mit.edu/
+Learn C++: https://www.youtube.com/watch?v=mUQZ1...
+Competitive Programmer's Handbook: https://cses.fi/book/book.pdf
+GeeksForGeeks: https://www.geeksforgeeks.org/fundame...
+A2OJ Ladders: https://www.a2oj.com/Ladders.html
+Mostafa Saad's Junior Training Sheet: https://goo.gl/unDETI
+```
+
