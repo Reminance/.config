@@ -109,8 +109,7 @@ set updatetime=200
 
 " (:help 'complete')
 set complete=.,w,b,u,t
-" set completeopt=longest,menuone,preview,noinsert,noselect
-set completeopt=menuone,preview,noinsert
+set completeopt=menuone,preview,noinsert,noselect
 set shortmess+=c
 
 " Better Completion }}}
@@ -312,8 +311,6 @@ nnoremap <silent> * mm*`m
 " insert mode bindings(emacs like) {{{
 inoremap <C-a> <C-o>I
 inoremap <C-e> <C-o>A
-inoremap <M-a> <Esc>{jI
-inoremap <M-e> <Esc>}kA
 inoremap <C-b> <Left>
 inoremap <C-f> <Right>
 inoremap <M-f> <S-Right>

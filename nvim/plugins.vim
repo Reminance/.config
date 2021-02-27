@@ -123,6 +123,9 @@ Plug 'liuchengxu/vim-which-key'
 " floaterm
 Plug 'voldikss/vim-floaterm'
 
+" auto-pairs
+Plug 'jiangmiao/auto-pairs'
+
 " " vim-dadbod
 " Plug 'tpope/vim-dadbod'
 " " vim-dadbod-ui
