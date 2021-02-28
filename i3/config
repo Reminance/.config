@@ -198,7 +198,7 @@ exec_always --no-startup-id ~/.config/i3/scripts/wp-startbyi3-autochange.sh
 new_window pixel 1
 
 ## Set per-application border
-for_window [instance="alacritty"] border pixel 6
+for_window [instance="alacritty"] border pixel 3
 for_window [class="Chromium" title=" - Chromium$"] border pixel 0
 
 gaps inner 10
