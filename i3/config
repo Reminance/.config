@@ -46,7 +46,7 @@ floating_modifier $mod
 
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+Return exec --no-startup-id alacritty --class alacritty
 
 # kill focused window
 bindsym $mod+q kill
@@ -195,7 +195,11 @@ bar {
 exec_always --no-startup-id ~/.config/i3/scripts/autostart-i3.sh
 exec_always --no-startup-id ~/.config/i3/scripts/wp-startbyi3-autochange.sh
 
-new_window 1pixel
+new_window pixel 1
+
+## Set per-application border
+for_window [instance="alacritty"] border pixel 6
+for_window [class="Chromium" title=" - Chromium$"] border pixel 0
 
 gaps inner 10
 
