@@ -200,6 +200,7 @@ new_window pixel 1
 ## Set per-application border
 for_window [instance="alacritty"] border pixel 3
 for_window [class="Chromium" title=" - Chromium$"] border pixel 0
+for_window [instance="note"] floating enable
 
 gaps inner 10
 
@@ -212,4 +213,15 @@ bindsym $mod+Ctrl+p exec bash ~/.config/i3/scripts/picom-toggle.sh
 bindsym $mod+c exec --no-startup-id chromium
 bindsym $mod+Ctrl+a exec --no-startup-id flameshot gui
 bindsym $mod+Ctrl+e exec "emacsclient -c -a %"
-bindsym $mod+Ctrl+c exec "emacsclient -ne '(make-capture-frame)'"
+# bindsym $mod+Ctrl+c exec "emacsclient -ne '(make-capture-frame)'"
+# bindsym $mod+Ctrl+c exec --no-startup-id alacritty -e ~/.config/bin/vimNoteCapture.sh -t notecapture
+# bindsym $mod+Ctrl+c exec --no-startup-id --class note "alacritty -e ~/.config/bin/vimNoteCapture.sh"
+# bindsym $mod+Ctrl+c exec --no-startup-id 'alacritty -e ~/.config/bin/vimNoteCapture.sh' --class note
+bindsym $mod+Ctrl+c exec --no-startup-id 'alacritty' --class note
+
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
+# move all floating windows to the scratchpad
+bindsym $mod+x [floating] move scratchpad
