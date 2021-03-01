@@ -24,6 +24,7 @@ function! HideAll()
     setl laststatus=0
     setl nonumber
     setl norelativenumber
+    setl listchars=tab:>\ ,trail:-,nbsp:+
     " setl noshowmode
     " setl noshowcmd
     " setl shortmess=F
@@ -34,6 +35,7 @@ function! ShowAll()
     setl laststatus=2
     setl number
     setl relativenumber
+    set listchars=tab:»\ ,trail:▫,eol:¬,extends:>,precedes:<,nbsp:␣,conceal:┊
     " setl showmode
     " setl showcmd
     " setl shortmess=filnxtToOF
