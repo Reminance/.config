@@ -142,3 +142,8 @@ A2OJ Ladders: https://www.a2oj.com/Ladders.html
 Mostafa Saad's Junior Training Sheet: https://goo.gl/unDETI
 ```
 
+# delta: A viewer for git and diff output
+```
+# https://github.com/dandavison/delta#installation
+sps git-delta-git
+```
