@@ -3,7 +3,9 @@ alias gs='git status'
 alias gpull='git pull'
 alias gpush='git push'
 alias gd='git diff'
+alias gds='git diff --cached' # same with: git diff --staged
 alias gpr='git pull --rebase'
+alias gco='git checkout'
 
 # Adding helpers
 alias gadd='git add .'
