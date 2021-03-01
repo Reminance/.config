@@ -9,6 +9,7 @@ alias gco='git checkout'
 
 # Adding helpers
 alias gadd='git add .'
+alias gcm='git commit -av'
 alias gca='git add . && git commit -av'
 
 # Logging helpers
