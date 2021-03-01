@@ -179,6 +179,7 @@ nnoremap R <nop>
 nnoremap Q <nop>
 nnoremap <C-q> :q<CR>
 inoremap <C-q> <Esc>:q<CR>
+nnoremap <Leader>qq :q!<CR>
 nnoremap <C-M-q> :qa<CR>
 inoremap <C-M-q> :qa<CR>
 inoremap <C-s> <Esc>:w<CR>
