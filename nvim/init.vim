@@ -585,8 +585,8 @@ augroup filetype_javascript
     " positioned inside of them AND the following code doesn't get unfolded.}
     au Filetype javascript inoremap <buffer> {<cr> {}<left><cr><space><space><space><space>.<cr><esc>kA<bs>
     " Prettify a hunk of JSON with <LocalLeader>p
-    au FileType javascript nnoremap <buffer> <LocalLeader>p ^vg_:!python -m json.tool<cr>
-    au FileType javascript vnoremap <buffer> <LocalLeader>p :!python -m json.tool<cr>
+    " au FileType javascript nnoremap <buffer> <LocalLeader>p ^vg_:!python -m json.tool<cr>
+    " au FileType javascript vnoremap <buffer> <LocalLeader>p :!python -m json.tool<cr>
 augroup END
 
 " JavaScript }}}
@@ -610,9 +610,9 @@ augroup END
 
 augroup filetype_markdown
     au BufEnter,BufNewFile,BufRead *.md,*.markdown,*.mdown,*.mkd,*.mkdn,*.mdwn setl filetype=markdown
-    au Filetype markdown setl foldlevel=1 tabstop=2 softtabstop=2 shiftwidth=2
-    au Filetype markdown nnoremap <buffer> <LocalLeader>p VV:'<,'>!python -m json.tool<cr>
-    au Filetype markdown vnoremap <buffer> <LocalLeader>p :!python -m json.tool<cr>
+    au Filetype markdown setl foldlevel=99 tabstop=2 softtabstop=2 shiftwidth=2
+    " au Filetype markdown nnoremap <buffer> <LocalLeader>p VV:'<,'>!python -m json.tool<cr>
+    " au Filetype markdown vnoremap <buffer> <LocalLeader>p :!python -m json.tool<cr>
     au Filetype markdown nnoremap <buffer> <M-f> $F.egf
 augroup END
 " markdown settings
