@@ -61,7 +61,7 @@ Plug 'mhinz/vim-signify'
 
 " HTML, CSS, JavaScript, PHP, JSON, etc.
 " Plug 'elzr/vim-json'
-Plug 'hail2u/vim-css3-syntax'
+" Plug 'hail2u/vim-css3-syntax'
 " merge of ap vim-css-color and colorizer. The main goal was to fix cursorline bug and keep named colors(i.e. white, black, aqua).
 Plug 'gko/vim-coloresque', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
 " Plug 'pangloss/vim-javascript', { 'for' :['javascript', 'vim-plug'] }
@@ -77,7 +77,7 @@ Plug 'honza/vim-snippets'
 " Plug 'vim-scripts/indentpython.vim'
 
 " Go
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+" Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 
 " Markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
@@ -87,7 +87,7 @@ Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 " Plug 'easymotion/vim-easymotion'
 
 " Find & Replace
-" Plug 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }
+Plug 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }
 
 " Bookmarks
 Plug 'MattesGroeger/vim-bookmarks'
@@ -99,10 +99,10 @@ Plug 'luochen1990/rainbow'
 " Plug 'wincent/terminus'
 
 " A Vim Plugin for Lively Previewing LaTeX PDF Output
-Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+" Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 
 " Other useful utilities
-Plug 'makerj/vim-pdf'
+" Plug 'makerj/vim-pdf'
 " Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'` to change 'word' to `word`
 " Plug 'godlygeek/tabular' " type ;Tabularize /= to align the =
@@ -115,7 +115,7 @@ Plug 'tpope/vim-commentary' " gcc to comment the current line
 " Plug 'fadein/vim-FIGlet'
 
 " Debugger
-Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python --enable-go'}
+" Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python --enable-go'}
 
 " which-key
 Plug 'liuchengxu/vim-which-key'
@@ -134,7 +134,7 @@ Plug 'jiangmiao/auto-pairs'
 " Plug 'kristijanhusak/vim-dadbod-completion'
 
 " vista.vim
-Plug 'liuchengxu/vista.vim'
+" Plug 'liuchengxu/vista.vim'
 
 "ianding1/leetcode.vim
 " Plug 'ianding1/leetcode.vim'
@@ -158,6 +158,9 @@ Plug 'nvim-lua/completion-nvim'
 Plug 'steelsojka/completion-buffers'
 Plug 'kristijanhusak/completion-tags'
 
+" fcitx optimization
+Plug 'lilydjwg/fcitx.vim'
+
 call plug#end()
 
 " Plug Install }}}
@@ -175,8 +178,8 @@ nnoremap \c :! ls \| grep -E '*.aux\|*.log\|*.nav\|*.out\|*.snm\|*.toc\|*.pdf' \
 
 " vim-latex-live-preview
 " let g:livepreview_previewer='zathura'
-let g:livepreview_previewer='mupdf'
-let g:livepreview_engine='pdflatex'
+" let g:livepreview_previewer='mupdf'
+" let g:livepreview_engine='pdflatex'
 
 " latex }}}
 " airline {{{
@@ -193,14 +196,15 @@ let g:airline_theme='molokai'
       " \ 'colorscheme': 'wombat',
       " \ 'colorscheme': 'gotham',
       " \ 'colorscheme': 'PaperColor',
+      "
+      " \ 'component_function': {
+      " \   'method': 'NearestMethodOrFunction'
+      " \ },
 let g:lightline={
       \ 'colorscheme': 'jellybeans',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'readonly', 'filename', 'modified', 'method' ] ]
-      \ },
-      \ 'component_function': {
-      \   'method': 'NearestMethodOrFunction'
       \ },
       \ }
 
@@ -323,7 +327,7 @@ nnoremap <Leader>tm :TableModeToggle<CR>
 " vim-easymotion }}}
 " Far.vim {{{
 
-" nnoremap <Leader>fa :F  %<left><left>
+nnoremap <Leader>fa :F  %<left><left>
 
 " Far.vim }}}
 " fzf.vim {{{
@@ -503,20 +507,20 @@ nmap <Leader>gsp <plug>(signify-prev-hunk)
 " GitGutter }}}
 " vimspector {{{
 
-let g:vimspector_enable_mappings='HUMAN'
-let g:vimspector_install_gadgets=[ 'vscode-cpptools', 'debugpy', 'vscode-go' ]
-" let g:vimspector_base_dir=expand( '$HOME/.config/nvim/vimspector-config' )
+" let g:vimspector_enable_mappings='HUMAN'
+" let g:vimspector_install_gadgets=[ 'vscode-cpptools', 'debugpy', 'vscode-go' ]
+" " let g:vimspector_base_dir=expand( '$HOME/.config/nvim/vimspector-config' )
 
-" " 从模板文件读入到当前buffer
-function! s:read_template_into_buffer(template)
-    " has to be a function to avoid the extra space fzf#run insers otherwise
-    execute '0r ~/.config/nvim/vimspector-config/'.a:template
-endfunction
-command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
-            \   'source': 'ls -1 ~/.config/nvim/vimspector-config',
-            \   'down': 20,
-            \   'sink': function('<sid>read_template_into_buffer')
-            \ })
+" " " 从模板文件读入到当前buffer
+" function! s:read_template_into_buffer(template)
+"     " has to be a function to avoid the extra space fzf#run insers otherwise
+"     execute '0r ~/.config/nvim/vimspector-config/'.a:template
+" endfunction
+" command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
+"             \   'source': 'ls -1 ~/.config/nvim/vimspector-config',
+"             \   'down': 20,
+"             \   'sink': function('<sid>read_template_into_buffer')
+"             \ })
 
 " " nnoremap <Leader>vs :tabe .vimspector.json<CR>:LoadVimSpectorJsonTemplate<CR>
 " sign define vimspectorBP text=☛ texthl=Normal
@@ -557,6 +561,14 @@ nnoremap <silent> <Leader>fh :FloatermNew htop<CR>
 nnoremap <silent> <Leader>fd :FloatermNew ncdu<CR>
 
 " floaterm }}}
+" auto-pairs {{{
+
+let g:AutoPairsShortcutToggle='<Leader>apt'
+let g:AutoPairsShortcutFastWrap='<Leader>apf'
+let g:AutoPairsShortcutJump='<Leader>apj'
+let g:AutoPairsShortcutBackInsert='<Leader>api'
+
+" auto-pairs }}}
 " vim-dadbod-ui {{{
 
 " " nnoremap <silent> <Leader>dt :tabe<CR>:tabmove<CR>:DBUIToggle<CR>
@@ -595,34 +607,35 @@ nnoremap <silent> <Leader>fd :FloatermNew ncdu<CR>
 " vim-dadbod-ui }}}
 " vista {{{
 
-function! NearestMethodOrFunction() abort
-    return get(b:, 'vista_nearest_method_or_function', '')
-endfunction
+" function! NearestMethodOrFunction() abort
+"     return get(b:, 'vista_nearest_method_or_function', '')
+" endfunction
 " set statusline+=%{NearestMethodOrFunction()}
 
 " By default vista.vim never run if you don't call it explicitly.
 "
 " If you want to show the nearest function in your statusline automatically,
 " you can add the following line to your vimrc
-autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
-nnoremap <Leader>vt :Vista!!<CR>
-" nnoremap <Leader>vf :silent! Vista finder coc<CR>
-let g:vista_icon_indent=["╰─▸ ", "├─▸ "]
-" let g:vista_default_executive='coc'
-let g:vista_default_executive='ctags'
-" Set the executive for some filetypes explicitly. Use the explicit executive
-" instead of the default one for these filetypes when using `:Vista` without
-" specifying the executive.
-" let g:vista_executive_for = {
-"   \ 'cpp': 'vim_lsp',
-"   \ 'php': 'vim_lsp',
-"   \ }
-let g:vista_fzf_preview=['right:50%']
-let g:vista#renderer#enable_icon=1
-let g:vista#renderer#icons={
-\   "function": "\uf794",
-\   "variable": "\uf71b",
-\  }
+" autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+
+" nnoremap <Leader>vt :Vista!!<CR>
+" " nnoremap <Leader>vf :silent! Vista finder coc<CR>
+" let g:vista_icon_indent=["╰─▸ ", "├─▸ "]
+" " let g:vista_default_executive='coc'
+" let g:vista_default_executive='ctags'
+" " Set the executive for some filetypes explicitly. Use the explicit executive
+" " instead of the default one for these filetypes when using `:Vista` without
+" " specifying the executive.
+" " let g:vista_executive_for = {
+" "   \ 'cpp': 'vim_lsp',
+" "   \ 'php': 'vim_lsp',
+" "   \ }
+" let g:vista_fzf_preview=['right:50%']
+" let g:vista#renderer#enable_icon=1
+" let g:vista#renderer#icons={
+" \   "function": "\uf794",
+" \   "variable": "\uf71b",
+" \  }
 
 " vista }}}
 " leetcode.vim {{{

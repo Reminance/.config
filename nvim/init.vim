@@ -316,6 +316,7 @@ inoremap <C-b> <Left>
 inoremap <C-f> <Right>
 inoremap <M-f> <S-Right>
 inoremap <M-b> <S-Left>
+inoremap <M-e> <Esc>ea
 inoremap <C-d> <Del>
 inoremap <C-k> <C-o>D
 inoremap <M-k> <Esc>ddk$
