@@ -10,7 +10,7 @@ bbswitch
 binutils
 bison
 bless
-chromium
+ccls
 clang
 clash
 convmv
@@ -37,6 +37,7 @@ fzf
 gcc
 gdb
 git
+git-delta-git
 global
 gnome-keyring
 go
@@ -69,12 +70,14 @@ maven
 mpc
 mpd
 mpv
+mupdf
 nasm
 ncdu
 neovim
 nerd-fonts-fira-code
 net-tools
 netease-cloud-music
+nginx
 nodejs
 noto-fonts
 npm
@@ -98,6 +101,7 @@ ranger
 rdesktop
 ripgrep
 ruby
+rustup
 seahorse
 sudo
 texinfo
