@@ -31,3 +31,4 @@ export GRADLE_HOME=$HOME/gradle
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
 export JDTLS_CONFIG=~/.config/coc/extensions/coc-java-data/server/config_linux
 export WORKSPACE=$HOME/workspace
+export M2_HOME=/opt/maven
