@@ -614,7 +614,7 @@ augroup filetype_markdown
     au Filetype markdown setl foldlevel=99 tabstop=2 softtabstop=2 shiftwidth=2
     " au Filetype markdown nnoremap <buffer> <LocalLeader>p VV:'<,'>!python -m json.tool<cr>
     " au Filetype markdown vnoremap <buffer> <LocalLeader>p :!python -m json.tool<cr>
-    au Filetype markdown nnoremap <buffer> <M-f> $F.egf
+    au Filetype markdown nnoremap <buffer> <M-f> 0f(f.egf
 augroup END
 " markdown settings
 let g:markdown_folding=1
@@ -628,11 +628,12 @@ source ~/.config/nvim/snippets/_md_snippets.vim
 
 augroup filetype_nginx
     au!
+    au BufRead,BufNewFile nginx.conf                             set ft=nginx
     au BufRead,BufNewFile /etc/nginx/conf/*                      set ft=nginx
     au BufRead,BufNewFile /etc/nginx/sites-available/*           set ft=nginx
     au BufRead,BufNewFile /usr/local/etc/nginx/sites-available/* set ft=nginx
     au BufRead,BufNewFile vhost.nginx                            set ft=nginx
-    au FileType nginx setlocal foldmethod=marker foldmarker={,}
+    au FileType nginx setlocal foldmethod=marker foldmarker={,} foldlevel=99
 augroup END
 
 " Nginx }}}

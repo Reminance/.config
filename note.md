@@ -147,3 +147,10 @@ Mostafa Saad's Junior Training Sheet: https://goo.gl/unDETI
 # https://github.com/dandavison/delta#installation
 sps git-delta-git
 ```
+
+# building spring ref-docs
+```sh
+cd spring-framework && ./gradlew asciidoctor
+```
+> 访问 build\docs\asciidoc 目录中的内容。
+> 然后双击 index.html 文件，就可以看到最新的编译内容和结果。
