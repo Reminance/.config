@@ -571,7 +571,7 @@ augroup filetype_java
     " au FileType java setlocal foldmethod=expr
     " au FileType java setlocal foldexpr=ProgramFoldLevel(v:lnum)
     au FileType java setlocal foldmethod=marker
-    au FileType java setlocal foldmarker={,}
+    au FileType java setlocal foldmarker={,} foldlevel=99
 augroup END
 
 " Java }}}
