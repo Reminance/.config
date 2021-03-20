@@ -16,6 +16,7 @@ lua require'lspconfig'.gopls.setup{}
 
 " Use completion-nvim in every buffer
 autocmd BufEnter * lua require'completion'.on_attach()
+autocmd BufWritePre *.go lua goimports(1000)
 
 " nvim-completion settings
 " Use <Tab> and <S-Tab> to navigate through popup menu
