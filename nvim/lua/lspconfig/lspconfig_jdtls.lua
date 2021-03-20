@@ -10,7 +10,7 @@ function M.setup()
 
     -- Utility servers
     local map = function(type, key, value)
-        vim.fn.nvim_buf_set_keymap(0,type,key,value,{noremap = true, silent = true});
+        vim.api.nvim_buf_set_keymap(0,type,key,value,{noremap = true, silent = true});
     end
     -- GOTO mappings
     map('n','gD','<Cmd>lua vim.lsp.buf.declaration()<CR>')

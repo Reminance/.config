@@ -2,7 +2,8 @@ augroup nvim_lsp
     au!
     au FileType java lua require'lspconfig/lspconfig_jdtls'.setup{}
     au FileType c,cpp,objc,objcpp lua require'lspconfig'.ccls.setup{}
-    au FileType go,gomod lua require'lspconfig'.gopls.setup{}
+    " au FileType go,gomod lua require'lspconfig'.gopls.setup{}
+    au FileType go,gomod lua require'lspconfig/lspconfig_gopls'.setup{}
     au FileType rust lua require'lspconfig'.rls.setup{}
     au FileType python lua require'lspconfig'.pyls.setup{}
     au FileType sh lua require'lspconfig'.bashls.setup{}
@@ -10,6 +11,8 @@ augroup nvim_lsp
     au FileType html lua require'lspconfig'.html.setup{}
     au FileType json lua require'lspconfig'.jsonls.setup{}
 augroup end
+
+lua require'lspconfig'.gopls.setup{}
 
 " Use completion-nvim in every buffer
 autocmd BufEnter * lua require'completion'.on_attach()
@@ -52,47 +55,47 @@ imap <silent> <C-Space> <Plug>(completion_trigger)
     " \],
 let g:completion_chain_complete_list = {
     \ 'vim': [
-    \    {'complete_items': ['snippet', 'buffers', 'tags']},
+    \    {'complete_items': ['snippet', 'tags']},
     \    {'mode': '<C-p>'},
     \    {'mode': '<C-n>'}
     \],
     \ 'java': [
-    \    {'complete_items': ['snippet', 'lsp', 'buffers']},
+    \    {'complete_items': ['snippet', 'lsp']},
     \    {'mode': '<C-p>'},
     \    {'mode': '<C-n>'}
     \],
     \ 'c': [
-    \    {'complete_items': ['snippet', 'lsp', 'buffers']},
+    \    {'complete_items': ['snippet', 'lsp']},
     \    {'mode': '<C-p>'},
     \    {'mode': '<C-n>'}
     \],
     \ 'go': [
-    \    {'complete_items': ['snippet', 'lsp', 'buffers']},
+    \    {'complete_items': ['snippet', 'lsp']},
     \    {'mode': '<C-p>'},
     \    {'mode': '<C-n>'}
     \],
     \ 'rust': [
-    \    {'complete_items': ['snippet', 'lsp', 'buffers']},
+    \    {'complete_items': ['snippet', 'lsp']},
     \    {'mode': '<C-p>'},
     \    {'mode': '<C-n>'}
     \],
     \ 'python': [
-    \    {'complete_items': ['snippet', 'lsp', 'buffers']},
+    \    {'complete_items': ['snippet', 'lsp']},
     \    {'mode': '<C-p>'},
     \    {'mode': '<C-n>'}
     \],
     \ 'sh': [
-    \    {'complete_items': ['snippet', 'lsp', 'buffers']},
+    \    {'complete_items': ['snippet', 'lsp']},
     \    {'mode': '<C-p>'},
     \    {'mode': '<C-n>'}
     \],
     \ 'lua': [
-    \    {'complete_items': ['snippet', 'lsp', 'buffers']},
+    \    {'complete_items': ['snippet', 'lsp']},
     \    {'mode': '<C-p>'},
     \    {'mode': '<C-n>'}
     \],
     \ 'default': [
-    \    {'complete_items': ['snippet', 'buffers']},
+    \    {'complete_items': ['snippet']},
     \    {'mode': '<C-p>'},
     \    {'mode': '<C-n>'}
     \]
