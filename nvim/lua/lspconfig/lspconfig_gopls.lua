@@ -1,6 +1,17 @@
 local M = {}
 function M.setup()
-    require'lspconfig'.gopls.setup{}
+    local lspconfig = require'lspconfig'
+    lspconfig.gopls.setup {
+    cmd = {"gopls", "serve"},
+    settings = {
+      gopls = {
+        analyses = {
+          unusedparams = true,
+        },
+        staticcheck = true,
+      },
+    },
+  }
     -- Utility servers
     local map = function(type, key, value)
         vim.api.nvim_buf_set_keymap(0,type,key,value,{noremap = true, silent = true});
